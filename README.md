@@ -43,16 +43,17 @@ Per the original behavior notes, tooltip behavior applies to both Admin and Clie
 - **Persistent hover tooltips** (always shown on hover, not conditional) on the card-number field, **Маска карты**, and **Временная зона**.
 - All other fields show a **hover tooltip only when the field is filled and its value text is truncated** (i.e. standard overflow-tooltip behavior) — never a tooltip on an empty or fully-visible field.
 
-## Visual design — Ascendra, maximally light
+## Visual design
 
-Styling is adapted from the **Ascendra Design System** (`../Ascendra/design-system`) — palette, type scale, spacing, radii, shadows, and control specs — reinterpreted as a **maximally light** variant for a calm, long-daily-use accounting/operations interface:
+Control styling follows the Paid design-system sheet (`docs/Group 1.png`) — buttons, text inputs, selects and checkboxes with Default / Hover / Focus / Filled / Disabled / Error states:
 
-- Near-white application background, white surfaces, very pale tinted section backgrounds.
-- Subtle 1px borders in place of heavier separators; minimal, restrained shadows (card/popover/modal elevation only).
-- Ascendra's sage primary ramp and critical/status ramps carried over, with Admin and User given distinct restrained accent colors rather than separate themes.
-- IBM Plex Sans / IBM Plex Mono type scale, 8px spacing grid, and Ascendra's radius/elevation scale.
+- **Primary action** orange `#D95032` (hover `#C13E22`), used for the primary button, checked checkboxes and active tab/page.
+- **Secondary** buttons and checkboxes outlined in black; ghost buttons text-only; hover fill `#F4F7F6`.
+- **Focus** is a 2px `#D95032` border; **error** is a 2px `#9E321C` border with a message underneath; **disabled** is a flat `#F2F2F2` fill.
+- 40px control height, 6px radius, light borders `#E2E8E6` (hover `#C3D5D0`), primary text `#2B3936`, placeholder `#737373` (darkened from the sheet's `#8C8C8C` to reach WCAG AA 4.5:1). Field text is left-aligned for scanning.
+- IBM Plex Sans / IBM Plex Mono type scale, 8px spacing grid; Admin and User keep their own restrained accent colors for role indicators.
 
-Ascendra's own source files were not modified, and no Ascendra branding was copied — only its token values and interaction patterns were reused as a foundation.
+All values live in `docs/figma-prototype-plan/design-tokens.json`; the HTML prototype and the Figma foundations script are generated from it.
 
 ## What's included
 

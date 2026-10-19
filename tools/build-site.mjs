@@ -224,21 +224,23 @@ const componentsCss = `/* components.css — shared UI components, all token-dri
   outline: none;
   transition: border-color .12s ease, box-shadow .12s ease;
 }
+/* 2px states (focus / error) = 1px border + 1px inset ring, so the box never shifts */
 .field-input::placeholder { color: var(--color-text-muted); }
-.field-input:hover { border-color: var(--color-border-strong); }
-.field-input:focus { border-color: var(--color-action-primary); box-shadow: 0 0 0 3px var(--color-focus-ring); }
+.field-input:hover, .field-input.is-hover { border-color: var(--color-border-strong); }
+.field-input:focus, .field-input.is-focus { border-color: var(--color-focus-ring); box-shadow: inset 0 0 0 1px var(--color-focus-ring); }
 .field-input.filled { color: var(--color-text-primary); }
 .field-input.is-cardnum { font-family: var(--font-family-mono); }
 .field-input:disabled { background: var(--color-disabled-bg); border-color: var(--color-disabled-border); color: var(--color-disabled-text); cursor: not-allowed; }
-.field-input.has-error { border-color: var(--color-status-error); background: var(--color-status-error-bg); }
-.field-input.has-error:focus { box-shadow: 0 0 0 3px var(--color-status-error-border); }
+.field-input:disabled::placeholder { color: var(--color-disabled-text); }
+.field-input.has-error, .field-input.has-error:focus { border-color: var(--color-status-error); box-shadow: inset 0 0 0 1px var(--color-status-error); }
 
 .field-error {
   display: flex;
   align-items: center;
   gap: 4px;
   margin-top: 4px;
-  font-size: var(--font-caption-size);
+  font-size: var(--font-overline-size);
+  font-weight: var(--font-caption-weight);
   color: var(--color-status-error);
 }
 
@@ -258,31 +260,33 @@ const componentsCss = `/* components.css — shared UI components, all token-dri
   gap: var(--spacing-2xs);
   transition: border-color .12s ease;
 }
-.field-select:hover { border-color: var(--color-border-strong); }
+.field-select:hover, .field-select.is-hover { border-color: var(--color-border-strong); }
 .field-select.filled { color: var(--color-text-primary); }
-.field-select .chevron { flex: none; opacity: .6; }
-.field-select.is-open { border-color: var(--color-action-primary); box-shadow: 0 0 0 3px var(--color-focus-ring); border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.field-select .chevron { flex: none; width: 12px; height: 7px; }
+.field-select:focus-visible, .field-select.is-open, .field-select.is-focus { outline: none; }
+.field-select:focus-visible, .field-select.is-open, .field-select.is-focus { border-color: var(--color-focus-ring); box-shadow: inset 0 0 0 1px var(--color-focus-ring); }
+.field-select.has-error { border-color: var(--color-status-error); box-shadow: inset 0 0 0 1px var(--color-status-error); }
+.field-select.is-disabled { background: var(--color-disabled-bg); border-color: var(--color-disabled-border); color: var(--color-disabled-text); cursor: not-allowed; }
 .select-panel {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
   background: var(--color-surface-default);
-  border: 1px solid var(--color-action-primary);
-  border-top: none;
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-popover);
   z-index: 20;
   overflow: hidden;
 }
 .select-panel .opt { padding: 8px var(--spacing-sm); font-size: var(--font-body-sm-size); color: var(--color-text-primary); }
-.select-panel .opt:hover, .select-panel .opt.active { background: var(--color-accent-admin-bg); }
+.select-panel .opt:hover, .select-panel .opt.active { background: var(--color-surface-hover); }
 
 /* ---- Checkbox ---- */
 .checkbox { display: inline-flex; align-items: center; gap: var(--spacing-2xs); font-size: var(--font-body-sm-size); color: var(--color-text-primary); user-select: none; }
 .checkbox .box {
-  width: 18px; height: 18px;
-  border: 1.5px solid var(--color-border-strong);
+  width: 16px; height: 16px;
+  border: 1.5px solid var(--color-border-contrast);
   border-radius: var(--radius-sm);
   background: var(--color-surface-default);
   display: inline-flex; align-items: center; justify-content: center;
@@ -292,7 +296,7 @@ const componentsCss = `/* components.css — shared UI components, all token-dri
 .checkbox.checked .box svg { display: block; }
 .checkbox .box svg { display: none; }
 .checkbox.disabled { color: var(--color-disabled-text); }
-.checkbox.disabled .box { background: var(--color-disabled-bg); border-color: var(--color-disabled-border); }
+.checkbox.disabled .box { background: var(--color-disabled-bg); }
 
 /* ---- Tooltip ----
    Rendered in normal document flow (not position:absolute) so it reserves
@@ -328,22 +332,32 @@ const componentsCss = `/* components.css — shared UI components, all token-dri
   padding: 0 var(--spacing-md);
   border-radius: var(--radius-md);
   font-size: var(--font-body-sm-size);
-  font-weight: var(--font-caption-weight);
+  font-weight: var(--font-h3-weight);
   border: 1px solid transparent;
+  outline: none;
   transition: background-color .12s ease, border-color .12s ease;
   gap: 6px;
 }
 .btn-sm { height: var(--control-height-sm); padding: 0 var(--spacing-sm); }
 .btn-lg { height: var(--control-height-lg); padding: 0 var(--spacing-lg); }
 .btn-primary { background: var(--color-action-primary); color: var(--color-text-inverse); }
-.btn-primary:hover { background: var(--color-action-primary-hover); }
-.btn-primary:focus-visible { box-shadow: 0 0 0 3px var(--color-focus-ring); }
-.btn-secondary { background: var(--color-surface-default); color: var(--color-text-primary); border-color: var(--color-border-strong); }
-.btn-secondary:hover { border-color: var(--color-text-secondary); }
-.btn-ghost { background: transparent; color: var(--color-text-secondary); }
-.btn-ghost:hover { background: var(--color-surface-subtle); }
+.btn-primary:hover, .btn-primary.is-hover { background: var(--color-action-primary-hover); }
+.btn-primary:focus-visible { box-shadow: 0 0 0 2px var(--color-surface-default), 0 0 0 4px var(--color-focus-ring); }
+.btn-secondary { background: var(--color-surface-default); color: var(--color-text-primary); border-color: var(--color-border-contrast); }
+.btn-ghost { background: transparent; color: var(--color-text-primary); }
+.btn-secondary:hover, .btn-secondary.is-hover,
+.btn-ghost:hover, .btn-ghost.is-hover { background: var(--color-surface-hover); }
+.btn-secondary:focus-visible, .btn-secondary.is-focus,
+.btn-ghost:focus-visible, .btn-ghost.is-focus { border-color: var(--color-focus-ring); box-shadow: inset 0 0 0 1px var(--color-focus-ring); }
 .btn-destructive { background: var(--color-status-error); color: var(--color-text-inverse); }
-.btn[disabled] { background: var(--color-disabled-bg); color: var(--color-disabled-text); border-color: var(--color-disabled-border); cursor: not-allowed; }
+.btn[disabled] { background: var(--color-disabled-bg); color: var(--color-disabled-text); cursor: not-allowed; }
+.btn-ghost[disabled] { background: transparent; }
+
+/* ---- Design-system state grids ---- */
+.state-grid, .state-grid-head { display: grid; grid-template-columns: repeat(6, minmax(0, 196px)); gap: var(--spacing-md); align-items: start; }
+.state-grid + .state-grid { margin-top: var(--spacing-lg); }
+.state-grid .btn { justify-self: start; }
+.state-grid-head { margin-bottom: var(--spacing-xs); font-size: var(--font-overline-size); text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-muted); }
 
 /* ---- Footer row ---- */
 .footer-row { display: flex; align-items: center; justify-content: space-between; margin-top: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md); }
@@ -514,7 +528,7 @@ table.data-table tr.skeleton-row td { height: var(--layout-row-height-compact); 
 // small SVG icons (inline, no external assets)
 // ---------------------------------------------------------------------------
 const ICONS = {
-  chevron: `<svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  chevron: `<svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   check: `<svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   sortAsc: `<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg>`,
   sortNone: `<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 0.5L8 4H2L5 0.5Z" fill="currentColor" opacity="0.3"/><path d="M5 9.5L2 6H8L5 9.5Z" fill="currentColor" opacity="0.3"/></svg>`,
@@ -568,17 +582,17 @@ function renderField(raw, opts = {}) {
   const errorField = opts.errorField === label;
   let control;
   if (isSelect) {
-    control = `<div class="field-select"><span>${esc(label)}</span>${ICONS.chevron}</div>`;
+    control = `<div class="field-select" role="combobox" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-label="${esc(label)}"><span>${esc(label)}</span>${ICONS.chevron}</div>`;
   } else {
     const cls = ["field-input", isCardnum ? "is-cardnum" : "", errorField ? "has-error" : ""].filter(Boolean).join(" ");
-    control = `<input class="${cls}" type="text" placeholder="${esc(label)}" ${errorField ? 'aria-invalid="true"' : ""}/>`;
+    control = `<input class="${cls}" type="text" placeholder="${esc(label)}" aria-label="${esc(label)}"${errorField ? ' aria-invalid="true" aria-describedby="field-error"' : ""}/>`;
   }
 
   const tooltipHtml = tooltipText
     ? `<div class="tooltip tooltip-persistent">${esc(tooltipText)}</div>`
     : "";
   const errorHtml = errorField
-    ? `<div class="field-error">⚠ Введите корректное значение суммы</div>`
+    ? `<div class="field-error" id="field-error">Введите корректное значение поля</div>`
     : "";
 
   return `<div class="field-wrap">${control}${tooltipHtml}${errorHtml}</div>`;
@@ -805,7 +819,7 @@ function buildSearchScreen(role, mode, state) {
   const opts = { errorField: state === "validation" ? "Сумма" : null };
   const groupsHtml = data.groups.map((g) => renderGroup(g, opts)).join("");
   const validationBanner = state === "validation"
-    ? `<div class="field-error" style="margin-bottom:12px;font-size:13px;">⚠ Форма содержит ошибки. Проверьте выделенные поля.</div>`
+    ? `<div class="field-error" style="margin-bottom:12px;font-size:13px;">Форма содержит ошибки. Проверьте выделенные поля.</div>`
     : "";
 
   let resultsHtml = "";
@@ -944,7 +958,7 @@ function buildCover() {
     <h1 class="text-display" style="margin:0 0 16px;">Список платежей</h1>
     <p class="text-body text-secondary" style="max-width:640px;margin:0 auto 32px;">
       Прототип внутренней консоли для поиска, просмотра и экспорта платёжных транзакций.
-      Ascendra-light адаптация: единая система компонентов, две роли — Администратор и Клиент.
+      Единая система компонентов, две роли — Администратор и Клиент.
     </p>
     <div class="swatch-row" style="justify-content:center;">
       <span class="role-badge role-admin"><span class="dot"></span>Администратор — расширенный доступ</span>
@@ -965,10 +979,11 @@ function buildCover() {
 // ---------------------------------------------------------------------------
 function buildDesignSystem() {
   const colorGroups = {
-    Surfaces: ["bg/canvas", "surface/default", "surface/subtle", "surface/sunken"],
+    Surfaces: ["bg/canvas", "surface/default", "surface/subtle", "surface/sunken", "surface/hover"],
     Text: ["text/primary", "text/secondary", "text/muted", "text/inverse"],
-    Borders: ["border/default", "border/strong"],
-    Action: ["action/primary", "action/primary-hover"],
+    Borders: ["border/default", "border/strong", "border/contrast"],
+    Action: ["action/primary", "action/primary-hover", "focus/ring"],
+    Disabled: ["disabled/bg", "disabled/border", "disabled/text"],
     "Role accents": ["accent/admin", "accent/admin-bg", "accent/user", "accent/user-bg"],
     Status: ["status/success", "status/success-bg", "status/warning", "status/warning-bg", "status/error", "status/error-bg", "status/info", "status/info-bg"],
   };
@@ -984,32 +999,49 @@ function buildDesignSystem() {
     return `<div style="margin-bottom:10px;" class="${cls}">${name} — Список платежей</div>`;
   }).join("");
 
-  const buttonSection = `<div class="swatch-row">
-    <button class="btn btn-primary">Искать</button>
-    <button class="btn btn-secondary">Экспортировать в XLSX</button>
-    <button class="btn btn-ghost">Очистить</button>
-    <button class="btn btn-destructive">Удалить</button>
-    <button class="btn btn-primary" disabled>Отключена</button>
-  </div>
-  <div class="swatch-row" style="margin-top:12px;">
+  // State grid mirrors docs/Group 1.png: columns = Default / Hover / Focus / Disabled
+  const stateHead = (cols) => `<div class="state-grid-head">${cols.map((c) => `<span>${c}</span>`).join("")}</div>`;
+  const btnRow = (style) => `<div class="state-grid">
+    <button class="btn btn-${style}">Искать</button>
+    <button class="btn btn-${style} is-hover">Искать</button>
+    <button class="btn btn-${style} is-focus">Искать</button>
+    <button class="btn btn-${style}" disabled>Искать</button>
+  </div>`;
+  const buttonSection = `${stateHead(["Default", "Hover", "Focus", "Disabled"])}
+  ${btnRow("primary")}
+  ${btnRow("secondary")}
+  ${btnRow("ghost")}
+  <div class="swatch-row" style="margin-top:16px;align-items:center;">
     <button class="btn btn-primary btn-sm">Sm</button>
     <button class="btn btn-primary">Md</button>
     <button class="btn btn-primary btn-lg">Lg</button>
+    <button class="btn btn-destructive">Удалить</button>
   </div>`;
 
-  const inputSection = `<div class="swatch-row">
-    <div class="field-wrap" style="width:200px;"><input class="field-input" placeholder="По умолчанию"/></div>
-    <div class="field-wrap" style="width:200px;"><input class="field-input filled" value="Заполнено"/></div>
-    <div class="field-wrap" style="width:200px;"><input class="field-input has-error" value="Ошибка"/><div class="field-error">⚠ Некорректное значение</div></div>
-    <div class="field-wrap" style="width:200px;"><input class="field-input" placeholder="Отключено" disabled/></div>
+  const inputSection = `${stateHead(["Default", "Hover", "Focus", "Filled", "Disabled", "Error"])}
+  <div class="state-grid">
+    <div class="field-wrap"><input class="field-input" placeholder="UID операции"/></div>
+    <div class="field-wrap"><input class="field-input is-hover" placeholder="UID операции"/></div>
+    <div class="field-wrap"><input class="field-input is-focus" placeholder="UID операции"/></div>
+    <div class="field-wrap"><input class="field-input filled" value="OP-2026-114872"/></div>
+    <div class="field-wrap"><input class="field-input" placeholder="UID операции" disabled/></div>
+    <div class="field-wrap"><input class="field-input has-error filled" value="12ab"/><div class="field-error">Введите корректное значение поля</div></div>
   </div>`;
 
-  const selectSection = `<div class="swatch-row">
-    <div class="field-wrap" style="width:200px;"><div class="field-select"><span>Выберите статус</span>${ICONS.chevron}</div></div>
-    <div class="field-wrap" style="width:200px;"><div class="field-select filled"><span>Одобрена</span>${ICONS.chevron}</div></div>
-    <div class="field-wrap" style="width:200px;">
+  const sel = (cls, text) => `<div class="field-wrap"><div class="field-select${cls}"><span>${text}</span>${ICONS.chevron}</div></div>`;
+  const selectSection = `${stateHead(["Default", "Hover", "Focus", "Filled", "Disabled", "Error"])}
+  <div class="state-grid">
+    ${sel("", "Выберите статус")}
+    ${sel(" is-hover", "Выберите статус")}
+    ${sel(" is-focus", "Выберите статус")}
+    ${sel(" filled", "Успешно")}
+    ${sel(" is-disabled", "Выберите статус")}
+    ${sel(" has-error", "Выберите статус")}
+  </div>
+  <div class="state-grid" style="margin-top:8px;padding-bottom:132px;">
+    <div class="field-wrap">
       <div class="field-select is-open"><span>Выберите статус</span>${ICONS.chevron}</div>
-      <div class="select-panel"><div class="opt active">Одобрена</div><div class="opt">В обработке</div><div class="opt">Отклонена</div></div>
+      <div class="select-panel"><div class="opt active">Успешно</div><div class="opt">В обработке</div><div class="opt">Отклонена</div></div>
     </div>
   </div>`;
 
@@ -1020,7 +1052,7 @@ function buildDesignSystem() {
   </div>`;
 
   const tooltipSection = `<div class="swatch-row" style="gap:64px;padding-top:8px;">
-    <div class="field-wrap" style="width:220px;"><input class="field-input is-cardnum" placeholder="xxxx xxxx xxxx 1234"/><div class="tooltip tooltip-persistent">введите последние 4 цифры карты</div></div>
+    <div class="field-wrap" style="flex:none;width:220px;"><input class="field-input is-cardnum" placeholder="xxxx xxxx xxxx 1234"/><div class="tooltip tooltip-persistent">введите последние 4 цифры карты</div></div>
   </div>`;
 
   const badgeSection = `<div class="swatch-row">
@@ -1037,7 +1069,7 @@ function buildDesignSystem() {
 
   const toastSection = `<div style="position:relative;height:90px;"><div class="toast" style="position:absolute;">${ICONS.toastCheck}<div><div class="toast-title">Экспорт завершён</div><div class="toast-body">Файл успешно сформирован</div></div></div></div>`;
 
-  const body = `<div class="app-header"><h1 class="page-title text-h1">Дизайн-система — Ascendra Light</h1></div>
+  const body = `<div class="app-header"><h1 class="page-title text-h1">Дизайн-система — Paid</h1></div>
   <div class="section-block"><h2 class="text-h2">Цвет</h2>${colorSection}</div>
   <div class="section-block"><h2 class="text-h2">Типографика</h2>${typeSection}</div>
   <div class="section-block"><h2 class="text-h2">Button</h2>${buttonSection}</div>
