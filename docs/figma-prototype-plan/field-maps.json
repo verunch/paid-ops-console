@@ -1,0 +1,152 @@
+{
+  "note": "Verbatim field transcription from the original reference screenshots. Do not add/remove/rename/reorder/merge/regroup — visual styling only.",
+  "sourceDir": "references (local only, not published)",
+
+  "adminBasic": {
+    "source": "Админ простой поиск.png",
+    "pageTitle": "Список платежей",
+    "groups": [
+      {
+        "title": "Поиск по типу транзакции:",
+        "rows": [
+          ["UID операции", "Трекинг ID", "Описание платежа"],
+          ["Сумма", "RNN", "Выберите тип транзакции|select", "Выберите статус|select"],
+          ["Выберите процессор|select", "Номер счёта ЕРИП", "Способ оплаты|select"]
+        ]
+      },
+      {
+        "title": "Поиск по данным банковской карты:",
+        "rows": [
+          ["xxxx xxxx xxxx 1234|cardnum", "БИН карты", "Владелец карты", "Маска карты", "Хэш карты"],
+          ["Страна банка-эмитета|select"]
+        ]
+      },
+      {
+        "title": "Поиск по данным плательщика:",
+        "rows": [
+          ["E-mail клиента", "Имя клиента", "Телефон клиента", "IP клиента"]
+        ]
+      }
+    ],
+    "footer": { "left": ["Искать|button-primary", "Экспортировать в XLSX|button-secondary"], "right": ["Расширенный поиск|checkbox(unchecked)", "Очистить поля|button-secondary"] }
+  },
+
+  "adminAdvanced": {
+    "source": "Админ расширенный поиск.png + Админ расширенный поиск-tultips.png (same layout, tooltip variant confirms identical fields)",
+    "pageTitle": "Список платежей",
+    "groups": [
+      {
+        "title": "Поиск по данным операции:",
+        "rows": [
+          ["UID операции", "Трекинг ID", "Описание платежа"],
+          ["Сумма", "RNN", "Выберите тип транзакции|select", "Выберите статус|select"],
+          ["Выберите процессор|select", "Номер счёта ЕРИП", "Способ оплаты|select"],
+          ["С", "По", "Выберите наименование торговца|select", "Выберите название магазина|select"]
+        ]
+      },
+      {
+        "title": "Поиск по данным банковской карты:",
+        "rows": [
+          ["xxxx xxxx xxxx 1234|cardnum|tooltip-persistent:введите последние 4 цифры карты", "БИН карты", "Владелец карты", "Маска карты|tooltip-persistent:маска карты 123456 xxxx 1234", "Хэш карты"],
+          ["Страна банка-эмитета|select"]
+        ]
+      },
+      {
+        "title": "Поиск по данным плательщика:",
+        "rows": [
+          ["E-mail клиента", "Имя клиента", "Телефон клиента", "IP клиента"]
+        ]
+      },
+      {
+        "title": "Поиск мошеннической операции:",
+        "rows": [
+          ["Показать фрод|select", "Дата создания|select", "Временная зона|select|tooltip-persistent:Временная зона (GMT + 01:00) Amsterdam", "Тестовые транзакции|checkbox(unchecked)"]
+        ]
+      }
+    ],
+    "footer": { "left": ["Искать|button-primary", "Экспортировать в XLSX|button-secondary"], "right": ["Расширенный поиск|checkbox(checked)", "Очистить поля|button-secondary"] }
+  },
+
+  "userBasic": {
+    "source": "Клиент простой поиск.png",
+    "pageTitle": "Список платежей",
+    "groups": [
+      {
+        "title": "Поиск по типу транзакции:",
+        "rows": [
+          ["Трекинг ID", "Описание платежа", "UID операции"],
+          ["ID банка", "RNN", "Сумма", "Выберите тип транзакции|select"],
+          ["Выберите статус|select", "Способ оплаты|select", "Номер счёта ЕРИП"]
+        ]
+      },
+      {
+        "title": "Поиск по данным банковской карты:",
+        "rows": [
+          ["xxxx xxxx xxxx 1234|cardnum", "БИН карты", "Владелец карты", "Маска карты", "Страна банка-эмитета|select"]
+        ]
+      },
+      {
+        "title": "Поиск по данным плательщика:",
+        "rows": [
+          ["Имя клиента", "E-mail клиента", "Телефон клиента", "IP клиента"]
+        ]
+      }
+    ],
+    "footer": { "left": ["Искать|button-primary", "Экспортировать в XLSX|button-secondary"], "right": ["Расширенный поиск|checkbox(unchecked)", "Очистить поля|button-secondary"] }
+  },
+
+  "userAdvanced": {
+    "source": "Клиент расширенный поиск.png",
+    "pageTitle": "Список платежей",
+    "groups": [
+      {
+        "title": "Поиск по типу транзакции:",
+        "rows": [
+          ["Трекинг ID", "Описание платежа", "UID операции"],
+          ["ID банка", "RNN", "Сумма", "Выберите тип транзакции|select"],
+          ["Выберите статус|select", "Способ оплаты|select", "Номер счёта ЕРИП"],
+          ["С", "По", "Выберите название магазина|select"]
+        ]
+      },
+      {
+        "title": "Поиск по данным банковской карты:",
+        "rows": [
+          ["xxxx xxxx xxxx 1234|cardnum", "БИН карты", "Владелец карты", "Маска карты", "Страна банка-эмитета|select"]
+        ]
+      },
+      {
+        "title": "Поиск по данным плательщика:",
+        "rows": [
+          ["Имя клиента", "E-mail клиента", "Телефон клиента", "IP клиента"]
+        ]
+      },
+      {
+        "title": "Поиск мошеннической операции:",
+        "rows": [
+          ["Показать фрод|select", "Дата создания|select", "Временная зона|select", "Тестовые транзакции|checkbox(unchecked)"]
+        ]
+      }
+    ],
+    "footer": { "left": ["Искать|button-primary", "Экспортировать в XLSX|button-secondary"], "right": ["Расширенный поиск|checkbox(checked)", "Очистить поля|button-secondary"] }
+  },
+
+  "tooltipRules": {
+    "source": "comments.png",
+    "appliesTo": "both Admin and Client",
+    "persistent": "Card-mask-related fields (card number field, Маска карты) and Временная зона always show a hover tooltip, regardless of field state.",
+    "conditional": "All other fields show a hover tooltip only when the field is filled AND its text is truncated (placeholder-not-visible / overflow) — never on empty fields."
+  },
+
+  "resultsTableColumns": [
+    "UID операции", "Трекинг ID", "Дата и время", "Описание платежа", "Тип транзакции",
+    "Плательщик", "Сумма", "Способ оплаты", "Статус", "Действия"
+  ],
+  "resultsTableColumnsAdminExtra": [
+    "Процессор", "Магазин/Мерчант", "Фрод-маркер", "Тест"
+  ],
+
+  "requiredTableStates": [
+    "loading-skeleton", "populated", "no-results", "selected-row", "select-all",
+    "sorted-column", "pagination", "rows-per-page", "status-badges", "export-confirmation"
+  ]
+}

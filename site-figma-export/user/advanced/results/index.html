@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>User · Advanced · results — Paid Prototype</title>
+<style>
+/* GENERATED FILE — do not hand-edit. Source: docs/figma-prototype-plan/design-tokens.json */
+:root {
+  --color-bg-canvas: #FBFBFA;
+  --color-surface-default: #FFFFFF;
+  --color-surface-subtle: #FAFAFA;
+  --color-surface-sunken: #F7F8F7;
+  --color-text-primary: #33383A;
+  --color-text-secondary: #6B7370;
+  --color-text-muted: #9AA19E;
+  --color-text-inverse: #FFFFFF;
+  --color-border-default: #E7E9E7;
+  --color-border-strong: #D3D8D5;
+  --color-action-primary: #465D58;
+  --color-action-primary-hover: #384A46;
+  --color-accent-admin: #3E6FA8;
+  --color-accent-admin-bg: #EAF1F8;
+  --color-accent-user: #85A49E;
+  --color-accent-user-bg: #EEF3F2;
+  --color-status-success: #3E9268;
+  --color-status-success-bg: #ECF4EF;
+  --color-status-success-border: #D3E7DC;
+  --color-status-warning: #C68A2E;
+  --color-status-warning-bg: #FBF2E2;
+  --color-status-warning-border: #F5E0B8;
+  --color-status-error: #D95032;
+  --color-status-error-bg: #FCEEEA;
+  --color-status-error-border: #F7D6CC;
+  --color-status-info: #3E6FA8;
+  --color-status-info-bg: #EAF1F8;
+  --color-status-info-border: #CBDDF0;
+  --color-focus-ring: rgba(164, 191, 186, 0.45);
+  --color-focus-ring-solid: #A4BFBA;
+  --color-disabled-bg: #F5F5F4;
+  --color-disabled-border: #E7E9E7;
+  --color-disabled-text: #B4B9B6;
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-full: 999px;
+  --font-display-size: 34px;
+  --font-display-weight: 700;
+  --font-display-lh: 110%;
+  --font-h1-size: 24px;
+  --font-h1-weight: 600;
+  --font-h1-lh: 120%;
+  --font-h2-size: 19px;
+  --font-h2-weight: 600;
+  --font-h2-lh: 130%;
+  --font-h3-size: 16px;
+  --font-h3-weight: 600;
+  --font-h3-lh: 140%;
+  --font-body-size: 15px;
+  --font-body-weight: 400;
+  --font-body-lh: 155%;
+  --font-body-sm-size: 13px;
+  --font-body-sm-weight: 400;
+  --font-body-sm-lh: 145%;
+  --font-caption-size: 12px;
+  --font-caption-weight: 500;
+  --font-caption-lh: 140%;
+  --font-overline-size: 11px;
+  --font-overline-weight: 600;
+  --font-overline-lh: 140%;
+  --font-overline-tracking: 0.08em;
+  --font-mono-body-sm-size: 13px;
+  --font-mono-body-sm-lh: 145%;
+  --font-family-sans: "IBM Plex Sans", Inter, system-ui, -apple-system, sans-serif;
+  --font-family-mono: "IBM Plex Mono", "Roboto Mono", ui-monospace, "SFMono-Regular", monospace;
+  --shadow-card: 0 1px 2px rgba(30, 41, 38, 0.05);
+  --shadow-popover: 0 4px 12px rgba(30, 41, 38, 0.07);
+  --shadow-modal: 0 12px 32px rgba(30, 41, 38, 0.12);
+  --layout-frame-width: 1440px;
+  --layout-content-max-width: 1280px;
+  --layout-page-padding-x: 32px;
+  --layout-row-height-compact: 36px;
+  --control-height-sm: 28px;
+  --control-height-md: 36px;
+  --control-height-lg: 44px;
+}
+
+/* base.css — reset + page chrome + frame container */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: #E7E8E6;
+  font-family: var(--font-family-sans);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+input, select { font-family: inherit; }
+
+/* ---- prototype meta navigation (NOT part of the product design) ---- */
+.proto-nav {
+  font-family: var(--font-family-mono);
+  font-size: 12px;
+  color: #6B7370;
+  background: #F1F1EF;
+  border-bottom: 1px dashed #C7CAC7;
+  padding: 10px var(--layout-page-padding-x);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.proto-nav .proto-tag {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9AA19E;
+  font-weight: 700;
+}
+.proto-nav a { color: #3E6FA8; }
+.proto-nav a:hover { text-decoration: underline; }
+.proto-nav .sep { color: #C7CAC7; }
+
+/* ---- the actual importable frame ---- */
+.frame {
+  width: var(--layout-frame-width);
+  margin: 32px auto 64px;
+  background: var(--color-bg-canvas);
+  box-shadow: var(--shadow-card);
+  min-height: 400px;
+  position: relative;
+}
+.frame-inner {
+  padding: var(--spacing-2xl) var(--layout-page-padding-x) var(--spacing-3xl);
+}
+.content-narrow {
+  max-width: var(--layout-content-max-width);
+  margin: 0 auto;
+}
+
+/* components.css — shared UI components, all token-driven */
+
+/* Typography utility classes */
+.text-display { font-size: var(--font-display-size); font-weight: var(--font-display-weight); line-height: var(--font-display-lh); }
+.text-h1 { font-size: var(--font-h1-size); font-weight: var(--font-h1-weight); line-height: var(--font-h1-lh); }
+.text-h2 { font-size: var(--font-h2-size); font-weight: var(--font-h2-weight); line-height: var(--font-h2-lh); }
+.text-h3 { font-size: var(--font-h3-size); font-weight: var(--font-h3-weight); line-height: var(--font-h3-lh); }
+.text-body { font-size: var(--font-body-size); font-weight: var(--font-body-weight); line-height: var(--font-body-lh); }
+.text-body-sm { font-size: var(--font-body-sm-size); font-weight: var(--font-body-sm-weight); line-height: var(--font-body-sm-lh); }
+.text-caption { font-size: var(--font-caption-size); font-weight: var(--font-caption-weight); line-height: var(--font-caption-lh); }
+.text-overline { font-size: var(--font-overline-size); font-weight: var(--font-overline-weight); line-height: var(--font-overline-lh); letter-spacing: var(--font-overline-tracking); text-transform: uppercase; }
+.text-mono { font-family: var(--font-family-mono); font-size: var(--font-mono-body-sm-size); line-height: var(--font-mono-body-sm-lh); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+
+/* ---- App header ---- */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+.app-header .page-title { color: var(--color-text-primary); margin: 0; }
+.header-meta { display: flex; align-items: center; gap: var(--spacing-sm); }
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+}
+.role-badge .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.role-badge.role-admin { background: var(--color-accent-admin-bg); color: var(--color-accent-admin); }
+.role-badge.role-admin .dot { background: var(--color-accent-admin); }
+.role-badge.role-user { background: var(--color-accent-user-bg); color: var(--color-accent-user); }
+.role-badge.role-user .dot { background: var(--color-accent-user); }
+
+.mode-tabs { display: inline-flex; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden; }
+.mode-tabs a { padding: 6px 14px; font-size: var(--font-caption-size); color: var(--color-text-secondary); background: var(--color-surface-default); }
+.mode-tabs a.active { background: var(--color-action-primary); color: var(--color-text-inverse); }
+.mode-tabs a + a { border-left: 1px solid var(--color-border-default); }
+
+.role-switch-link { font-size: var(--font-caption-size); color: var(--color-text-secondary); border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: 6px 12px; background: var(--color-surface-default); }
+.role-switch-link:hover { border-color: var(--color-border-strong); color: var(--color-text-primary); }
+
+/* ---- Search panel ---- */
+.search-panel {
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-card);
+}
+.field-group + .field-group { margin-top: var(--spacing-lg); }
+.field-group-title { margin: 0 0 var(--spacing-sm); font-weight: var(--font-h3-weight); }
+.field-row { display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
+.field-row:last-child { margin-bottom: 0; }
+.field-wrap { flex: 1 1 0; min-width: 0; position: relative; }
+
+/* ---- Text Input ---- */
+.field-input {
+  width: 100%;
+  height: var(--control-height-md);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-default);
+  color: var(--color-text-primary);
+  padding: 0 var(--spacing-sm);
+  font-size: var(--font-body-sm-size);
+  outline: none;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+.field-input::placeholder { color: var(--color-text-muted); }
+.field-input:hover { border-color: var(--color-border-strong); }
+.field-input:focus { border-color: var(--color-action-primary); box-shadow: 0 0 0 3px var(--color-focus-ring); }
+.field-input.filled { color: var(--color-text-primary); }
+.field-input.is-cardnum { font-family: var(--font-family-mono); }
+.field-input:disabled { background: var(--color-disabled-bg); border-color: var(--color-disabled-border); color: var(--color-disabled-text); cursor: not-allowed; }
+.field-input.has-error { border-color: var(--color-status-error); background: var(--color-status-error-bg); }
+.field-input.has-error:focus { box-shadow: 0 0 0 3px var(--color-status-error-border); }
+
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: var(--font-caption-size);
+  color: var(--color-status-error);
+}
+
+/* ---- Select ---- */
+.field-select {
+  width: 100%;
+  height: var(--control-height-md);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-default);
+  color: var(--color-text-muted);
+  padding: 0 var(--spacing-sm);
+  font-size: var(--font-body-sm-size);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2xs);
+  transition: border-color .12s ease;
+}
+.field-select:hover { border-color: var(--color-border-strong); }
+.field-select.filled { color: var(--color-text-primary); }
+.field-select .chevron { flex: none; opacity: .6; }
+.field-select.is-open { border-color: var(--color-action-primary); box-shadow: 0 0 0 3px var(--color-focus-ring); border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.select-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-action-primary);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-popover);
+  z-index: 20;
+  overflow: hidden;
+}
+.select-panel .opt { padding: 8px var(--spacing-sm); font-size: var(--font-body-sm-size); color: var(--color-text-primary); }
+.select-panel .opt:hover, .select-panel .opt.active { background: var(--color-accent-admin-bg); }
+
+/* ---- Checkbox ---- */
+.checkbox { display: inline-flex; align-items: center; gap: var(--spacing-2xs); font-size: var(--font-body-sm-size); color: var(--color-text-primary); user-select: none; }
+.checkbox .box {
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-default);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none;
+}
+.checkbox.checked .box { background: var(--color-action-primary); border-color: var(--color-action-primary); }
+.checkbox.checked .box svg { display: block; }
+.checkbox .box svg { display: none; }
+.checkbox.disabled { color: var(--color-disabled-text); }
+.checkbox.disabled .box { background: var(--color-disabled-bg); border-color: var(--color-disabled-border); }
+
+/* ---- Tooltip ----
+   Rendered in normal document flow (not position:absolute) so it reserves
+   real vertical space and pushes following rows down instead of overlapping
+   them — these are "persistent" tooltips that are always visible, not
+   hover-only popovers. */
+.tooltip {
+  position: relative;
+  margin-top: 8px;
+  background: #33383A;
+  color: #FFFFFF;
+  font-size: var(--font-caption-size);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-popover);
+  white-space: nowrap;
+  display: inline-block;
+  z-index: 10;
+}
+.tooltip::before {
+  content: "";
+  position: absolute;
+  top: -5px; left: 16px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #33383A;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: var(--control-height-md);
+  padding: 0 var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-body-sm-size);
+  font-weight: var(--font-caption-weight);
+  border: 1px solid transparent;
+  transition: background-color .12s ease, border-color .12s ease;
+  gap: 6px;
+}
+.btn-sm { height: var(--control-height-sm); padding: 0 var(--spacing-sm); }
+.btn-lg { height: var(--control-height-lg); padding: 0 var(--spacing-lg); }
+.btn-primary { background: var(--color-action-primary); color: var(--color-text-inverse); }
+.btn-primary:hover { background: var(--color-action-primary-hover); }
+.btn-primary:focus-visible { box-shadow: 0 0 0 3px var(--color-focus-ring); }
+.btn-secondary { background: var(--color-surface-default); color: var(--color-text-primary); border-color: var(--color-border-strong); }
+.btn-secondary:hover { border-color: var(--color-text-secondary); }
+.btn-ghost { background: transparent; color: var(--color-text-secondary); }
+.btn-ghost:hover { background: var(--color-surface-subtle); }
+.btn-destructive { background: var(--color-status-error); color: var(--color-text-inverse); }
+.btn[disabled] { background: var(--color-disabled-bg); color: var(--color-disabled-text); border-color: var(--color-disabled-border); cursor: not-allowed; }
+
+/* ---- Footer row ---- */
+.footer-row { display: flex; align-items: center; justify-content: space-between; margin-top: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md); }
+.footer-left, .footer-right { display: flex; align-items: center; gap: var(--spacing-sm); }
+
+/* ---- Status Badge (icon/shape + label, never color alone) ---- */
+.status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.status-badge svg { flex: none; }
+.status-badge.success { background: var(--color-status-success-bg); color: var(--color-status-success); border-color: var(--color-status-success-border); }
+.status-badge.warning { background: var(--color-status-warning-bg); color: var(--color-status-warning); border-color: var(--color-status-warning-border); }
+.status-badge.error { background: var(--color-status-error-bg); color: var(--color-status-error); border-color: var(--color-status-error-border); }
+.status-badge.info { background: var(--color-status-info-bg); color: var(--color-status-info); border-color: var(--color-status-info-border); }
+.status-badge.neutral { background: var(--color-surface-subtle); color: var(--color-text-secondary); border-color: var(--color-border-default); }
+
+/* ---- Table ----
+   table-layout:fixed with an explicit <colgroup> keeps the ~10-14 column
+   results table within (or close to) the frame width; overflow-x:auto is
+   a safety net for the Admin variant's extra columns, with a visible
+   scrollbar so nothing is silently hidden. */
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-default);
+  scrollbar-color: var(--color-border-strong) var(--color-surface-subtle);
+  scrollbar-width: thin;
+}
+.table-scroll::-webkit-scrollbar { height: 10px; }
+.table-scroll::-webkit-scrollbar-track { background: var(--color-surface-subtle); }
+.table-scroll::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: var(--radius-full); }
+table.data-table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+table.data-table th {
+  background: var(--color-surface-sunken);
+  text-align: left;
+  padding: 8px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid var(--color-border-default);
+  position: relative;
+}
+table.data-table th.sortable { cursor: pointer; }
+table.data-table th .th-inner { display: inline-flex; align-items: center; gap: 4px; }
+table.data-table th.num, table.data-table td.num { text-align: right; }
+table.data-table th.status-col, table.data-table td.status-col { text-align: center; }
+table.data-table td {
+  padding: 8px 10px;
+  height: var(--layout-row-height-compact);
+  border-bottom: 1px solid var(--color-border-default);
+  font-size: var(--font-body-sm-size);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+table.data-table td.mono { font-family: var(--font-family-mono); font-size: 12px; }
+table.data-table tbody tr:last-child td { border-bottom: none; }
+table.data-table tbody tr:nth-child(even) { background: var(--color-surface-subtle); }
+table.data-table tbody tr:hover { background: var(--color-accent-admin-bg); }
+table.data-table tbody tr.selected { background: var(--color-accent-user-bg); }
+table.data-table .row-check { width: 36px; }
+table.data-table .actions-cell { display: flex; gap: 6px; overflow: visible; }
+table.data-table .icon-btn {
+  width: 26px; height: 26px; border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-default);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none;
+}
+table.data-table .icon-btn:hover { border-color: var(--color-border-strong); background: var(--color-surface-subtle); }
+
+.results-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-sm); }
+.results-toolbar h2 { margin: 0; }
+
+/* ---- Pagination ---- */
+.pagination { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-sm) var(--spacing-md); }
+.pagination .pages { display: flex; align-items: center; gap: 4px; }
+.pagination .page-btn {
+  min-width: 28px; height: 28px; border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-default);
+  font-size: var(--font-caption-size);
+  color: var(--color-text-secondary);
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 6px;
+}
+.pagination .page-btn.active { background: var(--color-action-primary); color: var(--color-text-inverse); border-color: var(--color-action-primary); }
+.pagination .rows-per-page { display: flex; align-items: center; gap: 8px; font-size: var(--font-caption-size); color: var(--color-text-secondary); }
+.pagination .rows-per-page .field-select { width: 72px; height: var(--control-height-sm); }
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: var(--spacing-xl);
+  right: var(--spacing-xl);
+  display: flex; align-items: center; gap: 10px;
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-status-success-border);
+  border-left: 4px solid var(--color-status-success);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-modal);
+  padding: 14px 18px;
+  font-size: var(--font-body-sm-size);
+  z-index: 100;
+}
+.toast .toast-icon { color: var(--color-status-success); flex: none; }
+.toast .toast-title { font-weight: var(--font-caption-weight); color: var(--color-text-primary); }
+.toast .toast-body { color: var(--color-text-secondary); }
+.toast .toast-close { margin-left: 8px; color: var(--color-text-muted); }
+
+/* ---- Drawer / Modal ---- */
+.drawer-overlay { position: absolute; inset: 0; background: rgba(30, 41, 38, 0.32); z-index: 40; }
+.drawer {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 420px;
+  background: var(--color-surface-default);
+  box-shadow: var(--shadow-modal);
+  z-index: 41;
+  display: flex; flex-direction: column;
+}
+.drawer-header { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-lg); border-bottom: 1px solid var(--color-border-default); }
+.drawer-header h2 { margin: 0; }
+.drawer-close { width: 32px; height: 32px; border-radius: var(--radius-md); border: 1px solid var(--color-border-default); background: var(--color-surface-default); display: inline-flex; align-items: center; justify-content: center; }
+.drawer-body { padding: var(--spacing-lg); overflow-y: auto; flex: 1; }
+.drawer-field { display: flex; justify-content: space-between; gap: var(--spacing-md); padding: 10px 0; border-bottom: 1px solid var(--color-border-default); }
+.drawer-field:last-child { border-bottom: none; }
+.drawer-field .k { color: var(--color-text-secondary); font-size: var(--font-body-sm-size); }
+.drawer-field .v { color: var(--color-text-primary); font-size: var(--font-body-sm-size); text-align: right; }
+.drawer-field .v.mono { font-family: var(--font-family-mono); }
+.drawer-section-title { margin: var(--spacing-md) 0 var(--spacing-2xs); color: var(--color-text-secondary); }
+.drawer-section-title:first-child { margin-top: 0; }
+
+/* ---- Loading Skeleton ---- */
+@keyframes shimmer { 0% { background-position: -200px 0; } 100% { background-position: 200px 0; } }
+.skeleton-block {
+  background: linear-gradient(90deg, var(--color-surface-subtle) 0%, var(--color-border-default) 50%, var(--color-surface-subtle) 100%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+table.data-table tr.skeleton-row td { height: var(--layout-row-height-compact); }
+
+/* ---- Empty State ---- */
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--spacing-3xl) var(--spacing-lg); text-align: center; gap: var(--spacing-2xs); }
+.empty-state .icon { color: var(--color-text-muted); margin-bottom: var(--spacing-xs); }
+.empty-state .title { color: var(--color-text-primary); font-weight: var(--font-h3-weight); }
+.empty-state .hint { color: var(--color-text-secondary); max-width: 360px; }
+
+/* ---- misc ---- */
+.section-block + .section-block { margin-top: var(--spacing-xl); }
+.swatch-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; align-items: flex-start; }
+.swatch-card { border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: var(--spacing-md); background: var(--color-surface-default); }
+.swatch-label { font-size: var(--font-caption-size); color: var(--color-text-muted); margin-top: 6px; }
+.color-chip { width: 96px; }
+.color-chip .swatch { height: 56px; border-radius: var(--radius-md); border: 1px solid var(--color-border-default); }
+
+</style>
+
+</head>
+<body>
+<nav class="proto-nav">
+    <span class="proto-tag">Prototype nav — not part of design</span>
+    <a href="/">All Screens</a>
+    <span class="sep">/</span>
+    <span>/user/advanced/results</span>
+  </nav>
+<div class="frame" id="frame-user-advanced-results">
+  <div class="frame-inner">
+<div class="content-narrow">
+    <div class="app-header">
+    <h1 class="page-title text-h1">Список платежей</h1>
+    <div class="header-meta">
+      <span class="role-badge role-user"><span class="dot"></span>Роль: Клиент</span>
+      <a class="role-switch-link" href="/admin/advanced/default">Переключить на Администратора</a>
+      <div class="mode-tabs">
+        <a class="" href="/user/basic/default">Простой</a>
+        <a class="active" href="/user/advanced/default">Расширенный</a>
+      </div>
+    </div>
+  </div>
+    <div class="search-panel">
+      
+      <div class="field-group"><h3 class="field-group-title text-h3 text-secondary">Поиск по типу транзакции:</h3><div class="field-row"><div class="field-wrap"><input class="field-input" type="text" placeholder="Трекинг ID" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Описание платежа" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="UID операции" /></div></div><div class="field-row"><div class="field-wrap"><input class="field-input" type="text" placeholder="ID банка" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="RNN" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Сумма" /></div><div class="field-wrap"><div class="field-select"><span>Выберите тип транзакции</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div><div class="field-row"><div class="field-wrap"><div class="field-select"><span>Выберите статус</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="field-wrap"><div class="field-select"><span>Способ оплаты</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Номер счёта ЕРИП" /></div></div><div class="field-row"><div class="field-wrap"><input class="field-input" type="text" placeholder="С" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="По" /></div><div class="field-wrap"><div class="field-select"><span>Выберите название магазина</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div></div><div class="field-group"><h3 class="field-group-title text-h3 text-secondary">Поиск по данным банковской карты:</h3><div class="field-row"><div class="field-wrap"><input class="field-input is-cardnum" type="text" placeholder="xxxx xxxx xxxx 1234" /><div class="tooltip tooltip-persistent">введите последние 4 цифры карты</div></div><div class="field-wrap"><input class="field-input" type="text" placeholder="БИН карты" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Владелец карты" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Маска карты" /><div class="tooltip tooltip-persistent">маска карты 123456 xxxx 1234</div></div><div class="field-wrap"><div class="field-select"><span>Страна банка-эмитета</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div></div><div class="field-group"><h3 class="field-group-title text-h3 text-secondary">Поиск по данным плательщика:</h3><div class="field-row"><div class="field-wrap"><input class="field-input" type="text" placeholder="Имя клиента" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="E-mail клиента" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Телефон клиента" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="IP клиента" /></div></div></div><div class="field-group"><h3 class="field-group-title text-h3 text-secondary">Поиск мошеннической операции:</h3><div class="field-row"><div class="field-wrap"><div class="field-select"><span>Показать фрод</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="field-wrap"><div class="field-select"><span>Дата создания</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="field-wrap"><div class="field-select"><span>Временная зона</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="tooltip tooltip-persistent">Временная зона (GMT + 01:00) Amsterdam</div></div><div class="field-wrap"><label class="checkbox"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Тестовые транзакции</span></label></div></div></div>
+      <div class="footer-row">
+    <div class="footer-left">
+      <a class="btn btn-primary" href="/user/advanced/results">Искать</a>
+      <a class="btn btn-secondary" href="/export/success">Экспортировать в XLSX</a>
+    </div>
+    <div class="footer-right">
+      <a href="/user/basic/default"><label class="checkbox checked"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Расширенный поиск</span></label></a>
+      <a class="btn btn-secondary" href="/user/advanced/default">Очистить поля</a>
+    </div>
+  </div>
+    </div>
+  </div>
+  <div class="section-block">
+        <div class="results-toolbar"><h2 class="text-h2">Результаты поиска</h2></div>
+        <div class="table-scroll"><table class="data-table"><colgroup><col style="width:36px"><col style="width:104px"><col style="width:96px"><col style="width:92px"><col style="width:200px"><col style="width:118px"><col style="width:130px"><col style="width:90px"><col style="width:140px"><col style="width:118px"><col style="width:90px"></colgroup><thead><tr><th class="row-check"><label class="checkbox checked"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></th><th class="  "><span class="th-inner text-overline">UID операции </span></th><th class="  "><span class="th-inner text-overline">Трекинг ID </span></th><th class="sortable  "><span class="th-inner text-overline">Дата и время <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg></span></th><th class="  "><span class="th-inner text-overline">Описание платежа </span></th><th class="  "><span class="th-inner text-overline">Тип транзакции </span></th><th class="  "><span class="th-inner text-overline">Плательщик </span></th><th class=" num "><span class="th-inner text-overline">Сумма </span></th><th class="  "><span class="th-inner text-overline">Способ оплаты </span></th><th class="  status-col"><span class="th-inner text-overline">Статус </span></th><th><span class="text-overline">Действия</span></th></tr></thead><tbody><tr class="selected"><td class="row-check"><label class="checkbox checked"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td><td class="mono">PMT-8842190</td><td class="mono">TRK-2291001</td><td>21.07 14:32</td><td>Оплата заказа №4521</td><td>Оплата</td><td>и***@example.com</td><td class="num mono">145.00 BYN</td><td>Visa •••• 4471</td><td class="status-col"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span></td><td><div class="actions-cell"><a class="icon-btn" title="Просмотр" href="/transaction/details"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></a></div></td></tr><tr class=""><td class="row-check"><label class="checkbox"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td><td class="mono">PMT-8842177</td><td class="mono">TRK-2290988</td><td>21.07 13:58</td><td>Возврат по заказу №4498</td><td>Возврат</td><td>с***@gmail.com</td><td class="num mono">62.50 BYN</td><td>Mastercard •••• 9012</td><td class="status-col"><span class="status-badge info"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Возврат</span></td><td><div class="actions-cell"><a class="icon-btn" title="Просмотр" href="/transaction/details"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></a></div></td></tr><tr class=""><td class="row-check"><label class="checkbox"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td><td class="mono">PMT-8842150</td><td class="mono">TRK-2290955</td><td>21.07 12:41</td><td>Оплата подписки Premium</td><td>Оплата</td><td>a***@yandex.by</td><td class="num mono">29.90 BYN</td><td>Visa •••• 2201</td><td class="status-col"><span class="status-badge warning"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>В обработке</span></td><td><div class="actions-cell"><a class="icon-btn" title="Просмотр" href="/transaction/details"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></a></div></td></tr><tr class=""><td class="row-check"><label class="checkbox"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td><td class="mono">PMT-8842133</td><td class="mono">TRK-2290920</td><td>21.07 11:07</td><td>Оплата заказа №4487</td><td>Оплата</td><td>m***@mail.ru</td><td class="num mono">310.00 BYN</td><td>Mastercard •••• 5588</td><td class="status-col"><span class="status-badge error"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Отклонена</span></td><td><div class="actions-cell"><a class="icon-btn" title="Просмотр" href="/transaction/details"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></a></div></td></tr><tr class=""><td class="row-check"><label class="checkbox"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td><td class="mono">PMT-8842108</td><td class="mono">TRK-2290874</td><td>21.07 09:52</td><td>Тестовый платёж</td><td>Оплата</td><td>test***@example.com</td><td class="num mono">1.00 BYN</td><td>Visa •••• 0002</td><td class="status-col"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span></td><td><div class="actions-cell"><a class="icon-btn" title="Просмотр" href="/transaction/details"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></a></div></td></tr><tr class=""><td class="row-check"><label class="checkbox"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td><td class="mono">PMT-8842077</td><td class="mono">TRK-2290811</td><td>20.07 18:23</td><td>Оплата заказа №4460</td><td>Оплата</td><td>o***@example.com</td><td class="num mono">88.20 BYN</td><td>Mastercard •••• 7734</td><td class="status-col"><span class="status-badge neutral"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Отменена</span></td><td><div class="actions-cell"><a class="icon-btn" title="Просмотр" href="/transaction/details"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></a></div></td></tr></tbody></table></div><div class="pagination">
+    <div class="rows-per-page">Показывать по <div class="field-select filled" style="width:72px;height:28px;">6<svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div> строк</div>
+    <div class="pages">
+      <button class="page-btn">‹</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn">›</button>
+    </div>
+  </div>
+      </div>
+  </div>
+</div>
+</body>
+</html>

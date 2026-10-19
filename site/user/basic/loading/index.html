@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>User · Basic · loading — Paid Prototype</title>
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+
+</head>
+<body>
+<nav class="proto-nav">
+    <span class="proto-tag">Prototype nav — not part of design</span>
+    <a href="/">All Screens</a>
+    <span class="sep">/</span>
+    <span>/user/basic/loading</span>
+  </nav>
+<div class="frame" id="frame-user-basic-loading">
+  <div class="frame-inner">
+<div class="content-narrow">
+    <div class="app-header">
+    <h1 class="page-title text-h1">Список платежей</h1>
+    <div class="header-meta">
+      <span class="role-badge role-user"><span class="dot"></span>Роль: Клиент</span>
+      <a class="role-switch-link" href="/admin/basic/default">Переключить на Администратора</a>
+      <div class="mode-tabs">
+        <a class="active" href="/user/basic/default">Простой</a>
+        <a class="" href="/user/advanced/default">Расширенный</a>
+      </div>
+    </div>
+  </div>
+    <div class="search-panel">
+      
+      <div class="field-group"><h3 class="field-group-title text-h3 text-secondary">Поиск по типу транзакции:</h3><div class="field-row"><div class="field-wrap"><input class="field-input" type="text" placeholder="Трекинг ID" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Описание платежа" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="UID операции" /></div></div><div class="field-row"><div class="field-wrap"><input class="field-input" type="text" placeholder="ID банка" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="RNN" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Сумма" /></div><div class="field-wrap"><div class="field-select"><span>Выберите тип транзакции</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div><div class="field-row"><div class="field-wrap"><div class="field-select"><span>Выберите статус</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="field-wrap"><div class="field-select"><span>Способ оплаты</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Номер счёта ЕРИП" /></div></div></div><div class="field-group"><h3 class="field-group-title text-h3 text-secondary">Поиск по данным банковской карты:</h3><div class="field-row"><div class="field-wrap"><input class="field-input is-cardnum" type="text" placeholder="xxxx xxxx xxxx 1234" /><div class="tooltip tooltip-persistent">введите последние 4 цифры карты</div></div><div class="field-wrap"><input class="field-input" type="text" placeholder="БИН карты" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Владелец карты" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Маска карты" /><div class="tooltip tooltip-persistent">маска карты 123456 xxxx 1234</div></div><div class="field-wrap"><div class="field-select"><span>Страна банка-эмитета</span><svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div></div><div class="field-group"><h3 class="field-group-title text-h3 text-secondary">Поиск по данным плательщика:</h3><div class="field-row"><div class="field-wrap"><input class="field-input" type="text" placeholder="Имя клиента" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="E-mail клиента" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="Телефон клиента" /></div><div class="field-wrap"><input class="field-input" type="text" placeholder="IP клиента" /></div></div></div>
+      <div class="footer-row">
+    <div class="footer-left">
+      <a class="btn btn-primary" href="/user/basic/loading">Искать</a>
+      <a class="btn btn-secondary" href="/export/success">Экспортировать в XLSX</a>
+    </div>
+    <div class="footer-right">
+      <a href="/user/advanced/default"><label class="checkbox"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Расширенный поиск</span></label></a>
+      <a class="btn btn-secondary" href="/user/basic/default">Очистить поля</a>
+    </div>
+  </div>
+    </div>
+  </div>
+  <div class="section-block">
+        <div class="results-toolbar"><h2 class="text-h2">Результаты поиска</h2></div>
+        <div class="table-scroll"><table class="data-table"><colgroup><col style="width:36px"><col style="width:104px"><col style="width:96px"><col style="width:92px"><col style="width:200px"><col style="width:118px"><col style="width:130px"><col style="width:90px"><col style="width:140px"><col style="width:118px"><col style="width:90px"></colgroup><thead><tr><th class="row-check"><label class="checkbox checked"><span class="box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></th><th class="  "><span class="th-inner text-overline">UID операции </span></th><th class="  "><span class="th-inner text-overline">Трекинг ID </span></th><th class="sortable  "><span class="th-inner text-overline">Дата и время <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg></span></th><th class="  "><span class="th-inner text-overline">Описание платежа </span></th><th class="  "><span class="th-inner text-overline">Тип транзакции </span></th><th class="  "><span class="th-inner text-overline">Плательщик </span></th><th class=" num "><span class="th-inner text-overline">Сумма </span></th><th class="  "><span class="th-inner text-overline">Способ оплаты </span></th><th class="  status-col"><span class="th-inner text-overline">Статус </span></th><th><span class="text-overline">Действия</span></th></tr></thead><tbody><tr class="skeleton-row"><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td></tr><tr class="skeleton-row"><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td></tr><tr class="skeleton-row"><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td></tr><tr class="skeleton-row"><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td></tr><tr class="skeleton-row"><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td></tr></tbody></table></div>
+      </div>
+  </div>
+</div>
+<script src="/assets/js/app.js"></script>
+</body>
+</html>

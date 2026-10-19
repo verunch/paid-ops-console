@@ -1,0 +1,123 @@
+{
+  "note": "Ascendra-derived, maximally-light adaptation for Paid Internal Payment Operations Console. All colors given as hex + rgb01 (0-1 range) for direct use in Figma variable creation. Reused Ascendra ramps only — no new hues invented, per 'no unrelated themes' requirement.",
+  "source": "Derived from /Users/verba/Projects/portfolio/Ascendra/design-system/styles.css and index.html (Color, Typography, Layout & Spacing, Components sections).",
+
+  "collections": {
+    "Color": {
+      "modes": ["Light"],
+      "variables": {
+        "bg/canvas":        { "hex": "#FBFBFA", "rgb01": [0.984, 0.984, 0.980], "scopes": ["FRAME_FILL"], "desc": "App background, near-white, lighter than Ascendra's #F2F2F2" },
+        "surface/default":  { "hex": "#FFFFFF", "rgb01": [1, 1, 1], "scopes": ["FRAME_FILL", "SHAPE_FILL"] },
+        "surface/subtle":   { "hex": "#FAFAFA", "rgb01": [0.980, 0.980, 0.980], "scopes": ["FRAME_FILL", "SHAPE_FILL"] },
+        "surface/sunken":   { "hex": "#F7F8F7", "rgb01": [0.969, 0.973, 0.969], "scopes": ["FRAME_FILL", "SHAPE_FILL"], "desc": "table header bg" },
+
+        "text/primary":     { "hex": "#33383A", "rgb01": [0.200, 0.220, 0.227], "scopes": ["TEXT_FILL"] },
+        "text/secondary":   { "hex": "#6B7370", "rgb01": [0.420, 0.451, 0.439], "scopes": ["TEXT_FILL"] },
+        "text/muted":       { "hex": "#9AA19E", "rgb01": [0.604, 0.631, 0.620], "scopes": ["TEXT_FILL"] },
+        "text/inverse":     { "hex": "#FFFFFF", "rgb01": [1, 1, 1], "scopes": ["TEXT_FILL"] },
+
+        "border/default":   { "hex": "#E7E9E7", "rgb01": [0.906, 0.914, 0.906], "scopes": ["STROKE_COLOR"] },
+        "border/strong":    { "hex": "#D3D8D5", "rgb01": [0.827, 0.847, 0.835], "scopes": ["STROKE_COLOR"] },
+
+        "action/primary":       { "hex": "#465D58", "rgb01": [0.275, 0.365, 0.345], "scopes": ["FRAME_FILL", "SHAPE_FILL", "STROKE_COLOR"], "desc": "Ascendra primary-700, shared Primary button color for both roles" },
+        "action/primary-hover": { "hex": "#384A46", "rgb01": [0.220, 0.290, 0.275], "scopes": ["FRAME_FILL", "SHAPE_FILL"] },
+
+        "accent/admin":     { "hex": "#3E6FA8", "rgb01": [0.243, 0.435, 0.659], "scopes": ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"], "desc": "Ascendra Info blue reused as Admin's cooler/stronger operational accent (role badge, current-role indicator)" },
+        "accent/admin-bg":  { "hex": "#EAF1F8", "rgb01": [0.918, 0.945, 0.973], "scopes": ["FRAME_FILL", "SHAPE_FILL"] },
+        "accent/user":      { "hex": "#85A49E", "rgb01": [0.522, 0.643, 0.620], "scopes": ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"], "desc": "Ascendra primary-400, softer accent for User/Client role" },
+        "accent/user-bg":   { "hex": "#EEF3F2", "rgb01": [0.933, 0.953, 0.949], "scopes": ["FRAME_FILL", "SHAPE_FILL"] },
+
+        "status/success":     { "hex": "#3E9268", "rgb01": [0.243, 0.573, 0.408], "scopes": ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"] },
+        "status/success-bg":  { "hex": "#ECF4EF", "rgb01": [0.925, 0.957, 0.937], "scopes": ["FRAME_FILL", "SHAPE_FILL"] },
+        "status/success-border": { "hex": "#D3E7DC", "rgb01": [0.827, 0.906, 0.863], "scopes": ["STROKE_COLOR"] },
+
+        "status/warning":     { "hex": "#C68A2E", "rgb01": [0.776, 0.541, 0.180], "scopes": ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"] },
+        "status/warning-bg":  { "hex": "#FBF2E2", "rgb01": [0.984, 0.949, 0.886], "scopes": ["FRAME_FILL", "SHAPE_FILL"] },
+        "status/warning-border": { "hex": "#F5E0B8", "rgb01": [0.961, 0.878, 0.722], "scopes": ["STROKE_COLOR"] },
+
+        "status/error":     { "hex": "#D95032", "rgb01": [0.851, 0.314, 0.196], "scopes": ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"] },
+        "status/error-bg":  { "hex": "#FCEEEA", "rgb01": [0.988, 0.933, 0.918], "scopes": ["FRAME_FILL", "SHAPE_FILL"] },
+        "status/error-border": { "hex": "#F7D6CC", "rgb01": [0.969, 0.839, 0.800], "scopes": ["STROKE_COLOR"] },
+
+        "status/info":     { "hex": "#3E6FA8", "rgb01": [0.243, 0.435, 0.659], "scopes": ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"] },
+        "status/info-bg":  { "hex": "#EAF1F8", "rgb01": [0.918, 0.945, 0.973], "scopes": ["FRAME_FILL", "SHAPE_FILL"] },
+        "status/info-border": { "hex": "#CBDDF0", "rgb01": [0.796, 0.867, 0.941], "scopes": ["STROKE_COLOR"] },
+
+        "focus/ring": { "hex": "#A4BFBA", "opacity": 0.45, "rgb01": [0.643, 0.749, 0.729], "scopes": ["STROKE_COLOR", "EFFECT_COLOR"], "desc": "used as stroke/effect at 45% opacity, not a solid fill" },
+
+        "disabled/bg":   { "hex": "#F5F5F4", "rgb01": [0.961, 0.961, 0.957], "scopes": ["FRAME_FILL", "SHAPE_FILL"] },
+        "disabled/border": { "hex": "#E7E9E7", "rgb01": [0.906, 0.914, 0.906], "scopes": ["STROKE_COLOR"] },
+        "disabled/text": { "hex": "#B4B9B6", "rgb01": [0.706, 0.725, 0.714], "scopes": ["TEXT_FILL"] }
+      }
+    },
+    "Spacing": {
+      "modes": ["Value"],
+      "variables": {
+        "spacing/2xs": { "value": 4, "scopes": ["GAP", "WIDTH_HEIGHT"] },
+        "spacing/xs":  { "value": 8, "scopes": ["GAP", "WIDTH_HEIGHT"] },
+        "spacing/sm":  { "value": 12, "scopes": ["GAP", "WIDTH_HEIGHT"] },
+        "spacing/md":  { "value": 16, "scopes": ["GAP", "WIDTH_HEIGHT"] },
+        "spacing/lg":  { "value": 24, "scopes": ["GAP", "WIDTH_HEIGHT"] },
+        "spacing/xl":  { "value": 32, "scopes": ["GAP", "WIDTH_HEIGHT"] },
+        "spacing/2xl": { "value": 48, "scopes": ["GAP", "WIDTH_HEIGHT"] },
+        "spacing/3xl": { "value": 64, "scopes": ["GAP", "WIDTH_HEIGHT"] }
+      }
+    },
+    "Radius": {
+      "modes": ["Value"],
+      "variables": {
+        "radius/sm":   { "value": 3, "scopes": ["CORNER_RADIUS"] },
+        "radius/md":   { "value": 6, "scopes": ["CORNER_RADIUS"] },
+        "radius/lg":   { "value": 10, "scopes": ["CORNER_RADIUS"] },
+        "radius/full": { "value": 999, "scopes": ["CORNER_RADIUS"] }
+      }
+    }
+  },
+
+  "typography": {
+    "fontFamily": "IBM Plex Sans",
+    "monoFamily": "IBM Plex Mono",
+    "styles": {
+      "Display":   { "size": 34, "weight": "Bold",     "lineHeightPct": 110 },
+      "H1":        { "size": 24, "weight": "SemiBold",  "lineHeightPct": 120 },
+      "H2":        { "size": 19, "weight": "SemiBold",  "lineHeightPct": 130 },
+      "H3":        { "size": 16, "weight": "SemiBold",  "lineHeightPct": 140 },
+      "Body":      { "size": 15, "weight": "Regular",   "lineHeightPct": 155 },
+      "Body-sm":   { "size": 13, "weight": "Regular",   "lineHeightPct": 145 },
+      "Caption":   { "size": 12, "weight": "Medium",    "lineHeightPct": 140 },
+      "Overline":  { "size": 11, "weight": "SemiBold",  "lineHeightPct": 140, "letterSpacingPct": 8, "uppercase": true }
+    },
+    "tableRules": {
+      "columnHeader": "Overline style, text/secondary",
+      "cellText": "Body-sm, text/primary; identifiers & numbers in IBM Plex Mono",
+      "numericAlign": "right",
+      "textAlign": "left",
+      "statusAlign": "center",
+      "maxWeightsPerTable": 2
+    },
+    "fallbackIfIBMPlexUnavailable": "Inter (verify via listAvailableFontsAsync before first text write; substitute failing family only, do not change the whole scale)"
+  },
+
+  "elevation": {
+    "shadow/card":    { "offsetY": 1, "blur": 2,  "color": "#1E2926", "opacity": 0.05 },
+    "shadow/popover": { "offsetY": 4, "blur": 12, "color": "#1E2926", "opacity": 0.07 },
+    "shadow/modal":   { "offsetY": 12, "blur": 32, "color": "#1E2926", "opacity": 0.12 }
+  },
+
+  "layout": {
+    "frameWidth": 1440,
+    "sidebarWidth": 0,
+    "pagePaddingX": 32,
+    "contentMaxWidth": 1280,
+    "gridColumns": 12,
+    "gutter": 24,
+    "rowHeightCompact": 36,
+    "controlHeight": { "sm": 28, "md": 36, "lg": 44 },
+    "densityDefault": "Compact (Admin), Comfort (User) — both toggleable"
+  },
+
+  "roleAccentUsage": {
+    "admin": "accent/admin for role badge + current-role indicator + destructive/operational table actions (e.g. mark fraud); action/primary still used for the Primary/Search button",
+    "user":  "accent/user for role badge + current-role indicator; action/primary still used for the Primary/Search button"
+  }
+}
