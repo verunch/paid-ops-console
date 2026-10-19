@@ -15,6 +15,11 @@ const SITE_DIR = path.join(ROOT, "site");
 const tokens = JSON.parse(fs.readFileSync(path.join(PLAN_DIR, "design-tokens.json"), "utf8"));
 const fieldMaps = JSON.parse(fs.readFileSync(path.join(PLAN_DIR, "field-maps.json"), "utf8"));
 
+const HEAD_LINKS = `<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />`;
+
 function writeFile(relPath, content) {
   const full = path.join(SITE_DIR, relPath);
   fs.mkdirSync(path.dirname(full), { recursive: true });
@@ -641,15 +646,15 @@ const SAMPLE_ROWS = [
 // frame width instead of the browser's auto-layout blowing it out to ~2000px.
 const COLUMN_WIDTHS = {
   check: 36,
-  "UID операции": 104,
-  "Трекинг ID": 96,
-  "Дата и время": 92,
+  "UID операции": 124,
+  "Трекинг ID": 112,
+  "Дата и время": 108,
   "Описание платежа": 200,
-  "Тип транзакции": 118,
-  "Плательщик": 130,
-  "Сумма": 90,
-  "Способ оплаты": 140,
-  "Статус": 118,
+  "Тип транзакции": 124,
+  "Плательщик": 150,
+  "Сумма": 108,
+  "Способ оплаты": 170,
+  "Статус": 132,
   "Процессор": 110,
   "Магазин/Мерчант": 140,
   "Фрод-маркер": 110,
@@ -766,7 +771,9 @@ const ALL_ROUTES = [
 function protoNav(currentHref) {
   return `<nav class="proto-nav">
     <span class="proto-tag">Prototype nav — not part of design</span>
-    <a href="/">All Screens</a>
+    <a href="/">Live MVP</a>
+    <span class="sep">·</span>
+    <a href="/screens">All Screens</a>
     <span class="sep">/</span>
     <span>${esc(currentHref)}</span>
   </nav>`;
@@ -779,6 +786,7 @@ function pageShell({ href, title, frameId, bodyHtml, extraHead = "" }) {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${esc(title)} — Paid Prototype</title>
+${HEAD_LINKS}
 <link rel="stylesheet" href="/assets/css/tokens.css" />
 <link rel="stylesheet" href="/assets/css/base.css" />
 <link rel="stylesheet" href="/assets/css/components.css" />
@@ -965,7 +973,8 @@ function buildCover() {
       <span class="role-badge role-user"><span class="dot"></span>Клиент — ограниченный доступ</span>
     </div>
     <div style="margin-top:48px;" class="swatch-row" style="justify-content:center;">
-      <a class="btn btn-primary" href="/">Все экраны</a>
+      <a class="btn btn-primary" href="/">Живой MVP</a>
+      <a class="btn btn-secondary" href="/screens">Все экраны</a>
       <a class="btn btn-secondary" href="/admin/basic/default">Admin · Basic</a>
       <a class="btn btn-secondary" href="/user/basic/default">User · Basic</a>
       <a class="btn btn-secondary" href="/design-system">Дизайн-система</a>
@@ -1097,6 +1106,7 @@ function buildIndex() {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>All Screens — Paid Prototype</title>
+${HEAD_LINKS}
 <link rel="stylesheet" href="/assets/css/tokens.css" />
 <link rel="stylesheet" href="/assets/css/base.css" />
 <link rel="stylesheet" href="/assets/css/components.css" />
@@ -1108,12 +1118,65 @@ function buildIndex() {
 </head>
 <body>
 <h1 class="text-h1">All Screens</h1>
-<p class="text-body-sm text-secondary">Paid — Internal Payment Operations Console. ${ALL_ROUTES.length} routes.</p>
+<p class="text-body-sm text-secondary">Paid — Internal Payment Operations Console. ${ALL_ROUTES.length} static routes for Figma import · <a href="/" style="color:var(--color-action-primary)">open the live MVP →</a></p>
 <ul>${items}</ul>
 </body>
 </html>
 `;
+  writeFile("screens/index.html", html);
+}
+
+// ---------------------------------------------------------------------------
+// Live MVP — one interactive page at /. Behaviour lives in src/mvp/ (hand-
+// authored); the build embeds the same field maps, tooltips, icons and column
+// widths the static screens use, so both stay in sync with one source.
+// ---------------------------------------------------------------------------
+const MVP_SRC = path.join(ROOT, "src/mvp");
+
+function buildMvp() {
+  const data = {
+    fieldMaps,
+    tooltips: PERSISTENT_TOOLTIPS,
+    icons: ICONS,
+    columnWidths: COLUMN_WIDTHS,
+  };
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
+  const html = `<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Список платежей — Paid</title>
+<meta name="description" content="Paid — internal payment operations console, live MVP." />
+${HEAD_LINKS}
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/mvp.css" />
+</head>
+<body class="mvp">
+<a class="skip-link" href="#search-form">Перейти к поиску</a>
+<main class="mvp-shell">
+  <div id="app-header"></div>
+  <form class="search-panel" id="search-form" novalidate aria-label="Поиск платежей"></form>
+  <section class="section-block" id="results" aria-label="Результаты поиска"></section>
+  <footer class="mvp-footer text-caption">
+    <span>Paid · концепт внутренней консоли · данные вымышленные</span>
+    <span><a href="/design-system">Дизайн-система</a> · <a href="/screens">Статичные экраны для Figma</a></span>
+  </footer>
+</main>
+<div id="drawer-root"></div>
+<div class="toast-region" aria-live="polite"></div>
+<div class="tooltip tooltip-floating" id="tooltip" role="tooltip" hidden></div>
+<div class="visually-hidden" id="sr-status" aria-live="polite"></div>
+<script type="application/json" id="mvp-data">${json}</script>
+<script src="/assets/js/mvp.js" defer></script>
+</body>
+</html>
+`;
   writeFile("index.html", html);
+  writeFile("assets/css/mvp.css", fs.readFileSync(path.join(MVP_SRC, "mvp.css"), "utf8"));
+  writeFile("assets/js/mvp.js", fs.readFileSync(path.join(MVP_SRC, "mvp.js"), "utf8"));
 }
 
 // ---------------------------------------------------------------------------
@@ -1130,6 +1193,7 @@ document.querySelectorAll(".field-select").forEach((el) => {
 // ---------------------------------------------------------------------------
 // Run
 // ---------------------------------------------------------------------------
+writeFile("favicon.svg", `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="${tokens.collections.Color.variables["action/primary"].hex}"/><path d="M11 23V9h6.2a4.6 4.6 0 0 1 0 9.2H11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>\n`);
 writeFile("assets/css/tokens.css", buildTokensCss());
 writeFile("assets/css/base.css", baseCss);
 writeFile("assets/css/components.css", componentsCss);
@@ -1144,6 +1208,7 @@ buildDesignSystem();
 buildTransactionDetails();
 buildExportSuccess();
 buildIndex();
+buildMvp();
 
 console.log(`Site generated at ${SITE_DIR}`);
 
@@ -1174,6 +1239,7 @@ function buildFigmaExport() {
   const htmlFiles = collectHtmlFiles(SITE_DIR);
   for (const file of htmlFiles) {
     const rel = path.relative(SITE_DIR, file);
+    if (rel === "index.html") continue; // live MVP needs JS — not an importable frame
     let html = fs.readFileSync(file, "utf8");
     html = html.replace(LINK_TAGS_RE, `<style>\n${combinedCss}\n</style>`);
     html = html.replace(SCRIPT_TAG_RE, "");
@@ -1181,6 +1247,6 @@ function buildFigmaExport() {
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
     fs.writeFileSync(outPath, html, "utf8");
   }
-  console.log(`Figma-import export (self-contained HTML, CSS inlined) written to ${FIGMA_DIR} — ${htmlFiles.length} files`);
+  console.log(`Figma-import export (self-contained HTML, CSS inlined) written to ${FIGMA_DIR} — ${htmlFiles.length - 1} files`);
 }
 buildFigmaExport();

@@ -1,12 +1,25 @@
-# Paid — Internal Payment Operations Console (Figma Prototype)
+# Paid — Internal Payment Operations Console
 
-A clickable Figma prototype for an internal payment-operations console, modeled loosely on a typical payment provider's search/reporting tooling.
+A UX/UI concept for an internal payment-operations console, modeled loosely on a typical payment provider's search/reporting tooling. It ships as a **live MVP** (one interactive page), a set of **static screens** for Figma import, and a Figma file.
 
-**This is a UX/UI concept exploration — not a production application, not shipped code, and not an official Paid release.** There is no backend, no real data processing, and no application code in this repository; every interactive state is a prepared Figma frame wired together with prototype connections.
+**This is a concept exploration — not a production application and not an official release.** There is no backend: the MVP runs entirely in the browser on a fixed, fictional data set (57 operations, masked personal data).
 
-## Status
+## Live MVP
 
-In progress. Built natively in Figma (frames, components, variants, Auto Layout, variables, prototype connections) — no React/HTML/CSS/TypeScript involved. See the Figma file for current progress; this README documents scope and intent, not a moment-in-time snapshot of what's already drawn.
+`/` — one page where everything actually works:
+
+- **Search form** for Admin and Client, Basic and Advanced (role and mode live in the URL: `#admin/basic`, `#user/advanced`); values survive switching.
+- **Dropdowns**: keyboard-accessible select-only comboboxes (arrows, Home/End, type-ahead, Esc).
+- **Tooltips** on hover and focus: persistent ones for the card number, card mask and time zone; overflow tooltips for any filled field or table cell whose text is truncated.
+- **Validation** of amount, card digits, BIN, card mask, dates (with a `дд.мм.гггг` mask and range check) and IP, with inline messages and a form-level summary.
+- **Results**: loading skeleton, real filtering, no-results state, sorting (date, type, amount, status), row selection and select-all, pagination with 10/20/50 rows per page.
+- **Transaction details** in a modal drawer (focus trap, Esc, overlay click); Admin sees card hash, processor and merchant, Client does not.
+- **Fraud flag** toggle (Admin) and **real `.xlsx` export** of the found or selected rows, generated in the browser with no dependencies.
+- Time zone selection re-renders every timestamp; layout reflows down to phone width.
+
+Static screens for Figma import: `/screens`. Design system sheet: `/design-system`.
+
+## Figma
 
 Figma file: `Paid — Internal Payment Operations Console`
 (https://www.figma.com/design/2hKSHTHF4Z5OplCx5R0zZ9/Paid-%E2%80%94-Internal-Payment-Operations-Console)
@@ -70,7 +83,8 @@ Contrast, visible focus states, comfortable desktop control sizing, and status l
 ## Repository contents
 
 - `docs/figma-prototype-plan/` — design tokens, field maps (source of truth for field structure) and the Figma build plan.
-- `tools/build-site.mjs` — generates the static HTML prototype from the tokens and field maps.
-- `site/` — the generated HTML prototype (deployed to Vercel).
+- `src/mvp/` — hand-written behaviour (`mvp.js`) and styles (`mvp.css`) of the live MVP.
+- `tools/build-site.mjs` — generates `site/` from the tokens and field maps: the MVP page, the static screens and the shared CSS. Run `node tools/build-site.mjs`.
+- `site/` — the generated site (deployed to Vercel): live MVP at `/`, static screens under `/screens`.
 - `site-figma-export/` — self-contained copies of every page (CSS inlined) for HTML-to-Figma importers.
 - Original reference screenshots are intentionally not included.
