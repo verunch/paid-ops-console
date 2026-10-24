@@ -1127,57 +1127,10 @@ ${HEAD_LINKS}
 }
 
 // ---------------------------------------------------------------------------
-// Live MVP — one interactive page at /. Behaviour lives in src/mvp/ (hand-
-// authored); the build embeds the same field maps, tooltips, icons and column
-// widths the static screens use, so both stay in sync with one source.
+// Live MVP (/) and the NEW static screens (/new/…) come from tools/build-new.mjs,
+// which renders both with the shared modules in src/console/.
 // ---------------------------------------------------------------------------
-const MVP_SRC = path.join(ROOT, "src/mvp");
-
-function buildMvp() {
-  const data = {
-    fieldMaps,
-    tooltips: PERSISTENT_TOOLTIPS,
-    icons: ICONS,
-    columnWidths: COLUMN_WIDTHS,
-  };
-  const json = JSON.stringify(data).replace(/</g, "\\u003c");
-  const html = `<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Список платежей — Paid</title>
-<meta name="description" content="Paid — internal payment operations console, live MVP." />
-${HEAD_LINKS}
-<link rel="stylesheet" href="/assets/css/tokens.css" />
-<link rel="stylesheet" href="/assets/css/base.css" />
-<link rel="stylesheet" href="/assets/css/components.css" />
-<link rel="stylesheet" href="/assets/css/mvp.css" />
-</head>
-<body class="mvp">
-<a class="skip-link" href="#search-form">Перейти к поиску</a>
-<main class="mvp-shell">
-  <div id="app-header"></div>
-  <form class="search-panel" id="search-form" novalidate aria-label="Поиск платежей"></form>
-  <section class="section-block" id="results" aria-label="Результаты поиска"></section>
-  <footer class="mvp-footer text-caption">
-    <span>Paid · концепт внутренней консоли · данные вымышленные</span>
-    <span><a href="/design-system">Дизайн-система</a> · <a href="/screens">Статичные экраны для Figma</a></span>
-  </footer>
-</main>
-<div id="drawer-root"></div>
-<div class="toast-region" aria-live="polite"></div>
-<div class="tooltip tooltip-floating" id="tooltip" role="tooltip" hidden></div>
-<div class="visually-hidden" id="sr-status" aria-live="polite"></div>
-<script type="application/json" id="mvp-data">${json}</script>
-<script src="/assets/js/mvp.js" defer></script>
-</body>
-</html>
-`;
-  writeFile("index.html", html);
-  writeFile("assets/css/mvp.css", fs.readFileSync(path.join(MVP_SRC, "mvp.css"), "utf8"));
-  writeFile("assets/js/mvp.js", fs.readFileSync(path.join(MVP_SRC, "mvp.js"), "utf8"));
-}
+const { buildConsole } = await import("./build-new.mjs");
 
 // ---------------------------------------------------------------------------
 // app.js — minimal progressive enhancement (select-open toggle on live click)
@@ -1208,7 +1161,7 @@ buildDesignSystem();
 buildTransactionDetails();
 buildExportSuccess();
 buildIndex();
-buildMvp();
+const newCount = buildConsole({ ROOT, PLAN_DIR, writeFile, HEAD_LINKS });
 
 console.log(`Site generated at ${SITE_DIR}`);
 
@@ -1236,7 +1189,7 @@ function collectHtmlFiles(dir) {
 }
 
 function buildFigmaExport() {
-  const htmlFiles = collectHtmlFiles(SITE_DIR);
+  const htmlFiles = collectHtmlFiles(SITE_DIR).filter((f) => !path.relative(SITE_DIR, f).startsWith(`new${path.sep}`));
   for (const file of htmlFiles) {
     const rel = path.relative(SITE_DIR, file);
     if (rel === "index.html") continue; // live MVP needs JS — not an importable frame
@@ -1250,3 +1203,21 @@ function buildFigmaExport() {
   console.log(`Figma-import export (self-contained HTML, CSS inlined) written to ${FIGMA_DIR} — ${htmlFiles.length - 1} files`);
 }
 buildFigmaExport();
+
+// NEW screens are exported next to the originals under site-figma-export/new/,
+// with console.css inlined as well. Existing export files are never rewritten
+// by this step.
+const NEW_LINKS_RE = /<link rel="stylesheet" href="\/assets\/css\/tokens\.css" \/>\n<link rel="stylesheet" href="\/assets\/css\/base\.css" \/>\n<link rel="stylesheet" href="\/assets\/css\/components\.css" \/>\n<link rel="stylesheet" href="\/assets\/css\/console\.css" \/>/;
+function buildNewFigmaExport() {
+  const consoleCss = fs.readFileSync(path.join(SITE_DIR, "assets/css/console.css"), "utf8");
+  const files = collectHtmlFiles(path.join(SITE_DIR, "new"));
+  for (const file of files) {
+    const rel = path.relative(SITE_DIR, file);
+    const html = fs.readFileSync(file, "utf8").replace(NEW_LINKS_RE, `<style>\n${combinedCss}\n${consoleCss}\n</style>`);
+    const outPath = path.join(FIGMA_DIR, rel);
+    fs.mkdirSync(path.dirname(outPath), { recursive: true });
+    fs.writeFileSync(outPath, html, "utf8");
+  }
+  console.log(`NEW screens: ${newCount} states rendered, ${files.length} files exported to ${path.join(FIGMA_DIR, "new")}`);
+}
+buildNewFigmaExport();

@@ -6,18 +6,24 @@ A UX/UI concept for an internal payment-operations console, modeled loosely on a
 
 ## Live MVP
 
-`/` — one page where everything actually works:
+`/` — an operations console with five workspaces (switcher in the sidebar; the route lives in the URL, e.g. `#/support/tx-edit`):
 
-- **Search form** for Admin and Client, Basic and Advanced (role and mode live in the URL: `#admin/basic`, `#user/advanced`); values survive switching.
-- **Dropdowns**: keyboard-accessible select-only comboboxes (arrows, Home/End, type-ahead, Esc).
-- **Tooltips** on hover and focus: persistent ones for the card number, card mask and time zone; overflow tooltips for any filled field or table cell whose text is truncated.
-- **Validation** of amount, card digits, BIN, card mask, dates (with a `дд.мм.гггг` mask and range check) and IP, with inline messages and a form-level summary.
-- **Results**: loading skeleton, real filtering, no-results state, sorting (date, type, amount, status), row selection and select-all, pagination with 10/20/50 rows per page.
-- **Transaction details** in a modal drawer (focus trap, Esc, overlay click); Admin sees card hash, processor and merchant, Client does not.
-- **Fraud flag** toggle (Admin) and **real `.xlsx` export** of the found or selected rows, generated in the browser with no dependencies.
-- Time zone selection re-renders every timestamp; layout reflows down to phone width.
+| Workspace | Screens |
+|---|---|
+| Администрирование | Платежи · Журнал событий · Антифрод-правила · Реклама · Пользователи (+ добавление/редактирование) |
+| Клиент | Платежи |
+| Обслуживание | Платежи · Отчёты · Торговцы · Магазины · Антифрод-правила |
+| Поддержка | Платежи · Подписки · Чёрные и белые списки · Журнал событий · Изменение транзакции · Повторные уведомления |
+| Бухгалтерия | Платежи (агрегаты по PSP/банку) · Отчёты · Выплаты · Финансовые отчёты · Страховые депозиты · Баланс · Массовые выплаты (+ создание) · Финансовая информация (4 вкладки) |
 
-Static screens for Figma import: `/screens`. Design system sheet: `/design-system`.
+Everything works on a fixed, fictional data set: validation with input masks, keyboard-accessible single and multi-select comboboxes, filtering, aggregation, sorting, selection, pagination, drawers, toasts, `.xlsx` and `.csv` export generated in the browser, file upload, live rule switches.
+
+**Tooltips** follow the reference rule: card digits, card mask and time zone show a persistent tooltip on hover/focus; any other field shows a tooltip with its **name** once it is filled (placeholder no longer visible). Turning on «Тестовые транзакции» shows test operations only and hides the export button.
+
+## Screens for Figma
+
+- `/screens` and `site-figma-export/` (top level) — the original static screens, kept byte-for-byte unchanged.
+- `/new` and `site-figma-export/new/` — **NEW** screens from the second round of references: 82 states across all workspaces (defaults, results, validation, tooltips, open dropdowns, drawers, toasts, tabs) plus `new/design-system` with the components added for them (switch, radio, tabs, multi-select, search, textarea, file, stats, sidebar navigation). Every NEW page title starts with `NEW ·`.
 
 ## Figma
 
@@ -83,8 +89,9 @@ Contrast, visible focus states, comfortable desktop control sizing, and status l
 ## Repository contents
 
 - `docs/figma-prototype-plan/` — design tokens, field maps (source of truth for field structure) and the Figma build plan.
-- `src/mvp/` — hand-written behaviour (`mvp.js`) and styles (`mvp.css`) of the live MVP.
-- `tools/build-site.mjs` — generates `site/` from the tokens and field maps: the MVP page, the static screens and the shared CSS. Run `node tools/build-site.mjs`.
-- `site/` — the generated site (deployed to Vercel): live MVP at `/`, static screens under `/screens`.
-- `site-figma-export/` — self-contained copies of every page (CSS inlined) for HTML-to-Figma importers.
+- `docs/figma-prototype-plan/field-maps-new.json` — field-by-field spec of the NEW screens and workspaces (second round of references).
+- `src/console/` — shared, DOM-free modules (`data.js`, `ui.js`, `screens.js`, `xlsx.js`) used both by the live MVP (`app.js`, `console.css`) and by the static NEW screens, so they cannot drift apart.
+- `tools/build-site.mjs` — generates `site/` from the tokens and field maps (original screens + shared CSS); `tools/build-new.mjs` adds the MVP and the NEW screens. Run `node tools/build-site.mjs`.
+- `site/` — the generated site (deployed to Vercel): live MVP at `/`, original screens under `/screens`, NEW screens under `/new`.
+- `site-figma-export/` — self-contained copies of every page (CSS inlined) for HTML-to-Figma importers; NEW screens in `site-figma-export/new/`.
 - Original reference screenshots are intentionally not included.
