@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NEW · Администрирование · Платежи · advanced-results — Paid Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<style>
+/* GENERATED FILE — do not hand-edit. Source: docs/figma-prototype-plan/design-tokens.json */
+:root {
+  --color-bg-canvas: #FBFBFA;
+  --color-surface-default: #FFFFFF;
+  --color-surface-subtle: #FAFAFA;
+  --color-surface-sunken: #F7F8F7;
+  --color-surface-hover: #F4F7F6;
+  --color-text-primary: #2B3936;
+  --color-text-secondary: #6B7370;
+  --color-text-muted: #737373;
+  --color-text-inverse: #FFFFFF;
+  --color-border-default: #E2E8E6;
+  --color-border-strong: #C3D5D0;
+  --color-border-contrast: #000000;
+  --color-action-primary: #D95032;
+  --color-action-primary-hover: #C13E22;
+  --color-accent-admin: #3E6FA8;
+  --color-accent-admin-bg: #EAF1F8;
+  --color-accent-user: #85A49E;
+  --color-accent-user-bg: #EEF3F2;
+  --color-status-success: #3E9268;
+  --color-status-success-bg: #ECF4EF;
+  --color-status-success-border: #D3E7DC;
+  --color-status-warning: #C68A2E;
+  --color-status-warning-bg: #FBF2E2;
+  --color-status-warning-border: #F5E0B8;
+  --color-status-error: #9E321C;
+  --color-status-error-bg: #FCEEEA;
+  --color-status-error-border: #F7D6CC;
+  --color-status-info: #3E6FA8;
+  --color-status-info-bg: #EAF1F8;
+  --color-status-info-border: #CBDDF0;
+  --color-focus-ring: #D95032;
+  --color-disabled-bg: #F2F2F2;
+  --color-disabled-border: #E2E8E6;
+  --color-disabled-text: #ABABAB;
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-full: 999px;
+  --font-display-size: 34px;
+  --font-display-weight: 700;
+  --font-display-lh: 110%;
+  --font-h1-size: 24px;
+  --font-h1-weight: 600;
+  --font-h1-lh: 120%;
+  --font-h2-size: 19px;
+  --font-h2-weight: 600;
+  --font-h2-lh: 130%;
+  --font-h3-size: 16px;
+  --font-h3-weight: 600;
+  --font-h3-lh: 140%;
+  --font-body-size: 15px;
+  --font-body-weight: 400;
+  --font-body-lh: 155%;
+  --font-body-sm-size: 13px;
+  --font-body-sm-weight: 400;
+  --font-body-sm-lh: 145%;
+  --font-caption-size: 12px;
+  --font-caption-weight: 500;
+  --font-caption-lh: 140%;
+  --font-overline-size: 11px;
+  --font-overline-weight: 600;
+  --font-overline-lh: 140%;
+  --font-overline-tracking: 0.08em;
+  --font-mono-body-sm-size: 13px;
+  --font-mono-body-sm-lh: 145%;
+  --font-family-sans: "IBM Plex Sans", Inter, system-ui, -apple-system, sans-serif;
+  --font-family-mono: "IBM Plex Mono", "Roboto Mono", ui-monospace, "SFMono-Regular", monospace;
+  --shadow-card: 0 1px 2px rgba(30, 41, 38, 0.05);
+  --shadow-popover: 0 4px 12px rgba(30, 41, 38, 0.07);
+  --shadow-modal: 0 12px 32px rgba(30, 41, 38, 0.12);
+  --layout-frame-width: 1440px;
+  --layout-content-max-width: 1280px;
+  --layout-page-padding-x: 32px;
+  --layout-row-height-compact: 36px;
+  --control-height-sm: 28px;
+  --control-height-md: 40px;
+  --control-height-lg: 48px;
+}
+
+/* base.css — reset + page chrome + frame container */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: #E7E8E6;
+  font-family: var(--font-family-sans);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+input, select { font-family: inherit; }
+
+/* ---- prototype meta navigation (NOT part of the product design) ---- */
+.proto-nav {
+  font-family: var(--font-family-mono);
+  font-size: 12px;
+  color: #6B7370;
+  background: #F1F1EF;
+  border-bottom: 1px dashed #C7CAC7;
+  padding: 10px var(--layout-page-padding-x);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.proto-nav .proto-tag {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9AA19E;
+  font-weight: 700;
+}
+.proto-nav a { color: #3E6FA8; }
+.proto-nav a:hover { text-decoration: underline; }
+.proto-nav .sep { color: #C7CAC7; }
+
+/* ---- the actual importable frame ---- */
+.frame {
+  width: var(--layout-frame-width);
+  margin: 32px auto 64px;
+  background: var(--color-bg-canvas);
+  box-shadow: var(--shadow-card);
+  min-height: 400px;
+  position: relative;
+}
+.frame-inner {
+  padding: var(--spacing-2xl) var(--layout-page-padding-x) var(--spacing-3xl);
+}
+.content-narrow {
+  max-width: var(--layout-content-max-width);
+  margin: 0 auto;
+}
+
+/* components.css — shared UI components, all token-driven */
+
+/* Typography utility classes */
+.text-display { font-size: var(--font-display-size); font-weight: var(--font-display-weight); line-height: var(--font-display-lh); }
+.text-h1 { font-size: var(--font-h1-size); font-weight: var(--font-h1-weight); line-height: var(--font-h1-lh); }
+.text-h2 { font-size: var(--font-h2-size); font-weight: var(--font-h2-weight); line-height: var(--font-h2-lh); }
+.text-h3 { font-size: var(--font-h3-size); font-weight: var(--font-h3-weight); line-height: var(--font-h3-lh); }
+.text-body { font-size: var(--font-body-size); font-weight: var(--font-body-weight); line-height: var(--font-body-lh); }
+.text-body-sm { font-size: var(--font-body-sm-size); font-weight: var(--font-body-sm-weight); line-height: var(--font-body-sm-lh); }
+.text-caption { font-size: var(--font-caption-size); font-weight: var(--font-caption-weight); line-height: var(--font-caption-lh); }
+.text-overline { font-size: var(--font-overline-size); font-weight: var(--font-overline-weight); line-height: var(--font-overline-lh); letter-spacing: var(--font-overline-tracking); text-transform: uppercase; }
+.text-mono { font-family: var(--font-family-mono); font-size: var(--font-mono-body-sm-size); line-height: var(--font-mono-body-sm-lh); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+
+/* ---- App header ---- */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+.app-header .page-title { color: var(--color-text-primary); margin: 0; }
+.header-meta { display: flex; align-items: center; gap: var(--spacing-sm); }
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+}
+.role-badge .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.role-badge.role-admin { background: var(--color-accent-admin-bg); color: var(--color-accent-admin); }
+.role-badge.role-admin .dot { background: var(--color-accent-admin); }
+.role-badge.role-user { background: var(--color-accent-user-bg); color: var(--color-accent-user); }
+.role-badge.role-user .dot { background: var(--color-accent-user); }
+
+.mode-tabs { display: inline-flex; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden; }
+.mode-tabs a { padding: 6px 14px; font-size: var(--font-caption-size); color: var(--color-text-secondary); background: var(--color-surface-default); }
+.mode-tabs a.active { background: var(--color-action-primary); color: var(--color-text-inverse); }
+.mode-tabs a + a { border-left: 1px solid var(--color-border-default); }
+
+.role-switch-link { font-size: var(--font-caption-size); color: var(--color-text-secondary); border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: 6px 12px; background: var(--color-surface-default); }
+.role-switch-link:hover { border-color: var(--color-border-strong); color: var(--color-text-primary); }
+
+/* ---- Search panel ---- */
+.search-panel {
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-card);
+}
+.field-group + .field-group { margin-top: var(--spacing-lg); }
+.field-group-title { margin: 0 0 var(--spacing-sm); font-weight: var(--font-h3-weight); }
+.field-row { display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
+.field-row:last-child { margin-bottom: 0; }
+.field-wrap { flex: 1 1 0; min-width: 0; position: relative; }
+
+/* ---- Text Input ---- */
+.field-input {
+  width: 100%;
+  height: var(--control-height-md);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-default);
+  color: var(--color-text-primary);
+  padding: 0 var(--spacing-sm);
+  font-size: var(--font-body-sm-size);
+  outline: none;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+/* 2px states (focus / error) = 1px border + 1px inset ring, so the box never shifts */
+.field-input::placeholder { color: var(--color-text-muted); }
+.field-input:hover, .field-input.is-hover { border-color: var(--color-border-strong); }
+.field-input:focus, .field-input.is-focus { border-color: var(--color-focus-ring); box-shadow: inset 0 0 0 1px var(--color-focus-ring); }
+.field-input.filled { color: var(--color-text-primary); }
+.field-input.is-cardnum { font-family: var(--font-family-mono); }
+.field-input:disabled { background: var(--color-disabled-bg); border-color: var(--color-disabled-border); color: var(--color-disabled-text); cursor: not-allowed; }
+.field-input:disabled::placeholder { color: var(--color-disabled-text); }
+.field-input.has-error, .field-input.has-error:focus { border-color: var(--color-status-error); box-shadow: inset 0 0 0 1px var(--color-status-error); }
+
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: var(--font-overline-size);
+  font-weight: var(--font-caption-weight);
+  color: var(--color-status-error);
+}
+
+/* ---- Select ---- */
+.field-select {
+  width: 100%;
+  height: var(--control-height-md);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-default);
+  color: var(--color-text-muted);
+  padding: 0 var(--spacing-sm);
+  font-size: var(--font-body-sm-size);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2xs);
+  transition: border-color .12s ease;
+}
+.field-select:hover, .field-select.is-hover { border-color: var(--color-border-strong); }
+.field-select.filled { color: var(--color-text-primary); }
+.field-select .chevron { flex: none; width: 12px; height: 7px; }
+.field-select:focus-visible, .field-select.is-open, .field-select.is-focus { outline: none; }
+.field-select:focus-visible, .field-select.is-open, .field-select.is-focus { border-color: var(--color-focus-ring); box-shadow: inset 0 0 0 1px var(--color-focus-ring); }
+.field-select.has-error { border-color: var(--color-status-error); box-shadow: inset 0 0 0 1px var(--color-status-error); }
+.field-select.is-disabled { background: var(--color-disabled-bg); border-color: var(--color-disabled-border); color: var(--color-disabled-text); cursor: not-allowed; }
+.select-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-popover);
+  z-index: 20;
+  overflow: hidden;
+}
+.select-panel .opt { padding: 8px var(--spacing-sm); font-size: var(--font-body-sm-size); color: var(--color-text-primary); }
+.select-panel .opt:hover, .select-panel .opt.active { background: var(--color-surface-hover); }
+
+/* ---- Checkbox ---- */
+.checkbox { display: inline-flex; align-items: center; gap: var(--spacing-2xs); font-size: var(--font-body-sm-size); color: var(--color-text-primary); user-select: none; }
+.checkbox .box {
+  width: 16px; height: 16px;
+  border: 1.5px solid var(--color-border-contrast);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-default);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none;
+}
+.checkbox.checked .box { background: var(--color-action-primary); border-color: var(--color-action-primary); }
+.checkbox.checked .box svg { display: block; }
+.checkbox .box svg { display: none; }
+.checkbox.disabled { color: var(--color-disabled-text); }
+.checkbox.disabled .box { background: var(--color-disabled-bg); }
+
+/* ---- Tooltip ----
+   Rendered in normal document flow (not position:absolute) so it reserves
+   real vertical space and pushes following rows down instead of overlapping
+   them — these are "persistent" tooltips that are always visible, not
+   hover-only popovers. */
+.tooltip {
+  position: relative;
+  margin-top: 8px;
+  background: #33383A;
+  color: #FFFFFF;
+  font-size: var(--font-caption-size);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-popover);
+  white-space: nowrap;
+  display: inline-block;
+  z-index: 10;
+}
+.tooltip::before {
+  content: "";
+  position: absolute;
+  top: -5px; left: 16px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #33383A;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: var(--control-height-md);
+  padding: 0 var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-body-sm-size);
+  font-weight: var(--font-h3-weight);
+  border: 1px solid transparent;
+  outline: none;
+  transition: background-color .12s ease, border-color .12s ease;
+  gap: 6px;
+}
+.btn-sm { height: var(--control-height-sm); padding: 0 var(--spacing-sm); }
+.btn-lg { height: var(--control-height-lg); padding: 0 var(--spacing-lg); }
+.btn-primary { background: var(--color-action-primary); color: var(--color-text-inverse); }
+.btn-primary:hover, .btn-primary.is-hover { background: var(--color-action-primary-hover); }
+.btn-primary:focus-visible { box-shadow: 0 0 0 2px var(--color-surface-default), 0 0 0 4px var(--color-focus-ring); }
+.btn-secondary { background: var(--color-surface-default); color: var(--color-text-primary); border-color: var(--color-border-contrast); }
+.btn-ghost { background: transparent; color: var(--color-text-primary); }
+.btn-secondary:hover, .btn-secondary.is-hover,
+.btn-ghost:hover, .btn-ghost.is-hover { background: var(--color-surface-hover); }
+.btn-secondary:focus-visible, .btn-secondary.is-focus,
+.btn-ghost:focus-visible, .btn-ghost.is-focus { border-color: var(--color-focus-ring); box-shadow: inset 0 0 0 1px var(--color-focus-ring); }
+.btn-destructive { background: var(--color-status-error); color: var(--color-text-inverse); }
+.btn[disabled] { background: var(--color-disabled-bg); color: var(--color-disabled-text); cursor: not-allowed; }
+.btn-ghost[disabled] { background: transparent; }
+
+/* ---- Design-system state grids ---- */
+.state-grid, .state-grid-head { display: grid; grid-template-columns: repeat(6, minmax(0, 196px)); gap: var(--spacing-md); align-items: start; }
+.state-grid + .state-grid { margin-top: var(--spacing-lg); }
+.state-grid .btn { justify-self: start; }
+.state-grid-head { margin-bottom: var(--spacing-xs); font-size: var(--font-overline-size); text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-muted); }
+
+/* ---- Footer row ---- */
+.footer-row { display: flex; align-items: center; justify-content: space-between; margin-top: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md); }
+.footer-left, .footer-right { display: flex; align-items: center; gap: var(--spacing-sm); }
+
+/* ---- Status Badge (icon/shape + label, never color alone) ---- */
+.status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.status-badge svg { flex: none; }
+.status-badge.success { background: var(--color-status-success-bg); color: var(--color-status-success); border-color: var(--color-status-success-border); }
+.status-badge.warning { background: var(--color-status-warning-bg); color: var(--color-status-warning); border-color: var(--color-status-warning-border); }
+.status-badge.error { background: var(--color-status-error-bg); color: var(--color-status-error); border-color: var(--color-status-error-border); }
+.status-badge.info { background: var(--color-status-info-bg); color: var(--color-status-info); border-color: var(--color-status-info-border); }
+.status-badge.neutral { background: var(--color-surface-subtle); color: var(--color-text-secondary); border-color: var(--color-border-default); }
+
+/* ---- Table ----
+   table-layout:fixed with an explicit <colgroup> keeps the ~10-14 column
+   results table within (or close to) the frame width; overflow-x:auto is
+   a safety net for the Admin variant's extra columns, with a visible
+   scrollbar so nothing is silently hidden. */
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-default);
+  scrollbar-color: var(--color-border-strong) var(--color-surface-subtle);
+  scrollbar-width: thin;
+}
+.table-scroll::-webkit-scrollbar { height: 10px; }
+.table-scroll::-webkit-scrollbar-track { background: var(--color-surface-subtle); }
+.table-scroll::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: var(--radius-full); }
+table.data-table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+table.data-table th {
+  background: var(--color-surface-sunken);
+  text-align: left;
+  padding: 8px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid var(--color-border-default);
+  position: relative;
+}
+table.data-table th.sortable { cursor: pointer; }
+table.data-table th .th-inner { display: inline-flex; align-items: center; gap: 4px; }
+table.data-table th.num, table.data-table td.num { text-align: right; }
+table.data-table th.status-col, table.data-table td.status-col { text-align: center; }
+table.data-table td {
+  padding: 8px 10px;
+  height: var(--layout-row-height-compact);
+  border-bottom: 1px solid var(--color-border-default);
+  font-size: var(--font-body-sm-size);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+table.data-table td.mono { font-family: var(--font-family-mono); font-size: 12px; }
+table.data-table tbody tr:last-child td { border-bottom: none; }
+table.data-table tbody tr:nth-child(even) { background: var(--color-surface-subtle); }
+table.data-table tbody tr:hover { background: var(--color-accent-admin-bg); }
+table.data-table tbody tr.selected { background: var(--color-accent-user-bg); }
+table.data-table .row-check { width: 36px; }
+table.data-table .actions-cell { display: flex; gap: 6px; overflow: visible; }
+table.data-table .icon-btn {
+  width: 26px; height: 26px; border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-default);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none;
+}
+table.data-table .icon-btn:hover { border-color: var(--color-border-strong); background: var(--color-surface-subtle); }
+
+.results-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-sm); }
+.results-toolbar h2 { margin: 0; }
+
+/* ---- Pagination ---- */
+.pagination { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-sm) var(--spacing-md); }
+.pagination .pages { display: flex; align-items: center; gap: 4px; }
+.pagination .page-btn {
+  min-width: 28px; height: 28px; border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-default);
+  font-size: var(--font-caption-size);
+  color: var(--color-text-secondary);
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 6px;
+}
+.pagination .page-btn.active { background: var(--color-action-primary); color: var(--color-text-inverse); border-color: var(--color-action-primary); }
+.pagination .rows-per-page { display: flex; align-items: center; gap: 8px; font-size: var(--font-caption-size); color: var(--color-text-secondary); }
+.pagination .rows-per-page .field-select { width: 72px; height: var(--control-height-sm); }
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: var(--spacing-xl);
+  right: var(--spacing-xl);
+  display: flex; align-items: center; gap: 10px;
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-status-success-border);
+  border-left: 4px solid var(--color-status-success);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-modal);
+  padding: 14px 18px;
+  font-size: var(--font-body-sm-size);
+  z-index: 100;
+}
+.toast .toast-icon { color: var(--color-status-success); flex: none; }
+.toast .toast-title { font-weight: var(--font-caption-weight); color: var(--color-text-primary); }
+.toast .toast-body { color: var(--color-text-secondary); }
+.toast .toast-close { margin-left: 8px; color: var(--color-text-muted); }
+
+/* ---- Drawer / Modal ---- */
+.drawer-overlay { position: absolute; inset: 0; background: rgba(30, 41, 38, 0.32); z-index: 40; }
+.drawer {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 420px;
+  background: var(--color-surface-default);
+  box-shadow: var(--shadow-modal);
+  z-index: 41;
+  display: flex; flex-direction: column;
+}
+.drawer-header { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-lg); border-bottom: 1px solid var(--color-border-default); }
+.drawer-header h2 { margin: 0; }
+.drawer-close { width: 32px; height: 32px; border-radius: var(--radius-md); border: 1px solid var(--color-border-default); background: var(--color-surface-default); display: inline-flex; align-items: center; justify-content: center; }
+.drawer-body { padding: var(--spacing-lg); overflow-y: auto; flex: 1; }
+.drawer-field { display: flex; justify-content: space-between; gap: var(--spacing-md); padding: 10px 0; border-bottom: 1px solid var(--color-border-default); }
+.drawer-field:last-child { border-bottom: none; }
+.drawer-field .k { color: var(--color-text-secondary); font-size: var(--font-body-sm-size); }
+.drawer-field .v { color: var(--color-text-primary); font-size: var(--font-body-sm-size); text-align: right; }
+.drawer-field .v.mono { font-family: var(--font-family-mono); }
+.drawer-section-title { margin: var(--spacing-md) 0 var(--spacing-2xs); color: var(--color-text-secondary); }
+.drawer-section-title:first-child { margin-top: 0; }
+
+/* ---- Loading Skeleton ---- */
+@keyframes shimmer { 0% { background-position: -200px 0; } 100% { background-position: 200px 0; } }
+.skeleton-block {
+  background: linear-gradient(90deg, var(--color-surface-subtle) 0%, var(--color-border-default) 50%, var(--color-surface-subtle) 100%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+table.data-table tr.skeleton-row td { height: var(--layout-row-height-compact); }
+
+/* ---- Empty State ---- */
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--spacing-3xl) var(--spacing-lg); text-align: center; gap: var(--spacing-2xs); }
+.empty-state .icon { color: var(--color-text-muted); margin-bottom: var(--spacing-xs); }
+.empty-state .title { color: var(--color-text-primary); font-weight: var(--font-h3-weight); }
+.empty-state .hint { color: var(--color-text-secondary); max-width: 360px; }
+
+/* ---- misc ---- */
+.section-block + .section-block { margin-top: var(--spacing-xl); }
+.swatch-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; align-items: flex-start; }
+.swatch-card { border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: var(--spacing-md); background: var(--color-surface-default); }
+.swatch-label { font-size: var(--font-caption-size); color: var(--color-text-muted); margin-top: 6px; }
+.color-chip { width: 96px; }
+.color-chip .swatch { height: 56px; border-radius: var(--radius-md); border: 1px solid var(--color-border-default); }
+
+/* console.css — layer on top of tokens.css / base.css / components.css for
+   the console (live MVP + NEW static screens): app shell, components added
+   for the new screens, real form controls, floating tooltips, drawers,
+   toasts and responsive rules. components.css itself stays untouched so the
+   original exported screens keep rendering exactly as before. */
+
+body.console-body { background: var(--color-bg-canvas); }
+body.has-drawer { overflow: hidden; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--spacing-md); top: -48px;
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-contrast);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  font-size: var(--font-body-sm-size);
+  z-index: 300;
+}
+.skip-link:focus { top: var(--spacing-md); }
+
+/* ---- Header controls as real buttons ---- */
+button.role-switch-link { font: inherit; font-size: var(--font-caption-size); cursor: pointer; }
+.role-switch-link:focus-visible,
+.mode-tabs button:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
+.mode-tabs button {
+  font: inherit;
+  font-size: var(--font-caption-size);
+  padding: 6px 14px;
+  border: 0;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-default);
+  cursor: pointer;
+}
+.mode-tabs button + button { border-left: 1px solid var(--color-border-default); }
+.mode-tabs button:hover { background: var(--color-surface-hover); }
+.mode-tabs button[aria-pressed="true"] { background: var(--color-action-primary); color: var(--color-text-inverse); }
+
+/* ---- Form ---- */
+.form-banner { margin-bottom: var(--spacing-sm); font-size: var(--font-body-sm-size); }
+.form-banner:empty { display: none; }
+.field-wrap-check { display: flex; align-items: center; min-height: var(--control-height-md); }
+.field-error[hidden] { display: none; }
+
+/* ---- Select (APG select-only combobox) ---- */
+.select-wrap { position: relative; }
+.field-select { cursor: pointer; user-select: none; }
+.field-select:focus-visible { outline: none; }
+.field-select .value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.field-select .chevron { transition: transform .12s ease; }
+.field-select[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+.select-panel {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 264px;
+  overflow-y: auto;
+}
+.select-panel[hidden] { display: none; }
+.select-panel.is-above { top: auto; bottom: calc(100% + 4px); }
+.select-panel .opt { cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.select-panel .opt[aria-selected="true"] { font-weight: var(--font-h3-weight); }
+.select-panel .opt.is-reset { color: var(--color-text-muted); }
+
+/* ---- Checkbox with a real <input> ---- */
+.checkbox { position: relative; cursor: pointer; }
+.checkbox input {
+  position: absolute; left: 0; top: 50%;
+  width: 16px; height: 16px;
+  margin: -8px 0 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkbox input:checked + .box,
+.checkbox input:indeterminate + .box { background: var(--color-action-primary); border-color: var(--color-action-primary); }
+.checkbox input:checked + .box svg { display: block; }
+.checkbox input:indeterminate + .box svg { display: none; }
+.checkbox input:indeterminate + .box::after { content: ""; width: 8px; height: 2px; border-radius: 1px; background: var(--color-text-inverse); }
+.checkbox input:focus-visible + .box { box-shadow: 0 0 0 2px var(--color-surface-default), 0 0 0 4px var(--color-focus-ring); }
+
+/* ---- Floating tooltip (hover / focus, never in layout flow) ---- */
+.tooltip.tooltip-floating {
+  position: fixed;
+  top: 0; left: 0;
+  margin: 0;
+  max-width: 360px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+  z-index: 200;
+}
+.tooltip.tooltip-floating[hidden] { display: none; }
+.tooltip.tooltip-floating::before { left: var(--arrow-x, 16px); }
+.tooltip.tooltip-floating.is-above::before {
+  top: auto; bottom: -5px;
+  border-bottom: none;
+  border-top: 5px solid #33383A;
+}
+
+/* ---- Buttons ---- */
+.btn[aria-busy="true"] { cursor: progress; opacity: .8; }
+.btn-sm { font-size: var(--font-caption-size); }
+
+/* ---- Results ---- */
+#results { margin-top: var(--spacing-xl); }
+.results-toolbar { gap: var(--spacing-md); flex-wrap: wrap; }
+.results-meta { display: flex; align-items: center; gap: var(--spacing-sm); color: var(--color-text-secondary); font-size: var(--font-body-sm-size); }
+.results-meta strong { color: var(--color-text-primary); font-weight: var(--font-h3-weight); }
+
+table.data-table tbody tr.is-clickable { cursor: pointer; }
+table.data-table th[aria-sort] { padding: 0; }
+.th-sort {
+  all: unset;
+  box-sizing: border-box;
+  display: flex; align-items: center; gap: 4px;
+  width: 100%;
+  padding: 8px 10px;
+  cursor: pointer;
+  /* all:unset wipes .text-overline — restore the header type style */
+  font-size: var(--font-overline-size);
+  font-weight: var(--font-overline-weight);
+  line-height: var(--font-overline-lh);
+  letter-spacing: var(--font-overline-tracking);
+  text-transform: uppercase;
+}
+th.num .th-sort { justify-content: flex-end; }
+th.status-col .th-sort { justify-content: center; }
+.th-sort:hover { color: var(--color-text-primary); }
+.th-sort:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: -2px; }
+th[aria-sort="descending"] .sort-icon { transform: rotate(180deg); }
+table.data-table .icon-btn { cursor: pointer; color: var(--color-text-secondary); }
+table.data-table .icon-btn:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 1px; }
+table.data-table .icon-btn[aria-pressed="true"] { color: var(--color-status-error); border-color: var(--color-status-error-border); background: var(--color-status-error-bg); }
+table.data-table td.row-check, table.data-table th.row-check { overflow: visible; vertical-align: middle; }
+table.data-table .row-check .checkbox { display: flex; }
+
+.pagination { flex-wrap: wrap; gap: var(--spacing-sm); }
+.pagination .rows-per-page .select-wrap { width: 72px; }
+.pagination .rows-per-page .field-select { width: 72px; padding: 0 8px; }
+.pagination .range { color: var(--color-text-secondary); font-size: var(--font-caption-size); margin-left: var(--spacing-sm); }
+.pagination .page-btn { cursor: pointer; font: inherit; font-size: var(--font-caption-size); }
+.pagination .page-btn:hover:not(:disabled):not(.active) { background: var(--color-surface-hover); }
+.pagination .page-btn:disabled { color: var(--color-disabled-text); cursor: not-allowed; }
+.pagination .page-btn:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 1px; }
+.pagination .page-ellipsis { min-width: 20px; text-align: center; color: var(--color-text-muted); font-size: var(--font-caption-size); }
+
+/* ---- Drawer: fixed to the viewport here, not to a 1440px frame ---- */
+.console-body .drawer-overlay { position: fixed; animation: fade-in .16s ease; }
+.console-body .drawer { position: fixed; max-width: 100vw; animation: slide-in .2s ease; }
+.drawer-close { cursor: pointer; }
+.drawer-close:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes slide-in { from { transform: translateX(24px); opacity: 0; } }
+
+/* ---- Toasts ---- */
+.toast-region {
+  position: fixed;
+  right: var(--spacing-xl);
+  bottom: var(--spacing-xl);
+  display: flex; flex-direction: column; gap: var(--spacing-xs);
+  z-index: 100;
+}
+.toast-region .toast { position: static; animation: slide-in .2s ease; max-width: 420px; }
+.toast-close { background: none; border: 0; padding: 4px; cursor: pointer; border-radius: var(--radius-sm); }
+.toast-close:focus-visible { outline: 2px solid var(--color-focus-ring); }
+.toast.toast-warning { border-color: var(--color-status-warning-border); border-left-color: var(--color-status-warning); }
+.toast.toast-warning .toast-icon { color: var(--color-status-warning); }
+.toast.toast-info { border-color: var(--color-status-info-border); border-left-color: var(--color-status-info); }
+.toast.toast-info .toast-icon { color: var(--color-status-info); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+
+/* =====================================================================
+   App shell: sidebar navigation + main column
+   ===================================================================== */
+.console { display: flex; min-height: 100vh; }
+.sidebar {
+  position: sticky; top: 0;
+  flex: 0 0 248px;
+  height: 100vh;
+  display: flex; flex-direction: column; gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-md);
+  background: var(--color-surface-default);
+  border-right: 1px solid var(--color-border-default);
+  overflow-y: auto;
+}
+.sidebar-brand { display: flex; align-items: center; gap: var(--spacing-xs); color: var(--color-action-primary); font-weight: var(--font-h3-weight); font-size: var(--font-h3-size); }
+.sidebar-brand span:first-of-type { color: var(--color-text-primary); }
+.sidebar-brand .brand-sub { color: var(--color-text-muted); font-weight: 400; font-size: var(--font-caption-size); margin-left: auto; text-transform: uppercase; letter-spacing: .08em; }
+.sidebar-ws { display: flex; flex-direction: column; gap: 6px; }
+.sidebar-label { font-size: var(--font-overline-size); text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-muted); }
+.sidebar-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.nav-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  font-size: var(--font-body-sm-size);
+  color: var(--color-text-secondary);
+}
+.nav-link svg { flex: none; color: var(--color-text-muted); }
+.nav-link:hover { background: var(--color-surface-hover); color: var(--color-text-primary); }
+.nav-link[aria-current="page"] { background: var(--color-status-error-bg); color: var(--color-action-primary-hover); font-weight: var(--font-caption-weight); }
+.nav-link[aria-current="page"] svg { color: var(--color-action-primary); }
+.nav-link:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 1px; }
+.sidebar-foot { margin-top: auto; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted); }
+.sidebar-foot a { color: var(--color-text-secondary); text-decoration: underline; text-underline-offset: 2px; }
+
+.console-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: calc(var(--layout-content-max-width) + 2 * var(--layout-page-padding-x));
+  padding: var(--spacing-xl) var(--layout-page-padding-x) var(--spacing-2xl);
+}
+.page-title:focus { outline: none; }
+.crumb { display: inline-block; margin-bottom: var(--spacing-xs); font-size: var(--font-caption-size); color: var(--color-text-secondary); }
+.crumb:hover { color: var(--color-text-primary); text-decoration: underline; }
+.role-badge.role-neutral { background: var(--color-surface-sunken); color: var(--color-text-secondary); }
+.role-badge.role-neutral .dot { background: var(--color-text-muted); }
+
+/* =====================================================================
+   Form layout additions
+   ===================================================================== */
+.field-group { border: 0; padding: 0; margin: 0; min-width: 0; }
+.field-group > legend { padding: 0; }
+.field-group + .field-group { margin-top: var(--spacing-lg); }
+.groups-inline { display: flex; flex-wrap: wrap; gap: var(--spacing-xl); align-items: flex-start; }
+.groups-inline > .field-group { flex: 1 1 320px; margin-top: 0; }
+.field-wrap.w-xs { flex: 0 0 88px; }
+.field-wrap.w-sm { flex: 0.6 1 0; }
+.field-wrap.w-lg { flex: 2 1 0; }
+.field-wrap.t-date { flex: 0 1 200px; }
+.field-row > .field-wrap.field-wrap-check { flex: 0 0 auto; }
+.field-row:has(> .field-wrap-check:only-child) { margin-bottom: var(--spacing-xs); }
+.field-row > .btn { flex: none; }
+.form-option { margin-top: var(--spacing-md); }
+.form-hint { margin: var(--spacing-xs) 0 0; color: var(--color-text-muted); }
+.link-btn { all: unset; cursor: pointer; color: var(--color-action-primary); font-family: var(--font-family-mono); text-decoration: underline; text-underline-offset: 2px; }
+.link-btn:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
+.footer-row.is-end { justify-content: flex-end; }
+.footer-row.is-end .footer-left:empty { display: none; }
+.field-input.is-search { padding-left: 34px; background: var(--color-surface-default) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none'%3E%3Ccircle cx='7' cy='7' r='5' stroke='%23737373' stroke-width='1.4'/%3E%3Cpath d='m11 11 3 3' stroke='%23737373' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 12px center; }
+.field-input.is-search::-webkit-search-cancel-button { cursor: pointer; }
+
+/* Horizontal "label | control" form (Добавить пользователя) */
+.form-line { display: grid; grid-template-columns: 180px minmax(0, 600px); align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
+.form-line .form-control { min-width: 0; }
+.form-line .form-control .field-wrap { max-width: 420px; }
+.form-label { font-size: var(--font-body-sm-size); color: var(--color-text-secondary); }
+.form-stack { display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--spacing-md); }
+.form-stack .field-wrap, .form-control .field-wrap { flex: none; }
+.check-row { display: flex; flex-wrap: wrap; gap: var(--spacing-md); min-height: var(--control-height-md); align-items: center; }
+
+/* Transaction edit block */
+.edit-block { margin-top: var(--spacing-lg); padding-top: var(--spacing-lg); border-top: 1px solid var(--color-border-default); }
+.edit-title { margin: 0 0 4px; color: var(--color-text-secondary); }
+.edit-title .mono { font-family: var(--font-family-mono); color: var(--color-text-primary); }
+.edit-title:focus { outline: none; }
+.edit-block > p { margin: 0 0 var(--spacing-md); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.radio-line { margin-bottom: var(--spacing-md); }
+.inline-fields { display: flex; flex-wrap: wrap; gap: var(--spacing-md) var(--spacing-lg); }
+.inline-field { display: flex; align-items: center; gap: var(--spacing-xs); }
+.inline-field .field-wrap { width: 190px; flex: none; }
+.inline-field .field-wrap[data-name="Payment date"], .inline-field .field-wrap[data-name="Settled date"] { width: 250px; }
+.inline-field:has(.radio-group) { gap: var(--spacing-md); }
+
+/* =====================================================================
+   New components
+   ===================================================================== */
+/* Switch — orange track when on, label text inside like the reference */
+.switch { position: relative; display: inline-flex; align-items: center; gap: var(--spacing-xs); cursor: pointer; }
+.switch input { position: absolute; opacity: 0; width: 44px; height: 24px; margin: 0; cursor: pointer; }
+.switch-track {
+  position: relative; display: inline-flex; align-items: center;
+  width: 44px; height: 24px; border-radius: var(--radius-full);
+  background: var(--color-border-strong);
+  transition: background-color .15s ease;
+}
+.switch-thumb { position: absolute; left: 3px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--color-surface-default); box-shadow: var(--shadow-card); transition: transform .15s ease; }
+.switch-text { position: absolute; right: 7px; font-size: 10px; font-weight: var(--font-h3-weight); color: var(--color-text-secondary); }
+.switch input:checked + .switch-track { background: var(--color-action-primary); }
+.switch input:checked + .switch-track .switch-thumb { transform: translateX(20px); }
+.switch input:checked + .switch-track .switch-text { right: auto; left: 7px; color: var(--color-text-inverse); }
+.switch input:focus-visible + .switch-track { box-shadow: 0 0 0 2px var(--color-surface-default), 0 0 0 4px var(--color-focus-ring); }
+.switch-label { font-size: var(--font-body-sm-size); }
+
+/* Radio */
+.radio-group { display: inline-flex; gap: var(--spacing-md); }
+.radio { position: relative; display: inline-flex; align-items: center; gap: 6px; font-size: var(--font-body-sm-size); cursor: pointer; }
+.radio input { position: absolute; opacity: 0; width: 16px; height: 16px; margin: 0; cursor: pointer; }
+.radio-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--color-border-contrast); background: var(--color-surface-default); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.radio input:checked + .radio-dot { border-color: var(--color-action-primary); }
+.radio input:checked + .radio-dot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--color-action-primary); }
+.radio input:focus-visible + .radio-dot { box-shadow: 0 0 0 2px var(--color-surface-default), 0 0 0 4px var(--color-focus-ring); }
+
+/* Tabs — folder tabs attached to the panel below */
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; position: relative; z-index: 1; margin-bottom: -1px; }
+.tab {
+  font: inherit; font-size: var(--font-body-sm-size);
+  padding: 9px 16px;
+  border: 1px solid var(--color-border-default);
+  border-bottom-color: transparent;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: var(--color-surface-sunken);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+.tab:hover { color: var(--color-text-primary); background: var(--color-surface-hover); }
+.tab[aria-selected="true"] { background: var(--color-surface-default); color: var(--color-text-primary); font-weight: var(--font-caption-weight); box-shadow: inset 0 2px 0 var(--color-action-primary); border-bottom-color: var(--color-surface-default); }
+.tab:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: -2px; }
+.search-panel.has-tabs { border-top-left-radius: 0; }
+
+/* Textarea + file */
+.field-input.field-textarea { height: auto; min-height: 104px; padding: 10px var(--spacing-sm); line-height: 1.45; resize: vertical; font-family: var(--font-family-mono); font-size: 12px; }
+.field-input.field-textarea::placeholder { font-family: var(--font-family-sans); font-size: var(--font-body-sm-size); }
+.file-field { display: flex; align-items: center; gap: var(--spacing-sm); }
+.file-btn { cursor: pointer; white-space: nowrap; flex: none; }
+.file-btn:focus-within { box-shadow: inset 0 0 0 1px var(--color-focus-ring); border-color: var(--color-focus-ring); }
+.file-name { font-size: var(--font-body-sm-size); color: var(--color-text-muted); }
+.file-name.has-file { color: var(--color-text-primary); font-family: var(--font-family-mono); font-size: 12px; }
+.t-file .field-error { margin-top: 6px; }
+
+/* Multi-select options show a checkbox */
+.select-panel.is-multi .opt { display: flex; align-items: center; gap: 8px; }
+.opt-box { width: 14px; height: 14px; flex: none; border: 1.5px solid var(--color-border-contrast); border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; }
+.opt-box svg { display: none; width: 9px; }
+.opt[aria-selected="true"] .opt-box { background: var(--color-action-primary); border-color: var(--color-action-primary); }
+.opt[aria-selected="true"] .opt-box svg { display: block; }
+.select-panel.is-multi .opt[aria-selected="true"] { font-weight: 400; }
+
+/* Stats */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
+.stat { background: var(--color-surface-default); border: 1px solid var(--color-border-default); border-radius: var(--radius-lg); padding: var(--spacing-md); }
+.stat-label { font-size: var(--font-caption-size); color: var(--color-text-secondary); }
+.stat-value { font-size: var(--font-h2-size); font-weight: var(--font-h2-weight); margin-top: 4px; color: var(--color-text-primary); }
+.stat-value.mono { font-family: var(--font-family-mono); font-size: 18px; }
+.stat-hint { font-size: var(--font-caption-size); color: var(--color-text-muted); margin-top: 4px; }
+
+.chip { display: inline-block; padding: 2px 8px; border-radius: var(--radius-full); background: var(--color-surface-sunken); border: 1px solid var(--color-border-default); font-size: var(--font-caption-size); color: var(--color-text-secondary); margin: 1px 0; }
+.drawer-footer { display: flex; gap: var(--spacing-sm); padding: var(--spacing-md) var(--spacing-lg); border-top: 1px solid var(--color-border-default); }
+
+/* Static screens: tooltips drawn in place for Figma (never used live) */
+.field-wrap:has(> .tooltip-static) { position: relative; }
+.tooltip.tooltip-static { position: absolute; left: 0; top: calc(100% + 8px); margin: 0; z-index: 30; }
+.drawer.is-static, .toast.is-static { animation: none; }
+.toast.is-static { position: absolute; }
+#sidebar-root { display: contents; }
+.console.is-static { min-height: 900px; }
+.console.is-static .sidebar { position: static; height: auto; }
+
+/* =====================================================================
+   Responsive
+   ===================================================================== */
+@media (max-width: 1100px) {
+  .field-row { flex-wrap: wrap; }
+  .field-row .field-wrap { flex: 1 1 200px; }
+  .field-row .field-wrap.w-xs { flex: 0 0 88px; }
+}
+@media (max-width: 900px) {
+  .console { flex-direction: column; }
+  .sidebar { position: static; height: auto; flex: none; border-right: 0; border-bottom: 1px solid var(--color-border-default); padding: var(--spacing-md); gap: var(--spacing-sm); }
+  .sidebar-nav ul { flex-direction: row; overflow-x: auto; scrollbar-width: none; }
+  .nav-link { white-space: nowrap; }
+  .sidebar-foot { display: none; }
+}
+@media (max-width: 640px) {
+  .console-main { padding: var(--spacing-lg) var(--spacing-md); }
+  .header-meta { flex-wrap: wrap; }
+  .footer-row, .footer-left, .footer-right { flex-direction: column; align-items: stretch; width: 100%; }
+  .toast-region { left: var(--spacing-md); right: var(--spacing-md); bottom: var(--spacing-md); }
+  .console-body .drawer { width: 100%; }
+  .form-line { grid-template-columns: 1fr; gap: 6px; }
+  .inline-field { flex-wrap: wrap; }
+}
+
+/* NEW design-system sheet */
+.ds-section + .ds-section { margin-top: var(--spacing-2xl); }
+.ds-section > h2 { margin: 0 0 var(--spacing-md); }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--spacing-lg); align-items: flex-start; }
+.ds-cell { display: flex; flex-direction: column; gap: var(--spacing-xs); min-width: 160px; }
+.ds-cell > .ds-label { font-size: var(--font-overline-size); text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-muted); }
+.ds-cell .select-wrap, .ds-cell .field-wrap { width: 260px; position: relative; }
+
+</style>
+</head>
+<body>
+<nav class="proto-nav">
+  <span class="proto-tag">Prototype nav — NEW screen</span>
+  <a href="/">Live MVP</a>
+  <span class="sep">·</span>
+  <a href="/new">NEW screens</a>
+  <span class="sep">/</span>
+  <span>/new/admin/payments/advanced-results</span>
+</nav>
+<div class="frame" id="frame-new-admin-payments-advanced-results">
+  <div class="console is-static">
+<aside class="sidebar" aria-label="Навигация">
+    <div class="sidebar-brand"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M11 23V9h6.2a4.6 4.6 0 0 1 0 9.2H11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Paid</span><span class="brand-sub">Operations</span></div>
+    <div class="sidebar-ws">
+      <span class="sidebar-label" id="ws-label">Рабочее место</span>
+      <div class="select-wrap"><div class="field-select filled" id="ws-switch" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="ws-switch-lb" aria-label="Рабочее место" data-ws-switch aria-labelledby="ws-label"><span class="value">Администрирование</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="ws-switch-lb" role="listbox" aria-label="Рабочее место" hidden><li role="option" id="ws-switch-lb-0" class="opt" data-value="Администрирование" aria-selected="true">Администрирование</li><li role="option" id="ws-switch-lb-1" class="opt" data-value="Клиент" aria-selected="false">Клиент</li><li role="option" id="ws-switch-lb-2" class="opt" data-value="Обслуживание" aria-selected="false">Обслуживание</li><li role="option" id="ws-switch-lb-3" class="opt" data-value="Поддержка" aria-selected="false">Поддержка</li><li role="option" id="ws-switch-lb-4" class="opt" data-value="Бухгалтерия" aria-selected="false">Бухгалтерия</li></ul></div>
+    </div>
+    <nav class="sidebar-nav"><ul><li><a href="/#/admin/payments/basic" class="nav-link" aria-current="page"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 6.5h13" stroke="currentColor" stroke-width="1.3"/></svg><span>Платежи</span></a></li><li><a href="/#/admin/events" class="nav-link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 3h12M2 6.5h8M2 10h12M2 13.5h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span>Журнал событий</span></a></li><li><a href="/#/admin/rules" class="nav-link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5l5.5 2v4c0 3.2-2.3 5.8-5.5 7-3.2-1.2-5.5-3.8-5.5-7v-4l5.5-2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>Антифрод-правила</span></a></li><li><a href="/#/admin/ads" class="nav-link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 6.5v3h2.5L10 13V3L4.5 6.5H2ZM12.5 6a2.5 2.5 0 0 1 0 4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>Реклама</span></a></li><li><a href="/#/admin/users" class="nav-link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 13.5c.6-2.3 2.3-3.5 4.5-3.5s3.9 1.2 4.5 3.5M11 3.2a2.4 2.4 0 0 1 0 4.6M12.5 10.2c1 .5 1.7 1.6 2 3.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span>Пользователи</span></a></li></ul></nav>
+    <div class="sidebar-foot text-caption"><a href="/new/design-system/">Дизайн-система</a><a href="/screens">Экраны для Figma</a><a href="/new">NEW экраны для Figma</a></div>
+  </aside>
+    <main class="console-main"><header class="app-header"><h1 class="page-title text-h1">Список платежей</h1><div class="header-meta"><span class="role-badge role-admin"><span class="dot" aria-hidden="true"></span>Администрирование</span><div class="mode-tabs" role="group" aria-label="Режим поиска">
+      <button type="button" data-mode="basic" aria-pressed="false">Простой</button>
+      <button type="button" data-mode="advanced" aria-pressed="true">Расширенный</button></div></div></header><form class="search-panel" id="screen-form" novalidate aria-label="Список платежей"><div class="form-banner field-error" id="form-banner" role="alert"></div><fieldset class="field-group">
+      <legend class="field-group-title text-h3 text-secondary">Поиск по данным операции:</legend>
+      <div class="field-row"><div class="field-wrap t-text" data-name="UID операции"><input id="f-1" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="UID операции" aria-label="UID операции"   data-field="UID операции" data-tip-name="UID операции"  aria-describedby="f-1-err"/><div class="field-error" id="f-1-err" hidden></div></div><div class="field-wrap t-text" data-name="Трекинг ID"><input id="f-2" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Трекинг ID" aria-label="Трекинг ID"   data-field="Трекинг ID" data-tip-name="Трекинг ID"  aria-describedby="f-2-err"/><div class="field-error" id="f-2-err" hidden></div></div><div class="field-wrap t-text" data-name="Описание платежа"><input id="f-3" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Описание платежа" aria-label="Описание платежа"   data-field="Описание платежа" data-tip-name="Описание платежа"  aria-describedby="f-3-err"/><div class="field-error" id="f-3-err" hidden></div></div></div><div class="field-row"><div class="field-wrap w-sm t-text" data-name="Сумма"><input id="f-4" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Сумма" aria-label="Сумма"  inputmode="decimal" data-field="Сумма" data-tip-name="Сумма"  aria-describedby="f-4-err"/><div class="field-error" id="f-4-err" hidden></div></div><div class="field-wrap w-sm t-text" data-name="RNN"><input id="f-5" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="RNN" aria-label="RNN"   data-field="RNN" data-tip-name="RNN"  aria-describedby="f-5-err"/><div class="field-error" id="f-5-err" hidden></div></div><div class="field-wrap t-select" data-name="Тип транзакции"><div class="field-select" id="f-6" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-6-lb" aria-label="Тип транзакции" data-field="Тип транзакции" data-tip-name="Тип транзакции"  aria-describedby="f-6-err"><span class="value">Выберите тип транзакции</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="f-6-lb" role="listbox" aria-label="Тип транзакции" hidden><li role="option" id="f-6-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="f-6-lb-1" class="opt" data-value="Оплата" aria-selected="false">Оплата</li><li role="option" id="f-6-lb-2" class="opt" data-value="Возврат" aria-selected="false">Возврат</li><li role="option" id="f-6-lb-3" class="opt" data-value="Авторизация" aria-selected="false">Авторизация</li><li role="option" id="f-6-lb-4" class="opt" data-value="Отмена" aria-selected="false">Отмена</li></ul><div class="field-error" id="f-6-err" hidden></div></div><div class="field-wrap w-sm t-select" data-name="Статус"><div class="field-select" id="f-7" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-7-lb" aria-label="Статус" data-field="Статус" data-tip-name="Статус"  aria-describedby="f-7-err"><span class="value">Выберите статус</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="f-7-lb" role="listbox" aria-label="Статус" hidden><li role="option" id="f-7-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="f-7-lb-1" class="opt" data-value="Одобрена" aria-selected="false">Одобрена</li><li role="option" id="f-7-lb-2" class="opt" data-value="В обработке" aria-selected="false">В обработке</li><li role="option" id="f-7-lb-3" class="opt" data-value="Отклонена" aria-selected="false">Отклонена</li><li role="option" id="f-7-lb-4" class="opt" data-value="Возврат" aria-selected="false">Возврат</li><li role="option" id="f-7-lb-5" class="opt" data-value="Отменена" aria-selected="false">Отменена</li></ul><div class="field-error" id="f-7-err" hidden></div></div></div><div class="field-row"><div class="field-wrap t-select" data-name="Процессор"><div class="field-select" id="f-8" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-8-lb" aria-label="Процессор" data-field="Процессор" data-tip-name="Процессор"  aria-describedby="f-8-err"><span class="value">Выберите процессор</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="f-8-lb" role="listbox" aria-label="Процессор" hidden><li role="option" id="f-8-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="f-8-lb-1" class="opt" data-value="EPay Gateway" aria-selected="false">EPay Gateway</li><li role="option" id="f-8-lb-2" class="opt" data-value="Paid Core" aria-selected="false">Paid Core</li><li role="option" id="f-8-lb-3" class="opt" data-value="SecurePay" aria-selected="false">SecurePay</li></ul><div class="field-error" id="f-8-err" hidden></div></div><div class="field-wrap t-select" data-name="Способ оплаты"><div class="field-select" id="f-9" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-9-lb" aria-label="Способ оплаты" data-field="Способ оплаты" data-tip-name="Способ оплаты"  aria-describedby="f-9-err"><span class="value">Выберите способ оплаты</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="f-9-lb" role="listbox" aria-label="Способ оплаты" hidden><li role="option" id="f-9-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="f-9-lb-1" class="opt" data-value="Visa" aria-selected="false">Visa</li><li role="option" id="f-9-lb-2" class="opt" data-value="Mastercard" aria-selected="false">Mastercard</li><li role="option" id="f-9-lb-3" class="opt" data-value="Белкарт" aria-selected="false">Белкарт</li></ul><div class="field-error" id="f-9-err" hidden></div></div><div class="field-wrap t-text" data-name="Номер счёта ЕРИП"><input id="f-10" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Номер счёта ЕРИП" aria-label="Номер счёта ЕРИП"   data-field="Номер счёта ЕРИП" data-tip-name="Номер счёта ЕРИП"  aria-describedby="f-10-err"/><div class="field-error" id="f-10-err" hidden></div></div></div><div class="field-row"><div class="field-wrap t-select" data-name="Торговец"><div class="field-select" id="f-11" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-11-lb" aria-label="Торговец" data-field="Торговец" data-tip-name="Торговец"  aria-describedby="f-11-err"><span class="value">Выберите торговца</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="f-11-lb" role="listbox" aria-label="Торговец" hidden><li role="option" id="f-11-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="f-11-lb-1" class="opt" data-value="ООО «Технопарк»" aria-selected="false">ООО «Технопарк»</li><li role="option" id="f-11-lb-2" class="opt" data-value="ИП Соколова" aria-selected="false">ИП Соколова</li><li role="option" id="f-11-lb-3" class="opt" data-value="ООО «Цифра»" aria-selected="false">ООО «Цифра»</li><li role="option" id="f-11-lb-4" class="opt" data-value="ООО «Книжный дом»" aria-selected="false">ООО «Книжный дом»</li><li role="option" id="f-11-lb-5" class="opt" data-value="ООО «Северный ветер»" aria-selected="false">ООО «Северный ветер»</li><li role="option" id="f-11-lb-6" class="opt" data-value="ИП Громов" aria-selected="false">ИП Громов</li><li role="option" id="f-11-lb-7" class="opt" data-value="Тестовый магазин" aria-selected="false">Тестовый магазин</li></ul><div class="field-error" id="f-11-err" hidden></div></div><div class="field-wrap t-select" data-name="Магазин"><div class="field-select" id="f-12" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-12-lb" aria-label="Магазин" data-field="Магазин" data-tip-name="Магазин"  aria-describedby="f-12-err"><span class="value">Выберите магазин</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="f-12-lb" role="listbox" aria-label="Магазин" hidden><li role="option" id="f-12-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="f-12-lb-1" class="opt" data-value="technopark.example" aria-selected="false">technopark.example</li><li role="option" id="f-12-lb-2" class="opt" data-value="Технопарк — Минск" aria-selected="false">Технопарк — Минск</li><li role="option" id="f-12-lb-3" class="opt" data-value="flowers.example" aria-selected="false">flowers.example</li><li role="option" id="f-12-lb-4" class="opt" data-value="cifra.example" aria-selected="false">cifra.example</li><li role="option" id="f-12-lb-5" class="opt" data-value="Цифра Premium" aria-selected="false">Цифра Premium</li><li role="option" id="f-12-lb-6" class="opt" data-value="books.example" aria-selected="false">books.example</li><li role="option" id="f-12-lb-7" class="opt" data-value="wind.example" aria-selected="false">wind.example</li><li role="option" id="f-12-lb-8" class="opt" data-value="tools.example" aria-selected="false">tools.example</li><li role="option" id="f-12-lb-9" class="opt" data-value="Инструменты Опт" aria-selected="false">Инструменты Опт</li><li role="option" id="f-12-lb-10" class="opt" data-value="sandbox.example" aria-selected="false">sandbox.example</li></ul><div class="field-error" id="f-12-err" hidden></div></div></div>
+    </fieldset><fieldset class="field-group">
+      <legend class="field-group-title text-h3 text-secondary">Поиск по данным банковской карты:</legend>
+      <div class="field-row"><div class="field-wrap w-xs t-cardnum" data-name="Последние 4 цифры карты"><input id="f-13" class="field-input is-cardnum" type="text" autocomplete="off" spellcheck="false" value="" placeholder="1234" aria-label="Последние 4 цифры карты" inputmode="numeric" maxlength="4" data-digits  data-field="Последние 4 цифры карты" data-tip-name="Последние 4 цифры карты" data-tip-persistent="Введите последние 4 цифры карты" aria-describedby="f-13-tip f-13-err"/><span class="visually-hidden" id="f-13-tip">Введите последние 4 цифры карты</span><div class="field-error" id="f-13-err" hidden></div></div><div class="field-wrap w-sm t-text" data-name="БИН карты"><input id="f-14" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="БИН карты" aria-label="БИН карты"  inputmode="numeric" maxlength="6" data-digits data-field="БИН карты" data-tip-name="БИН карты"  aria-describedby="f-14-err"/><div class="field-error" id="f-14-err" hidden></div></div><div class="field-wrap w-sm t-text" data-name="Маска карты"><input id="f-15" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Маска карты" aria-label="Маска карты"   data-field="Маска карты" data-tip-name="Маска карты" data-tip-persistent="Маска карты 123456 xxxx 1234" aria-describedby="f-15-tip f-15-err"/><span class="visually-hidden" id="f-15-tip">Маска карты 123456 xxxx 1234</span><div class="field-error" id="f-15-err" hidden></div></div><div class="field-wrap t-text" data-name="Владелец карты"><input id="f-16" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Владелец карты" aria-label="Владелец карты"   data-field="Владелец карты" data-tip-name="Владелец карты"  aria-describedby="f-16-err"/><div class="field-error" id="f-16-err" hidden></div></div><div class="field-wrap t-text" data-name="Хэш карты"><input id="f-17" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Хэш карты" aria-label="Хэш карты"   data-field="Хэш карты" data-tip-name="Хэш карты"  aria-describedby="f-17-err"/><div class="field-error" id="f-17-err" hidden></div></div></div><div class="field-row"><div class="field-wrap t-select" data-name="Страна банка-эмитента"><div class="field-select" id="f-18" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-18-lb" aria-label="Страна банка-эмитента" data-field="Страна банка-эмитента" data-tip-name="Страна банка-эмитента"  aria-describedby="f-18-err"><span class="value">Выберите страну банка-эмитента</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="f-18-lb" role="listbox" aria-label="Страна банка-эмитента" hidden><li role="option" id="f-18-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="f-18-lb-1" class="opt" data-value="Беларусь" aria-selected="false">Беларусь</li><li role="option" id="f-18-lb-2" class="opt" data-value="Польша" aria-selected="false">Польша</li><li role="option" id="f-18-lb-3" class="opt" data-value="Литва" aria-selected="false">Литва</li><li role="option" id="f-18-lb-4" class="opt" data-value="Германия" aria-selected="false">Германия</li><li role="option" id="f-18-lb-5" class="opt" data-value="Казахстан" aria-selected="false">Казахстан</li></ul><div class="field-error" id="f-18-err" hidden></div></div></div>
+    </fieldset><fieldset class="field-group">
+      <legend class="field-group-title text-h3 text-secondary">Поиск по данным плательщика:</legend>
+      <div class="field-row"><div class="field-wrap t-text" data-name="E-mail клиента"><input id="f-19" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="E-mail клиента" aria-label="E-mail клиента"   data-field="E-mail клиента" data-tip-name="E-mail клиента"  aria-describedby="f-19-err"/><div class="field-error" id="f-19-err" hidden></div></div><div class="field-wrap t-text" data-name="Имя клиента"><input id="f-20" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Имя клиента" aria-label="Имя клиента"   data-field="Имя клиента" data-tip-name="Имя клиента"  aria-describedby="f-20-err"/><div class="field-error" id="f-20-err" hidden></div></div><div class="field-wrap w-sm t-text" data-name="Телефон клиента"><input id="f-21" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Телефон клиента" aria-label="Телефон клиента"  inputmode="tel" data-field="Телефон клиента" data-tip-name="Телефон клиента"  aria-describedby="f-21-err"/><div class="field-error" id="f-21-err" hidden></div></div><div class="field-wrap w-sm t-text" data-name="IP клиента"><input id="f-22" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="IP клиента" aria-label="IP клиента"  inputmode="decimal" data-field="IP клиента" data-tip-name="IP клиента"  aria-describedby="f-22-err"/><div class="field-error" id="f-22-err" hidden></div></div></div>
+    </fieldset><fieldset class="field-group">
+      <legend class="field-group-title text-h3 text-secondary">Поиск по дате:</legend>
+      <div class="field-row"><div class="field-wrap w-sm t-date" data-name="С"><input id="f-23" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="С" aria-label="С" inputmode="numeric" maxlength="10" data-date  data-field="С" data-tip-name="С"  aria-describedby="f-23-err"/><div class="field-error" id="f-23-err" hidden></div></div><div class="field-wrap w-sm t-date" data-name="По"><input id="f-24" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="По" aria-label="По" inputmode="numeric" maxlength="10" data-date  data-field="По" data-tip-name="По"  aria-describedby="f-24-err"/><div class="field-error" id="f-24-err" hidden></div></div><div class="field-wrap t-select" data-name="Дата создания"><div class="field-select" id="f-25" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-25-lb" aria-label="Дата создания" data-field="Дата создания" data-tip-name="Дата создания"  aria-describedby="f-25-err"><span class="value">Выберите дату создания</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="f-25-lb" role="listbox" aria-label="Дата создания" hidden><li role="option" id="f-25-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="f-25-lb-1" class="opt" data-value="Сегодня" aria-selected="false">Сегодня</li><li role="option" id="f-25-lb-2" class="opt" data-value="Последние 7 дней" aria-selected="false">Последние 7 дней</li><li role="option" id="f-25-lb-3" class="opt" data-value="Последние 30 дней" aria-selected="false">Последние 30 дней</li><li role="option" id="f-25-lb-4" class="opt" data-value="Последние 90 дней" aria-selected="false">Последние 90 дней</li></ul><div class="field-error" id="f-25-err" hidden></div></div><div class="field-wrap t-select" data-name="Временная зона"><div class="field-select" id="f-26" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-26-lb" aria-label="Временная зона" data-field="Временная зона" data-tip-name="Временная зона" data-tip-persistent="Временная зона (GMT + 01:00) Amsterdam" aria-describedby="f-26-tip f-26-err"><span class="value">Временная зона</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="f-26-lb" role="listbox" aria-label="Временная зона" hidden><li role="option" id="f-26-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="f-26-lb-1" class="opt" data-value="(GMT + 00:00) UTC" aria-selected="false">(GMT + 00:00) UTC</li><li role="option" id="f-26-lb-2" class="opt" data-value="(GMT + 01:00) Amsterdam" aria-selected="false">(GMT + 01:00) Amsterdam</li><li role="option" id="f-26-lb-3" class="opt" data-value="(GMT + 03:00) Minsk" aria-selected="false">(GMT + 03:00) Minsk</li></ul><span class="visually-hidden" id="f-26-tip">Временная зона (GMT + 01:00) Amsterdam</span><div class="field-error" id="f-26-err" hidden></div></div></div>
+    </fieldset><fieldset class="field-group">
+      <legend class="field-group-title text-h3 text-secondary">Поиск мошеннической операции:</legend>
+      <div class="field-row"><div class="field-wrap t-select" data-name="Результат проверки"><div class="field-select" id="f-27" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="f-27-lb" aria-label="Результат проверки" data-field="Результат проверки" data-tip-name="Результат проверки"  aria-describedby="f-27-err"><span class="value">Выберите результат проверки</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="f-27-lb" role="listbox" aria-label="Результат проверки" hidden><li role="option" id="f-27-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="f-27-lb-1" class="opt" data-value="Пройдена" aria-selected="false">Пройдена</li><li role="option" id="f-27-lb-2" class="opt" data-value="Подозрительная" aria-selected="false">Подозрительная</li><li role="option" id="f-27-lb-3" class="opt" data-value="Отклонена антифродом" aria-selected="false">Отклонена антифродом</li><li role="option" id="f-27-lb-4" class="opt" data-value="Не проверялась" aria-selected="false">Не проверялась</li></ul><div class="field-error" id="f-27-err" hidden></div></div></div>
+    </fieldset><div class="footer-row"><div class="footer-left"><button type="submit" class="btn btn-primary" data-action="search" id="btn-search">Искать</button><button type="button" class="btn btn-secondary" data-action="export-xlsx" >Экспортировать в XLSX</button><button type="button" class="btn btn-secondary" data-action="clear" >Очистить поля</button></div><div class="footer-right"><label class="checkbox"><input type="checkbox" checked  id="adv-toggle"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="">Расширенный поиск</span></label><label class="checkbox"><input type="checkbox"   data-field="Тестовые транзакции" id="test-toggle"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="">Тестовые транзакции</span></label></div></div></form><section class="section-block" id="results" aria-label="Результаты"><div class="results-toolbar">
+      <h2 class="text-h2">Результаты поиска</h2>
+      <div class="results-meta"><span>Найдено: <strong>51</strong></span>
+      </div>
+    </div>
+    
+    <div class="table-scroll"><table class="data-table"><caption class="visually-hidden">Результаты поиска, страница 1 из 6</caption><colgroup><col style="width:36px"><col style="width:124px"><col style="width:112px"><col style="width:108px"><col style="width:200px"><col style="width:124px"><col style="width:150px"><col style="width:124px"><col style="width:170px"><col style="width:132px"><col style="width:110px"><col style="width:150px"><col style="width:120px"><col style="width:60px"><col style="width:90px"></colgroup><thead><tr><th class="row-check" scope="col"><label class="checkbox"><input type="checkbox"   id="check-page" data-indeterminate="false"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать все на странице</span></label></th><th class="" scope="col"><span class="th-inner text-overline">UID операции</span></th><th class="" scope="col"><span class="th-inner text-overline">Трекинг ID</span></th><th class="" scope="col" aria-sort="descending"><button type="button" class="th-sort" data-sort="createdAt">Дата и время<svg class="sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg></button></th><th class="" scope="col"><span class="th-inner text-overline">Описание платежа</span></th><th class="" scope="col" aria-sort="none"><button type="button" class="th-sort" data-sort="type">Тип транзакции<svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 0.5L8 4H2L5 0.5Z" fill="currentColor" opacity="0.3"/><path d="M5 9.5L2 6H8L5 9.5Z" fill="currentColor" opacity="0.3"/></svg></button></th><th class="" scope="col"><span class="th-inner text-overline">Плательщик</span></th><th class="num" scope="col" aria-sort="none"><button type="button" class="th-sort" data-sort="amount">Сумма<svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 0.5L8 4H2L5 0.5Z" fill="currentColor" opacity="0.3"/><path d="M5 9.5L2 6H8L5 9.5Z" fill="currentColor" opacity="0.3"/></svg></button></th><th class="" scope="col"><span class="th-inner text-overline">Способ оплаты</span></th><th class="status-col" scope="col" aria-sort="none"><button type="button" class="th-sort" data-sort="status">Статус<svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 0.5L8 4H2L5 0.5Z" fill="currentColor" opacity="0.3"/><path d="M5 9.5L2 6H8L5 9.5Z" fill="currentColor" opacity="0.3"/></svg></button></th><th class="" scope="col"><span class="th-inner text-overline">Процессор</span></th><th class="" scope="col"><span class="th-inner text-overline">Магазин/Мерчант</span></th><th class="" scope="col"><span class="th-inner text-overline">Фрод-маркер</span></th><th class="" scope="col"><span class="th-inner text-overline">Тест</span></th><th class="" scope="col"><span class="th-inner text-overline">Действия</span></th></tr></thead><tbody><tr class="is-clickable" data-uid="PMT-8842187"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842187"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842187</span></label></td><td class="mono">PMT-8842187</td><td class="mono">TRK-2290998</td><td class="">24.10 08:43</td><td class="">Оплата доставки №4521</td><td class="">Оплата</td><td class="">m***@example.com</td><td class="num mono">158,49 BYN</td><td class="">Белкарт •••• 1185</td><td class="status-col"><span class="status-badge error"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Отклонена</span></td><td class="">SecurePay</td><td class="">ООО «Технопарк»</td><td class="">—</td><td class="">Нет</td><td class=""><div class="actions-cell">
+    <button type="button" class="icon-btn" data-action="open-payment" data-uid="PMT-8842187" aria-label="Детали операции PMT-8842187"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button>
+    <button type="button" class="icon-btn" data-action="flag" data-uid="PMT-8842187" aria-pressed="false" aria-label="Пометить PMT-8842187 как подозрительную"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+  </div></td></tr><tr class="is-clickable" data-uid="PMT-8842170"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842170"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842170</span></label></td><td class="mono">PMT-8842170</td><td class="mono">TRK-2290989</td><td class="">23.10 09:17</td><td class="">Оплата подписки Premium</td><td class="">Оплата</td><td class="">d***@example.org</td><td class="num mono">20,13 BYN</td><td class="">Visa •••• 5829</td><td class="status-col"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span></td><td class="">Paid Core</td><td class="">ИП Громов</td><td class="">—</td><td class="">Нет</td><td class=""><div class="actions-cell">
+    <button type="button" class="icon-btn" data-action="open-payment" data-uid="PMT-8842170" aria-label="Детали операции PMT-8842170"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button>
+    <button type="button" class="icon-btn" data-action="flag" data-uid="PMT-8842170" aria-pressed="false" aria-label="Пометить PMT-8842170 как подозрительную"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+  </div></td></tr><tr class="is-clickable" data-uid="PMT-8842158"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842158"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842158</span></label></td><td class="mono">PMT-8842158</td><td class="mono">TRK-2290977</td><td class="">23.10 00:44</td><td class="">Оплата заказа №4515</td><td class="">Оплата</td><td class="">i***@example.by</td><td class="num mono">15,49 BYN</td><td class="">Mastercard •••• 6885</td><td class="status-col"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span></td><td class="">Paid Core</td><td class="">ООО «Книжный дом»</td><td class=""><span class="status-badge warning"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Проверка</span></td><td class="">Нет</td><td class=""><div class="actions-cell">
+    <button type="button" class="icon-btn" data-action="open-payment" data-uid="PMT-8842158" aria-label="Детали операции PMT-8842158"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button>
+    <button type="button" class="icon-btn" data-action="flag" data-uid="PMT-8842158" aria-pressed="true" aria-label="Пометить PMT-8842158 как подозрительную"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+  </div></td></tr><tr class="is-clickable" data-uid="PMT-8842148"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842148"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842148</span></label></td><td class="mono">PMT-8842148</td><td class="mono">TRK-2290964</td><td class="">22.10 20:36</td><td class="">Оплата подписки Premium</td><td class="">Оплата</td><td class="">i***@example.org</td><td class="num mono">369,71 EUR</td><td class="">Mastercard •••• 6686</td><td class="status-col"><span class="status-badge warning"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>В обработке</span></td><td class="">SecurePay</td><td class="">ООО «Цифра»</td><td class="">—</td><td class="">Нет</td><td class=""><div class="actions-cell">
+    <button type="button" class="icon-btn" data-action="open-payment" data-uid="PMT-8842148" aria-label="Детали операции PMT-8842148"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button>
+    <button type="button" class="icon-btn" data-action="flag" data-uid="PMT-8842148" aria-pressed="false" aria-label="Пометить PMT-8842148 как подозрительную"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+  </div></td></tr><tr class="is-clickable" data-uid="PMT-8842120"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842120"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842120</span></label></td><td class="mono">PMT-8842120</td><td class="mono">TRK-2290941</td><td class="">22.10 06:01</td><td class="">Предавторизация заказа №4506</td><td class="">Авторизация</td><td class="">p***@example.by</td><td class="num mono">340,41 BYN</td><td class="">Белкарт •••• 0683</td><td class="status-col"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span></td><td class="">SecurePay</td><td class="">ООО «Цифра»</td><td class="">—</td><td class="">Нет</td><td class=""><div class="actions-cell">
+    <button type="button" class="icon-btn" data-action="open-payment" data-uid="PMT-8842120" aria-label="Детали операции PMT-8842120"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button>
+    <button type="button" class="icon-btn" data-action="flag" data-uid="PMT-8842120" aria-pressed="false" aria-label="Пометить PMT-8842120 как подозрительную"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+  </div></td></tr><tr class="is-clickable" data-uid="PMT-8842106"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842106"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842106</span></label></td><td class="mono">PMT-8842106</td><td class="mono">TRK-2290931</td><td class="">22.10 02:42</td><td class="">Пополнение баланса</td><td class="">Оплата</td><td class="">m***@example.org</td><td class="num mono">131,22 USD</td><td class="">Mastercard •••• 3567</td><td class="status-col"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span></td><td class="">SecurePay</td><td class="">ООО «Северный ветер»</td><td class="">—</td><td class="">Нет</td><td class=""><div class="actions-cell">
+    <button type="button" class="icon-btn" data-action="open-payment" data-uid="PMT-8842106" aria-label="Детали операции PMT-8842106"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button>
+    <button type="button" class="icon-btn" data-action="flag" data-uid="PMT-8842106" aria-pressed="false" aria-label="Пометить PMT-8842106 как подозрительную"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+  </div></td></tr><tr class="is-clickable" data-uid="PMT-8842097"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842097"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842097</span></label></td><td class="mono">PMT-8842097</td><td class="mono">TRK-2290924</td><td class="">21.10 21:11</td><td class="">Оплата подписки Premium</td><td class="">Оплата</td><td class="">p***@example.com</td><td class="num mono">391,13 BYN</td><td class="">Mastercard •••• 8233</td><td class="status-col"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span></td><td class="">EPay Gateway</td><td class="">ООО «Цифра»</td><td class="">—</td><td class="">Нет</td><td class=""><div class="actions-cell">
+    <button type="button" class="icon-btn" data-action="open-payment" data-uid="PMT-8842097" aria-label="Детали операции PMT-8842097"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button>
+    <button type="button" class="icon-btn" data-action="flag" data-uid="PMT-8842097" aria-pressed="false" aria-label="Пометить PMT-8842097 как подозрительную"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+  </div></td></tr><tr class="is-clickable" data-uid="PMT-8842081"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842081"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842081</span></label></td><td class="mono">PMT-8842081</td><td class="mono">TRK-2290908</td><td class="">21.10 08:03</td><td class="">Оплата заказа №4497</td><td class="">Оплата</td><td class="">p***@example.org</td><td class="num mono">179,27 USD</td><td class="">Mastercard •••• 2397</td><td class="status-col"><span class="status-badge error"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Отклонена</span></td><td class="">Paid Core</td><td class="">ООО «Северный ветер»</td><td class="">—</td><td class="">Нет</td><td class=""><div class="actions-cell">
+    <button type="button" class="icon-btn" data-action="open-payment" data-uid="PMT-8842081" aria-label="Детали операции PMT-8842081"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button>
+    <button type="button" class="icon-btn" data-action="flag" data-uid="PMT-8842081" aria-pressed="false" aria-label="Пометить PMT-8842081 как подозрительную"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+  </div></td></tr><tr class="is-clickable" data-uid="PMT-8842066"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842066"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842066</span></label></td><td class="mono">PMT-8842066</td><td class="mono">TRK-2290902</td><td class="">20.10 02:49</td><td class="">Пополнение баланса</td><td class="">Оплата</td><td class="">m***@example.org</td><td class="num mono">173,20 EUR</td><td class="">Mastercard •••• 0527</td><td class="status-col"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span></td><td class="">SecurePay</td><td class="">ООО «Цифра»</td><td class="">—</td><td class="">Нет</td><td class=""><div class="actions-cell">
+    <button type="button" class="icon-btn" data-action="open-payment" data-uid="PMT-8842066" aria-label="Детали операции PMT-8842066"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button>
+    <button type="button" class="icon-btn" data-action="flag" data-uid="PMT-8842066" aria-pressed="false" aria-label="Пометить PMT-8842066 как подозрительную"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+  </div></td></tr><tr class="is-clickable" data-uid="PMT-8842054"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842054"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842054</span></label></td><td class="mono">PMT-8842054</td><td class="mono">TRK-2290886</td><td class="">19.10 19:12</td><td class="">Пополнение баланса</td><td class="">Оплата</td><td class="">m***@example.org</td><td class="num mono">195,12 BYN</td><td class="">Visa •••• 2434</td><td class="status-col"><span class="status-badge error"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Отклонена</span></td><td class="">SecurePay</td><td class="">ООО «Цифра»</td><td class="">—</td><td class="">Нет</td><td class=""><div class="actions-cell">
+    <button type="button" class="icon-btn" data-action="open-payment" data-uid="PMT-8842054" aria-label="Детали операции PMT-8842054"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button>
+    <button type="button" class="icon-btn" data-action="flag" data-uid="PMT-8842054" aria-pressed="false" aria-label="Пометить PMT-8842054 как подозрительную"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+  </div></td></tr></tbody></table></div>
+    <div class="pagination">
+    <div class="rows-per-page"><span id="per-page-label">Показывать по</span>
+      <div class="select-wrap"><div class="field-select filled" id="per-page" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="per-page-lb" aria-label="Строк на странице" data-per-page aria-labelledby="per-page-label"><span class="value">10</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="per-page-lb" role="listbox" aria-label="Строк на странице" hidden><li role="option" id="per-page-lb-0" class="opt" data-value="10" aria-selected="true">10</li><li role="option" id="per-page-lb-1" class="opt" data-value="20" aria-selected="false">20</li><li role="option" id="per-page-lb-2" class="opt" data-value="50" aria-selected="false">50</li></ul></div>
+      <span>строк</span><span class="range">1–10 из 51</span>
+    </div>
+    <nav class="pages" aria-label="Страницы результатов">
+      <button type="button" class="page-btn" data-page="0" aria-label="Предыдущая страница" disabled>‹</button>
+      <button type="button" class="page-btn active" data-page="1" aria-current="page" aria-label="Страница 1">1</button><button type="button" class="page-btn" data-page="2"  aria-label="Страница 2">2</button><button type="button" class="page-btn" data-page="3"  aria-label="Страница 3">3</button><button type="button" class="page-btn" data-page="4"  aria-label="Страница 4">4</button><button type="button" class="page-btn" data-page="5"  aria-label="Страница 5">5</button><button type="button" class="page-btn" data-page="6"  aria-label="Страница 6">6</button>
+      <button type="button" class="page-btn" data-page="2" aria-label="Следующая страница" >›</button>
+    </nav>
+  </div></section></main>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1272,3 +1272,15 @@ function copyMustHave() {
   console.log(`Must-have screens: ${MUST_HAVE.length} files copied to ${out}`);
 }
 copyMustHave();
+
+// Every numbered screen copied flat into one folder (names keep their
+// number and folder path, so they still sort in story order).
+const FLAT_DIR = "все-экраны";
+function copyFlat() {
+  const out = path.join(FIGMA_DIR, FLAT_DIR);
+  fs.mkdirSync(out, { recursive: true });
+  const files = collectHtmlFiles(FIGMA_DIR).filter((f) => !f.startsWith(out) && !f.includes(`${path.sep}${MUST_HAVE_DIR}${path.sep}`));
+  for (const f of files) fs.copyFileSync(f, path.join(out, path.basename(f)));
+  console.log(`Flat copy: ${files.length} files in ${out}`);
+}
+copyFlat();
