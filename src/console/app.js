@@ -24,7 +24,7 @@ function render(focusSel) {
   closeListbox();
   hideTooltip();
   $("#sidebar-root").innerHTML = S.renderSidebar(state);
-  $("#main").innerHTML = S.renderMain(state);
+  $("#main").innerHTML = S.renderMain(state, { live: true });
   afterRender();
   document.title = `${S.layout(state).title} — Paid`;
   if (focusSel) $(focusSel)?.focus();
@@ -206,6 +206,17 @@ function applyTxEdit(action) {
   if (action === "update") toast({ title: "Транзакция обновлена", body: `${p.uid}: статус «${p.status}»` });
   else if (action === "update-notify") toast({ title: "Обновлено, мерчант уведомлён", body: `${p.uid} → ${p.merchant}` });
   else toast({ title: "Уведомление отправлено", body: `${p.merchant}${shop && shop.url !== "—" ? ` · ${shop.url}` : ""}` });
+}
+
+// Demo: fill the form with a real record's values; the next search finds it.
+function fillSample() {
+  const values = S.sampleValues(state);
+  if (!values) return;
+  Object.assign(F().values, values);
+  F().errors = {};
+  if (values["Файл выплат"]) state.ui.files["Файл выплат"] = new File(["uid;amount\nPMT-1;10.00\nPMT-2;25.50\nPMT-3;7.90\n"], values["Файл выплат"], { type: "text/csv" });
+  render('[data-action="fill-sample"]');
+  announce("Поля заполнены примером");
 }
 
 function clearScreen(focusSel = '[data-action="clear"]') {
@@ -783,6 +794,7 @@ document.addEventListener("click", (e) => {
       case "download-report": downloadReport(uid); return;
       case "update": case "update-notify": case "notify": applyTxEdit(action); return;
       case "history": LS().view = "history"; runSearch(); return;
+      case "fill-sample": fillSample(); return;
       case "fill-uid": F().values["UID операции"] = uid; delete F().errors["UID операции"]; render('#main [data-field="UID операции"]'); return;
     }
   }

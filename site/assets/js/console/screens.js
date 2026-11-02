@@ -194,6 +194,64 @@ export function validate(state, fields = activeFields(state), values = form(stat
 }
 
 // ---------------------------------------------------------------------------
+// Sample fill ("Заполнить пример"): values come from a real record, so the
+// search right after the fill finds it. null = screen has nothing to fill.
+// ---------------------------------------------------------------------------
+const RECENT = "Последние 90 дней";
+export function sampleValues(state) {
+  const d = state.data;
+  const tz = D.DEFAULT_TZ;
+  const range = (ms) => ({ "С": D.fmtDay(ms - 7 * D.DAY, tz), "По": D.fmtDay(ms, tz) });
+  const p = d.payments.find((r) => !r.test && r.status === "Одобрена" && r.fraud === "—");
+  const pay = {
+    "UID операции": p.uid, "Трекинг ID": p.tracking, "Описание платежа": p.desc, "Сумма": p.amount.toFixed(2),
+    "RNN": p.rnn, "ID банка": p.bankId, "ID торговца": p.merchantId, "Номер аккаунта": p.account, "Номер счёта ЕРИП": p.erip,
+    "Тип транзакции": p.type, "Статус": p.status, "Процессор": p.processor, "Способ оплаты": p.brand,
+    "Торговец": p.merchant, "Магазин": p.shop, "PSP": p.psp, "Банк": p.bank, "Валюта": p.currency,
+    "Последние 4 цифры карты": p.last4, "БИН карты": p.bin, "Маска карты": `${p.bin} xxxx ${p.last4}`, "Владелец карты": p.holder, "Хэш карты": p.hash,
+    "Страна банка-эмитента": p.country, "Страна банка-эквайера": p.acquirerCountry, "Страна плательщика": p.country,
+    "E-mail клиента": p.email, "Имя клиента": p.name, "Телефон клиента": p.phone, "IP клиента": p.ip,
+    "Дата создания": RECENT, "Дата проведения операции": RECENT, "Дата создания транзакции": RECENT,
+    "Результат проверки": p.checkResult, "Временная зона": tz.label, "Способ группировки": "По дням", ...range(p.createdAt),
+  };
+  const ev = d.events.find((e) => e.uid === p.uid) || d.events[0];
+  const sub = d.subscriptions[0];
+  const out = d.payouts.find((x) => x.status === "Выплачена");
+  const fr = d.finReports.find((x) => x.status === "Готов");
+  const dep = d.deposits.find((x) => x.status === "Удерживается");
+  const mp = d.massPayouts.find((x) => x.status === "Обработан");
+  const rule = d.rules.find((x) => x.level === "Merchant");
+  const m = D.MERCHANTS[0];
+  const by = {
+    payments: pay, reports: pay, balance: { "Торговец": p.merchant },
+    "fin-info": state.tab === "deposits" ? { "Торговец": dep.merchant, "Магазин": dep.shop, ...range(dep.createdAt) } : pay,
+    events: { "UID операции": ev.uid, "Gateway ID запроса": ev.gatewayId, "Уровень": ev.level },
+    shops: { "Торговец": d.shops[0].merchant, "Поиск": d.shops[0].name },
+    merchants: { "Поиск": d.merchants[0].company },
+    subscriptions: { "Статус": sub.status, "Поиск": sub.plan, ...range(sub.createdAt) },
+    lists: { "Поиск": d.lists[0].reason },
+    payouts: { "Банк": out.bank, ...range(out.date) },
+    "fin-reports": { "Статус": fr.status, "Торговец": fr.merchant, "Магазин": fr.shop, ...range(fr.createdAt) },
+    deposits: { "Статус": dep.status, "Торговец": dep.merchant, "Магазин": dep.shop, "Банк": dep.bank, ...range(dep.createdAt) },
+    "mass-payouts": { "Статус": mp.status, "Торговец": mp.merchant, "Магазин": mp.shop, ...range(mp.createdAt) },
+    "mass-payouts/new": { "Торговец": m.name, "Магазин": m.shops[0], "E-mail получателя отчёта": `reports@${m.email.split("@")[1]}`, "Файл выплат": "payouts_example.csv" },
+    "tx-edit": { "UID операции": p.uid },
+    resend: { "UIDs": [...d.payments.filter((r) => !r.test).slice(0, 3).map((r) => r.uid), "PMT-0000000"].join("\n"), "Email": "" },
+  };
+  // forms whose keys aren't plain field names (dependent selects, role checkboxes)
+  if (state.screen === "rules") return { "level:Merchant": true, "Торговец": rule.merchant };
+  if (state.screen === "users/new") return { "Имя пользователя": "Мария Новикова", "Email": "m.novikova@paid.example", "role:Поддержка": true, "role:Бухгалтерия": true, "Активирован": true };
+  const src = by[state.screen];
+  if (!src) return null;
+  const values = {};
+  for (const f of activeFields(state)) {
+    if (!(f.name in src)) continue;
+    values[fieldKey(f)] = f.type === "select" && isMulti(state) ? [src[f.name]] : src[f.name];
+  }
+  return Object.keys(values).length ? values : null;
+}
+
+// ---------------------------------------------------------------------------
 // Filters
 // ---------------------------------------------------------------------------
 const anyOf = (v, fn) => (Array.isArray(v) ? !v.length || v.some(fn) : fn(v));
@@ -620,13 +678,14 @@ function personaBadge(state) {
   return `<span class="role-badge ${cls}"><span class="dot" aria-hidden="true"></span>${esc(w.title)}</span>`;
 }
 
-function pageHead(state, L) {
+function pageHead(state, L, opts = {}) {
   const actions = [];
   if (L.kind === "payments" || L.kind === "agg-payments") actions.push(personaBadge(state));
   if (L.hasModes) actions.push(`<div class="mode-tabs" role="group" aria-label="Режим поиска">
       <button type="button" data-mode="basic" aria-pressed="${state.mode === "basic"}">Простой</button>
       <button type="button" data-mode="advanced" aria-pressed="${state.mode === "advanced"}">Расширенный</button></div>`);
   for (const raw of L.headerActions || []) actions.push(UI.button(UI.parseAction(raw)));
+  if (opts.live && sampleValues(state)) actions.push(UI.button({ label: "Заполнить пример", variant: "ghost", action: "fill-sample" }));
   const crumb = L.parent ? `<a class="crumb" href="${routeHash({ ...state, screen: L.parent })}">← ${esc(SPEC.screens[L.parent].title)}</a>` : "";
   const title = state.screen === "users/new" && state.ui.editUser ? "Редактировать пользователя" : L.title;
   return `${crumb}<header class="app-header"><h1 class="page-title text-h1">${esc(title)}</h1><div class="header-meta">${actions.join("")}</div></header>`;
@@ -856,7 +915,7 @@ export function renderMain(state, opts = {}) {
     ? UI.tabs({ id: "fin-tabs", items: Object.entries(SPEC.screens["fin-info"].tabs).map(([id, t]) => ({ id, title: t.title })), active: state.tab })
     : "";
   const panelHtml = panel ? `<form class="search-panel${tabs ? " has-tabs" : ""}" id="screen-form" novalidate aria-label="${esc(L.title)}"${tabs ? ` role="tabpanel" aria-labelledby="tab-${state.tab}" id="fin-tabs-panel"` : ""}>${panel}</form>` : "";
-  return `${pageHead(state, L)}${tabs}${panelHtml}<section class="section-block" id="results" aria-label="Результаты">${renderResults(state)}</section>`;
+  return `${pageHead(state, L, opts)}${tabs}${panelHtml}<section class="section-block" id="results" aria-label="Результаты">${renderResults(state)}</section>`;
 }
 
 export function renderPaymentDrawer(state, uid, isStatic = false) {
