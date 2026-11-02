@@ -191,6 +191,7 @@ MVP и макеты рендерятся одними и теми же моду�
 ## Ссылки
 
 - Код и макеты: https://github.com/verunch/paid-ops-console
-- Живой MVP: https://verunch.github.io/paid-ops-console/ (английская версия — https://verunch.github.io/paid-ops-console/?lang=en)
+- Стартовая страница кейса: https://verunch.github.io/paid-ops-console/
+- Живой MVP: https://verunch.github.io/paid-ops-console/mvp/ (английская версия — https://verunch.github.io/paid-ops-console/mvp/?lang=en)
 - Описание проделанной работы и группировки макетов: [`docs/WORK-SUMMARY.md`](WORK-SUMMARY.md)
 - ИА и пользовательские флоу (Miro): https://miro.com/app/board/uXjVHMdVl74=/?moveToWidget=3458764689133524864

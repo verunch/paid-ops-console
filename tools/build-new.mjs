@@ -35,7 +35,7 @@ export function buildConsole({ ROOT, PLAN_DIR, writeFile, HEAD_LINKS }) {
   }
   writeFile("assets/css/console.css", fs.readFileSync(path.join(SRC, "console.css"), "utf8"));
   const json = JSON.stringify(spec).replace(/</g, "\\u003c");
-  writeFile("index.html", `<!doctype html>
+  writeFile("mvp/index.html", `<!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8" />
@@ -74,7 +74,7 @@ ${HEAD_LINKS}
   function page({ ws, screen, name, title, st, opts = {}, overlay = "" }) {
     const route = `new/${ws}/${screen.replace("/", "-")}/${name}`;
     const main = S.renderMain(st, opts);
-    const sidebar = S.renderSidebar(st).replace(/href="#\//g, 'href="/#/');
+    const sidebar = S.renderSidebar(st).replace(/href="#\//g, 'href="/mvp/#/');
     const fullTitle = `NEW · ${label(ws)} · ${title} · ${name}`;
     const html = `<!doctype html>
 <html lang="ru">
@@ -91,7 +91,7 @@ ${HEAD_LINKS}
 <body>
 <nav class="proto-nav">
   <span class="proto-tag">Prototype nav — NEW screen</span>
-  <a href="/">Live MVP</a>
+  <a href="/mvp/">Live MVP</a>
   <span class="sep">·</span>
   <a href="/new">NEW screens</a>
   <span class="sep">/</span>
@@ -118,7 +118,7 @@ ${overlay}
         .replace("Prototype nav — NEW screen", "Prototype nav — EN screen")
         .replace('<a href="/new">NEW screens</a>', '<a href="/en">EN screens</a>')
         .replace(`<span>/${route}</span>`, `<span>/en/${enKey}</span>`)
-        .replace('<a href="/">Live MVP</a>', '<a href="/?lang=en">Live MVP</a>');
+        .replace('<a href="/mvp/">Live MVP</a>', '<a href="/mvp/?lang=en">Live MVP</a>');
       enPages.push({ ws, name, wsTitle: I.t(label(ws)), title: I.t(title), href: `/en/${enKey}` });
       I.setLang("ru");
       writeFile(`en/${enKey}/index.html`, enHtml);
@@ -275,7 +275,7 @@ ${overlay}
     const cell = (label, html) => `<div class="ds-cell"><span class="ds-label">${UI.esc(label)}</span>${html}</div>`;
     const sel = (id, value, multiple = false, open = false) => `<div class="select-wrap">${UI.select({ id, label: "Способ оплаты", placeholder: "Выберите способ оплаты", value, options: ["Visa", "Mastercard", "Белкарт"], multiple, open })}</div>`;
     const sections = [
-      ["Навигация (боковая панель)", `<div style="width:248px;border:1px solid var(--color-border-default);border-radius:var(--radius-lg);overflow:hidden">${S.renderSidebar(st).replace(/href="#\//g, 'href="/#/').replace('class="sidebar"', 'class="sidebar" style="position:static;height:auto"')}</div>`],
+      ["Навигация (боковая панель)", `<div style="width:248px;border:1px solid var(--color-border-default);border-radius:var(--radius-lg);overflow:hidden">${S.renderSidebar(st).replace(/href="#\//g, 'href="/mvp/#/').replace('class="sidebar"', 'class="sidebar" style="position:static;height:auto"')}</div>`],
       ["Переключатель", `<div class="ds-row">${cell("Off", UI.switchControl({ label: "Активирован", checked: false }))}${cell("On", UI.switchControl({ label: "Активирован", checked: true }))}</div>`],
       ["Радиокнопки", `<div class="ds-row">${cell("Статус", UI.radioGroup({ name: "ds-radio", legend: "Статус", choices: ["successful", "failed"], value: "successful" }))}</div>`],
       ["Вкладки", UI.tabs({ id: "ds-tabs", items: [{ id: "a", title: "Прибыль" }, { id: "b", title: "Оборот" }, { id: "c", title: "К выплате" }, { id: "d", title: "Удерживаемые страховые депозиты" }], active: "b" })],
@@ -300,7 +300,7 @@ ${HEAD_LINKS}
 <body>
 <nav class="proto-nav">
   <span class="proto-tag">Prototype nav — NEW screen</span>
-  <a href="/">Live MVP</a>
+  <a href="/mvp/">Live MVP</a>
   <span class="sep">·</span>
   <a href="/new">NEW screens</a>
   <span class="sep">·</span>
@@ -335,7 +335,7 @@ ${HEAD_LINKS}
 </head>
 <body>
 <h1 class="text-h1">Экраны рабочих мест</h1>
-<p class="text-body-sm text-secondary">Paid — ${pages.length} статичных состояний для импорта в Figma. Общий каталог со всеми экранами — <a href="/screens">/screens</a>. Живая версия — <a href="/" style="color:var(--color-action-primary)">MVP →</a></p>
+<p class="text-body-sm text-secondary">Paid — ${pages.length} статичных состояний для импорта в Figma. Общий каталог со всеми экранами — <a href="/screens">/screens</a>. Живая версия — <a href="/mvp/" style="color:var(--color-action-primary)">MVP →</a></p>
 ${groups}
 </body>
 </html>
@@ -360,7 +360,7 @@ ${HEAD_LINKS}
 </head>
 <body>
 <h1 class="text-h1">Key screens in English</h1>
-<p class="text-body-sm text-secondary">Paid — internal payment operations console. The project was designed for a Russian-speaking client, so the full set of ${pages.length} states is in Russian (<a href="/new">/new</a>). These ${enPages.length} key states are the English version; the <a href="/?lang=en" style="color:var(--color-action-primary)">live MVP</a> switches between RU and EN.</p>
+<p class="text-body-sm text-secondary">Paid — internal payment operations console. The project was designed for a Russian-speaking client, so the full set of ${pages.length} states is in Russian (<a href="/new">/new</a>). These ${enPages.length} key states are the English version; the <a href="/mvp/?lang=en" style="color:var(--color-action-primary)">live MVP</a> switches between RU and EN.</p>
 <ul>${enPages.map((p) => `<li><a class="swatch-card" style="display:block;" href="${p.href}">${UI.esc(p.wsTitle)} · ${UI.esc(p.title)}<div class="swatch-label">${UI.esc(p.name)}</div></a></li>`).join("")}</ul>
 </body>
 </html>

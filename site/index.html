@@ -3,28 +3,190 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Paid — консоль операций</title>
-<meta name="description" content="Paid — internal payment operations console, live MVP." />
+<title>Paid — кейс</title>
+<meta name="description" content="Кейс: поиск платежей на 27 полей на одном экране без подписей — группировка полей и правило тултипов." />
+<script>
+  // Old MVP links lived at "/": forward them to the MVP's new address.
+  if (location.hash.indexOf("#/") === 0 || /[?&]lang=/.test(location.search)) location.replace("mvp/" + location.search + location.hash);
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="/assets/css/tokens.css" />
-<link rel="stylesheet" href="/assets/css/base.css" />
-<link rel="stylesheet" href="/assets/css/components.css" />
-<link rel="stylesheet" href="/assets/css/console.css" />
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4F2EE; color: var(--color-text-primary); font-family: var(--font-family-sans); -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px 16px 64px; }
+  .cover svg { display: block; width: 100%; height: auto; border-radius: 12px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 48px; }
+  .btn { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; border: 1px solid var(--color-border-contrast); color: var(--color-text-primary); background: #fff; }
+  .btn:hover { background: var(--color-surface-hover); }
+  .btn-primary { background: var(--color-action-primary); border-color: var(--color-action-primary); color: #fff; }
+  .btn-primary:hover { background: var(--color-action-primary-hover); }
+  h2 { font-size: 24px; margin: 0 0 16px; }
+  section { margin-bottom: 48px; }
+  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .card { background: #fff; border: 1px solid var(--color-border-default); border-radius: 12px; padding: 20px; }
+  .card h3 { margin: 0 0 8px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--color-action-primary); }
+  .card p { margin: 0; font-size: 15px; line-height: 1.5; }
+  ol.plan { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; counter-reset: s; }
+  ol.plan li { counter-increment: s; background: #fff; border: 1px solid var(--color-border-default); border-radius: 12px; padding: 16px; font-size: 14px; line-height: 1.45; }
+  ol.plan li::before { content: counter(s, decimal-leading-zero); display: block; font-family: var(--font-family-mono); font-size: 12px; color: var(--color-action-primary); margin-bottom: 6px; }
+  ol.plan b { display: block; font-size: 15px; margin-bottom: 4px; }
+  .arch { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .arch { grid-template-columns: 1fr; } }
+  pre { margin: 0; font-family: var(--font-family-mono); font-size: 13px; line-height: 1.6; white-space: pre; overflow-x: auto; }
+  .flow { display: flex; flex-direction: column; gap: 8px; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .node { background: #F4F7F6; border: 1px solid var(--color-border-default); border-radius: 8px; padding: 8px 12px; font-size: 14px; }
+  .node b { display: block; font-weight: 600; }
+  .node code { font-family: var(--font-family-mono); font-size: 12px; color: var(--color-text-secondary); }
+  .arrow { color: var(--color-text-secondary); font-size: 18px; }
+  .out .node { background: #fff; border-color: var(--color-action-primary); }
+  .note { font-size: 14px; color: var(--color-text-secondary); margin: 12px 0 0; }
+  footer { font-size: 14px; color: var(--color-text-secondary); }
+  footer a { color: var(--color-text-primary); }
+</style>
 </head>
-<body class="console-body">
-<a class="skip-link" href="#main">Перейти к содержимому</a>
-<div class="console">
-  <div id="sidebar-root"></div>
-  <main class="console-main" id="main" tabindex="-1"></main>
+<body>
+<main class="wrap">
+  <div class="cover"><svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Обложка кейса: 27 полей поиска на одном экране без подписей" viewBox="0 0 1280 640" font-family="'IBM Plex Sans', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <rect width="1280" height="640" fill="#F4F2EE"/>
+
+  <!-- left: title -->
+  <text x="64" y="112" font-size="14" font-weight="700" letter-spacing="1.5" fill="#D95032">КЕЙС · UX/UI · PAID</text>
+  <text font-size="46" font-weight="700" fill="#2B3936">
+    <tspan x="64" y="180">27 полей поиска</tspan>
+    <tspan x="64" y="236">на одном экране</tspan>
+    <tspan x="64" y="292">без подписей</tspan>
+  </text>
+  <text font-size="18" fill="#5B6663">
+    <tspan x="64" y="344">Внутренняя консоль платёжных операций:</tspan>
+    <tspan x="64" y="372">группировка полей и правило тултипов</tspan>
+  </text>
+
+  <!-- left: metrics -->
+  <g font-weight="700" font-size="38" fill="#D95032">
+    <text x="64" y="468">27</text>
+    <text x="204" y="468">−19 %</text>
+    <text x="364" y="468">0</text>
+    <text x="484" y="468">5</text>
+  </g>
+  <g font-size="14" fill="#5B6663">
+    <text x="64" y="496">полей в форме</text>
+    <text x="204" y="496">высоты формы</text>
+    <text x="364" y="496">полей убрано</text>
+    <text x="484" y="496">рабочих мест</text>
+  </g>
+  <line x1="64" y1="540" x2="640" y2="540" stroke="#D8DCDA"/>
+  <text x="64" y="576" font-size="15" fill="#5B6663">Живой MVP · макеты для Figma · дизайн-система · RU / EN</text>
+
+  <!-- right: form mock -->
+  <rect x="704" y="64" width="512" height="512" rx="12" fill="#FFFFFF" stroke="#E2E8E6"/>
+
+  <text x="728" y="104" font-size="14" font-weight="700" fill="#2B3936">Поиск по данным операции</text>
+  <g font-size="13">
+    <rect x="728" y="120" width="150" height="40" rx="6" fill="#FFFFFF" stroke="#E2E8E6"/>
+    <text x="740" y="145" fill="#737373">UID операции</text>
+    <rect x="890" y="120" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#D95032" stroke-width="2"/>
+    <text x="902" y="145" fill="#2B3936">TR-4521</text>
+    <rect x="1042" y="120" width="150" height="40" rx="6" fill="#FFFFFF" stroke="#E2E8E6"/>
+    <text x="1054" y="145" fill="#737373">Сумма</text>
+  </g>
+  <!-- tooltip: name of filled field -->
+  <path d="M960 166 L954 172 L966 172 Z" fill="#2B3936"/>
+  <rect x="905" y="172" width="110" height="28" rx="4" fill="#2B3936"/>
+  <text x="960" y="191" font-size="12" fill="#FFFFFF" text-anchor="middle">Трекинг ID</text>
+
+  <text x="728" y="240" font-size="14" font-weight="700" fill="#2B3936">Поиск по данным банковской карты</text>
+  <g font-size="13">
+    <rect x="728" y="256" width="100" height="40" rx="6" fill="#FFFFFF" stroke="#E2E8E6"/>
+    <text x="740" y="281" fill="#737373">4 цифры</text>
+    <rect x="840" y="256" width="110" height="40" rx="6" fill="#FFFFFF" stroke="#E2E8E6"/>
+    <text x="852" y="281" fill="#737373">БИН</text>
+    <rect x="962" y="256" width="230" height="40" rx="6" fill="#FFFFFF" stroke="#E2E8E6"/>
+    <text x="974" y="281" fill="#737373">Маска карты</text>
+  </g>
+  <!-- tooltip: persistent format hint -->
+  <path d="M778 302 L772 308 L784 308 Z" fill="#2B3936"/>
+  <rect x="728" y="308" width="232" height="28" rx="4" fill="#2B3936"/>
+  <text x="844" y="327" font-size="12" fill="#FFFFFF" text-anchor="middle">Введите последние 4 цифры карты</text>
+
+  <rect x="1100" y="356" width="92" height="36" rx="6" fill="#D95032"/>
+  <text x="1146" y="379" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">Искать</text>
+
+  <!-- results table -->
+  <rect x="728" y="416" width="464" height="32" rx="4" fill="#F4F7F6"/>
+  <g fill="#C3D5D0">
+    <rect x="740" y="428" width="60" height="8" rx="4"/>
+    <rect x="840" y="428" width="90" height="8" rx="4"/>
+    <rect x="970" y="428" width="70" height="8" rx="4"/>
+    <rect x="1080" y="428" width="60" height="8" rx="4"/>
+  </g>
+  <g fill="#E2E8E6">
+    <rect x="740" y="464" width="70" height="8" rx="4"/><rect x="840" y="464" width="110" height="8" rx="4"/><rect x="970" y="464" width="60" height="8" rx="4"/><rect x="1080" y="464" width="80" height="8" rx="4"/>
+    <rect x="740" y="496" width="60" height="8" rx="4"/><rect x="840" y="496" width="90" height="8" rx="4"/><rect x="970" y="496" width="80" height="8" rx="4"/><rect x="1080" y="496" width="70" height="8" rx="4"/>
+    <rect x="740" y="528" width="80" height="8" rx="4"/><rect x="840" y="528" width="100" height="8" rx="4"/><rect x="970" y="528" width="70" height="8" rx="4"/><rect x="1080" y="528" width="60" height="8" rx="4"/>
+  </g>
+  <line x1="728" y1="484" x2="1192" y2="484" stroke="#F0F2F1"/>
+  <line x1="728" y1="516" x2="1192" y2="516" stroke="#F0F2F1"/>
+</svg>
 </div>
-<div id="drawer-root"></div>
-<div class="toast-region" aria-live="polite"></div>
-<div class="tooltip tooltip-floating" id="tooltip" role="tooltip" hidden></div>
-<div class="visually-hidden" id="sr-status" aria-live="polite"></div>
-<script type="application/json" id="console-spec">{"note":"Field-by-field transcription of the reference wireframes (references/, local only). Structure, grouping and order follow the references; only wording was normalised (one imperative form for select placeholders, typos fixed) and product names were neutralised. Field syntax: 'Name|flag|flag…' — Name is the field's identity (aria-label, tooltip text, filter key). Flags: select, multi-capable select inherits from the screen; date (дд.мм.гггг mask); search (free-text search box); textarea; email; cardnum; xs/sm/lg (relative width); ph:\u003cplaceholder>; tooltip-persistent:\u003ctext>.","sourceDir":"references (local only, not published)","tooltips":{"rule":"Card digits, card mask and time zone show a persistent tooltip on hover/focus. Every other field shows a tooltip on hover only when it is filled (placeholder no longer visible); that tooltip contains the field name.","persistent":{"Последние 4 цифры карты":"Введите последние 4 цифры карты","Маска карты":"Маска карты 123456 xxxx 1234","Временная зона":"Временная зона (GMT + 01:00) Amsterdam"}},"workspaces":[{"id":"admin","title":"Администрирование","persona":"admin","screens":["payments","events","rules","ads","users"]},{"id":"user","title":"Клиент","persona":"user","screens":["payments"]},{"id":"service","title":"Обслуживание","persona":"service","screens":["payments","reports","merchants","shops","rules"]},{"id":"support","title":"Поддержка","persona":"support","screens":["payments","subscriptions","lists","events","tx-edit","resend"]},{"id":"accounting","title":"Бухгалтерия","persona":"accounting","screens":["payments","reports","payouts","fin-reports","deposits","balance","mass-payouts","fin-info"]}],"payments":{"admin":{"source":"Group 7 — Админ: простой / расширенный / тестовые транзакции / тултипы","basic":[{"title":"Поиск по данным операции:","rows":[["UID операции","Трекинг ID","Описание платежа"],["Сумма|sm","RNN|sm","Тип транзакции|select","Статус|select|sm"],["Процессор|select","Способ оплаты|select","Номер счёта ЕРИП"]]},{"title":"Поиск по данным банковской карты:","rows":[["Последние 4 цифры карты|cardnum|xs|ph:1234","БИН карты|sm","Маска карты|sm","Владелец карты","Хэш карты"],["Страна банка-эмитента|select|ph:Выберите страну банка-эмитента"]]},{"title":"Поиск по данным плательщика:","rows":[["E-mail клиента","Имя клиента","Телефон клиента|sm","IP клиента|sm"]]}],"advanced":[{"title":"Поиск по данным операции:","rows":[["UID операции","Трекинг ID","Описание платежа"],["Сумма|sm","RNN|sm","Тип транзакции|select","Статус|select|sm"],["Процессор|select","Способ оплаты|select","Номер счёта ЕРИП"],["Торговец|select|ph:Выберите торговца","Магазин|select"]]},{"title":"Поиск по данным банковской карты:","rows":[["Последние 4 цифры карты|cardnum|xs|ph:1234","БИН карты|sm","Маска карты|sm","Владелец карты","Хэш карты"],["Страна банка-эмитента|select|ph:Выберите страну банка-эмитента"]]},{"title":"Поиск по данным плательщика:","rows":[["E-mail клиента","Имя клиента","Телефон клиента|sm","IP клиента|sm"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm","Дата создания|select|ph:Выберите дату создания","Временная зона|select|ph:Временная зона"]]},{"title":"Поиск мошеннической операции:","rows":[["Результат проверки|select"]]}],"footer":{"left":["Искать|primary|search","Экспортировать в XLSX|secondary|export-xlsx","Очистить поля|secondary|clear"],"right":["Расширенный поиск|checkbox|mode","Тестовые транзакции|checkbox|test"]}},"user":{"source":"Group 7 — Клиент: простой / расширенный / тестовые транзакции","basic":[{"title":"Поиск по данным операции:","rows":[["Трекинг ID","Описание платежа","UID операции"],["ID банка","RNN|sm","Сумма|sm","Тип транзакции|select"],["Статус|select|sm","Способ оплаты|select","Номер счёта ЕРИП"]]},{"title":"Поиск по данным банковской карты:","rows":[["Последние 4 цифры карты|cardnum|xs|ph:1234","БИН карты|sm","Маска карты|sm","Владелец карты","Страна банка-эмитента|select|ph:Выберите страну банка-эмитента"]]},{"title":"Поиск по данным плательщика:","rows":[["Имя клиента","E-mail клиента","Телефон клиента|sm","IP клиента|sm"]]}],"advanced":[{"title":"Поиск по данным операции:","rows":[["Трекинг ID","Описание платежа","UID операции"],["ID банка","RNN|sm","Сумма|sm","Тип транзакции|select"],["Статус|select|sm","Способ оплаты|select","Магазин|select","Номер счёта ЕРИП|sm"]]},{"title":"Поиск по данным банковской карты:","rows":[["Последние 4 цифры карты|cardnum|xs|ph:1234","БИН карты|sm","Маска карты|sm","Владелец карты","Страна банка-эмитента|select|ph:Выберите страну банка-эмитента"]]},{"title":"Поиск по данным плательщика:","rows":[["Имя клиента","E-mail клиента","Телефон клиента|sm","IP клиента|sm"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm","Дата создания|select|ph:Выберите дату создания","Временная зона|select|ph:Временная зона"]]},{"title":"Поиск мошеннической операции:","rows":[["Результат проверки|select"]]}],"footer":{"left":["Искать|primary|search","Экспортировать в XLSX|secondary|export-xlsx","Очистить поля|secondary|clear"],"right":["Расширенный поиск|checkbox|mode","Тестовые транзакции|checkbox|test"]}},"service":{"source":"Group 7 — Обслуживание: Список платежей (простой / расширенный)","basic":[{"title":"Поиск по данным операции:","rows":[["UID операции","Сумма|sm","RNN|sm","Тип транзакции|select"],["Статус|select|sm","Процессор|select","Торговец|select|ph:Выберите торговца"],["Магазин|select","ID торговца","ID банка|sm"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm"]]}],"advanced":[{"title":"Поиск по данным операции:","rows":[["UID операции","Сумма|sm","RNN|sm","Тип транзакции|select"],["Статус|select|sm","Процессор|select","ID торговца","ID банка|sm"],["Торговец|select|ph:Выберите торговца","Магазин|select","Способ оплаты|select"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm","Дата проведения операции|select|ph:Выберите дату проведения операции","Временная зона|select|ph:Временная зона"]]},{"title":"Поиск по данным банковской карты:","rows":[["Последние 4 цифры карты|cardnum|xs|ph:1234","БИН карты|sm","Маска карты|sm","Владелец карты","Хэш карты"],["Страна банка-эквайера|select|ph:Выберите страну банка-эквайера"]]},{"title":"Поиск по данным плательщика:","rows":[["E-mail клиента","IP клиента|sm","Номер аккаунта|sm"]]},{"title":"Поиск мошеннической операции:","rows":[["Результат проверки|select"]]}],"footer":{"left":["Искать|primary|search","Экспортировать в XLSX|secondary|export-xlsx","Очистить поля|secondary|clear"],"right":["Расширенный поиск|checkbox|mode","Тестовые транзакции|checkbox|test|advanced"]}},"support":{"source":"Group 7 — Поддержка: Список платежей (простой / расширенный / тестовые транзакции)","basic":[{"title":"Поиск по данным операции:","rows":[["UID операции","Сумма|sm","RNN|sm","Тип транзакции|select"],["Статус|select|sm","Процессор|select","ID торговца","ID банка|sm"],["Торговец|select|ph:Выберите торговца","Магазин|select"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm"]]}],"advanced":[{"title":"Поиск по данным операции:","rows":[["UID операции","Сумма|sm","RNN|sm","Тип транзакции|select"],["Статус|select|sm","Процессор|select","Способ оплаты|select"],["ID торговца","ID банка|sm"],["Торговец|select|ph:Выберите торговца","Магазин|select"]]},{"title":"Поиск по данным банковской карты:","rows":[["Последние 4 цифры карты|cardnum|xs|ph:1234","БИН карты|sm","Маска карты|sm","Владелец карты","Хэш карты"],["Страна банка-эквайера|select|ph:Выберите страну банка-эквайера"]]},{"title":"Поиск по данным плательщика:","rows":[["E-mail клиента","IP клиента|sm","Номер аккаунта|sm"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm","Дата создания|select|ph:Выберите дату создания","Временная зона|select|ph:Временная зона"]]},{"title":"Поиск мошеннической операции:","rows":[["Результат проверки|select"]]}],"footer":{"left":["Искать|primary|search","Экспортировать в XLSX|secondary|export-xlsx","Очистить поля|secondary|clear"],"right":["Расширенный поиск|checkbox|mode","Тестовые транзакции|checkbox|test|advanced"]}},"accounting":{"source":"Group 7 — Бухгалтерия: Список платежей (агрегаты по PSP и банку)","groupsInline":true,"basic":[{"title":"Поиск по данным операции:","rows":[["PSP|select","Банк|select|ph:Выберите наименование банка"]]},{"title":"Поиск по дате:","rows":[["С|date","По|date","По дням|checkbox|group","По месяцам|checkbox|group"]]}],"footer":{"left":["Искать|primary|search","Очистить поля|secondary|clear"],"right":[]}}},"screens":{"events":{"title":"Журнал событий","source":"Group 7 — Поддержка/Журнал событий (Администрирование ссылается на этот же экран)","groupsInline":true,"groups":[{"title":"Поиск по данным транзакции:","rows":[["UID операции"]]},{"title":"Поиск по данным запроса:","rows":[["Gateway ID запроса","Уровень|select|sm"]]}],"footer":{"left":["Искать|primary|search","Очистить поля|secondary|clear"]}},"rules":{"title":"Антифрод-правила","source":"Group 7 — beProtected (Администрирование: PSP/Merchant/Shop; Обслуживание: Merchant/Shop; Merchant → выбор торговца)","groups":[{"title":"Уровень правил или групп:","rows":[["PSP|checkbox|level|admin"],["Merchant|checkbox|level"],["Shop|checkbox|level"]]}],"dependent":{"Merchant":"Торговец|select|ph:Выберите торговца","Shop":"Магазин|select"},"live":true},"ads":{"title":"Список рекламы","source":"Group 7 — Список рекламы","headerActions":["Добавить для PSP|secondary|create-ad:PSP","Добавить для торговца|secondary|create-ad:Торговец","Добавить для шлюза|secondary|create-ad:Шлюз"],"groups":[{"title":"Фильтрация по категориям:","rows":[["Показать все|checkbox|cat|all","PSP|checkbox|cat","Торговцы|checkbox|cat","Шлюзы|checkbox|cat"]]},{"title":"Фильтрация по статусу:","rows":[["Показать все|checkbox|status|all","Активные|checkbox|status","Неактивные|checkbox|status","Законченные|checkbox|status"]]}],"footer":{"left":["Искать|primary|search"]}},"users":{"title":"Список пользователей","source":"Group 7 — Список пользователей","headerActions":["Добавить пользователя|primary|go:users/new"],"groups":[],"autoload":true},"users/new":{"title":"Добавить нового пользователя","source":"Group 7 — Добавить нового пользователя","parent":"users","form":["Имя пользователя|required","Email|email|required","Роли|roles","Активирован|switch"],"footer":{"left":["Применить|primary|save-user","Отмена|secondary|go:users"]}},"reports":{"title":"Список отчётов","source":"Group 7 — Обслуживание/Отчёты (Бухгалтерия ссылается на этот же экран)","multiToggle":"Включить фильтрацию с выбором из нескольких вариантов","groups":[{"title":"Поиск по данным операции:","rows":[["Тип транзакции|select","Статус|select|sm","Способ оплаты|select"],["Торговец|select|ph:Выберите торговца","Магазин|select"]]},{"title":"Поиск по данным банковской карты:","rows":[["Банк|select|ph:Выберите наименование банка","Страна плательщика|select|ph:Выберите страну плательщика","Валюта|select|sm|ph:Выберите валюту"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm","Способ группировки|select","Дата создания транзакции|select|ph:Выберите дату создания транзакции"],["Временная зона|select|ph:Временная зона"]]}],"footer":{"left":["Показать отчёт|primary|search","Экспортировать в XLSX|secondary|export-xlsx","Экспортировать в CSV|secondary|export-csv","Очистить поля|secondary|clear"]}},"merchants":{"title":"Список торговцев","source":"Group 7 — Список торговцев","headerActions":["Создать торговца|primary|create-merchant"],"groups":[{"title":"","rows":[["Показать все|checkbox|state|all","Активные|checkbox|state","Отключённые|checkbox|state","Поиск|search|lg|ph:Введите данные для поиска: id, имя, email, компания…"]]}],"live":true},"shops":{"title":"Список магазинов","source":"Group 7 — Список магазинов","groups":[{"title":"","rows":[["Торговец|select|ph:Выберите торговца","Поиск|search|lg|ph:Введите данные для поиска: id, имя, email, компания…"]]}],"footer":{"left":["Искать|primary|search"]}},"subscriptions":{"title":"Список подписок","source":"Group 7 — Список подписок","groups":[{"title":"","rows":[["Статус|select|sm","С|date|sm","По|date|sm","Поиск|search|lg|ph:Введите данные для поиска: id, имя, email, компания…"]]}],"footer":{"left":["Искать|primary|search","Очистить поля|secondary|clear"]}},"lists":{"title":"Управление чёрными и белыми списками","source":"Group 7 — Управление чёрными и белыми списками","groups":[{"title":"","rows":[["Поиск|search|lg|ph:Введите данные для поиска: id, имя, email, компания…"]]}],"footer":{"left":["Искать|primary|search","Очистить поля|secondary|clear"]},"autoload":true},"tx-edit":{"title":"Изменение транзакции","source":"Group 7 — Изменение транзакции (поиск / найденная операция)","groups":[{"title":"Поиск операции:","rows":[["UID операции"]]}],"inlineSearch":"Искать|primary|search","edit":["Статус|radio:successful,failed","RRN","Bank code|ph:000","Payment date","Settled date|ph:000"],"footer":{"left":["Обновить|primary|update","Обновить и уведомить мерчанта|secondary|update-notify","Уведомить мерчанта|secondary|notify","Очистить поля|secondary|clear"]}},"resend":{"title":"Повторные уведомления","source":"Group 7 — Повторные уведомления","groupsInline":true,"groups":[{"title":"Поиск по UIDs:","rows":[["UIDs|textarea|ph:Пожалуйста, разделяйте UID переводом строки"]]},{"title":"Поиск по Email:","rows":[["Email|email|ph:Введите ваш email"]]}],"footer":{"left":["Отправить|primary|send","Очистить поля|secondary|clear"]}},"payouts":{"title":"Список выплат","source":"Group 7 — Список выплат","groupsInline":true,"groups":[{"title":"Поиск по данным операции:","rows":[["Банк|select|ph:Выберите наименование банка"]]},{"title":"Поиск по дате:","rows":[["С|date","По|date"]]}],"footer":{"left":["Искать|primary|search","История выплат|secondary|history","Очистить поля|secondary|clear"]}},"fin-reports":{"title":"Список финансовых отчётов","source":"Group 7 — Список финансовых отчётов","groups":[{"title":"","rows":[["Поиск|search|ph:Введите данные для поиска: id, название, торговец…"]]},{"title":"Поиск по данным операции:","rows":[["Статус|select|sm","Торговец|select|ph:Выберите торговца","Магазин|select"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm"]]}],"footer":{"left":["Искать|primary|search","Очистить поля|secondary|clear"]}},"deposits":{"title":"Список страховых депозитов","source":"Group 7 — Список страховых депозитов","groups":[{"title":"Поиск по данным операции:","rows":[["Статус|select|sm","Торговец|select|ph:Выберите торговца","Магазин|select","Банк|select|ph:Выберите наименование банка"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm"]]}],"footer":{"left":["Искать|primary|search","Очистить поля|secondary|clear"]}},"balance":{"title":"Баланс","source":"Group 7 — Баланс (пусто / выбран торговец)","groups":[{"title":"","rows":[["Торговец|select|ph:Выберите торговца"]]}],"footer":{"left":["Искать|primary|search","Очистить поля|secondary|clear"]}},"mass-payouts":{"title":"Список массовых выплат","source":"Group 7 — Список массовых выплат","headerActions":["Создать массовые выплаты|primary|go:mass-payouts/new"],"groups":[{"title":"","rows":[["Поиск|search|ph:Введите данные для поиска: имя файла, e-mail получателя отчёта, id…"]]},{"title":"Поиск по данным операции:","rows":[["Статус|select|sm","Торговец|select|ph:Выберите торговца","Магазин|select"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm"]]}],"footer":{"left":["Искать|primary|search","Очистить поля|secondary|clear"]}},"mass-payouts/new":{"title":"Создать массовые выплаты","source":"Group 7 — Создать массовые выплаты","parent":"mass-payouts","groups":[{"title":"","rows":[["Торговец|select|ph:Выберите торговца|required","Магазин|select|required","E-mail получателя отчёта|email|required"]]},{"title":"","rows":[["Файл выплат|file|required"]]}],"footer":{"right":["Применить|primary|save-mass-payout","Очистить поля|secondary|clear"]}},"fin-info":{"title":"Финансовая информация","source":"Group 7 — Финансовая информация (4 вкладки)","tabs":{"profit":{"title":"Прибыль","groups":[{"title":"Поиск по данным операции:","rows":[["Торговец|select|ph:Выберите торговца","Магазин|select","Банк|select|ph:Выберите наименование банка"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm"]]}]},"turnover":{"title":"Оборот","groups":[{"title":"Поиск по данным операции:","rows":[["Торговец|select|ph:Выберите торговца","Магазин|select","Банк|select|ph:Выберите наименование банка"]]},{"title":"Поиск по дате:","rows":[["С|date|sm","По|date|sm"]]}]},"payable":{"title":"К выплате","groupsInline":true,"groups":[{"title":"Поиск по данным операции:","rows":[["Торговец|select|ph:Выберите торговца","Магазин|select"]]},{"title":"Поиск по дате:","rows":[["С|date","По|date"]]}]},"deposits":{"title":"Удерживаемые страховые депозиты","groupsInline":true,"groups":[{"title":"Поиск по данным операции:","rows":[["Торговец|select|ph:Выберите торговца","Магазин|select"]]},{"title":"Поиск по дате:","rows":[["С|date","По|date"]]}]}},"footer":{"left":["Искать|primary|search","Очистить поля|secondary|clear"]}}},"resultsTableColumns":["UID операции","Трекинг ID","Дата и время","Описание платежа","Тип транзакции","Плательщик","Сумма","Способ оплаты","Статус","Действия"],"resultsTableColumnsAdminExtra":["Процессор","Магазин/Мерчант","Фрод-маркер","Тест"]}</script>
-<script type="module" src="/assets/js/console/app.js"></script>
+
+  <nav class="actions" aria-label="Разделы">
+    <a class="btn btn-primary" href="/mvp/">Открыть MVP</a>
+    <a class="btn" href="/mvp/?lang=en">MVP in English</a>
+    <a class="btn" href="/screens/">Экраны для Figma</a>
+    <a class="btn" href="/ds/">Дизайн-система</a>
+    <a class="btn" href="https://github.com/verunch/paid-ops-console/blob/main/docs/CASE-STUDY.md">Кейс полностью</a>
+    <a class="btn" href="https://miro.com/app/board/uXjVHMdVl74=/?moveToWidget=3458764689133524864">ИА и флоу в Miro</a>
+  </nav>
+
+  <section>
+    <h2>Коротко</h2>
+    <div class="summary">
+      <div class="card"><h3>Проблема</h3><p>Все 27 полей поиска нужно сохранить, форма вместе с результатами должна помещаться на экране, а для подписей над полями нет места.</p></div>
+      <div class="card"><h3>Решение</h3><p>Смысловые группы с заголовками, название поля в плейсхолдере, тултип с названием, когда поле заполнено, и постоянные подсказки формата у трёх полей.</p></div>
+      <div class="card"><h3>Результат</h3><p>Форма ниже на 17–19 %, ни одно поле не убрано, правило тултипов одинаково для обеих ролей — с мышью и с клавиатуры.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>План работы</h2>
+    <ol class="plan"><li><b>Разбор ТЗ и референсов</b>4 формы (2 роли × 2 режима), правило тултипов от заказчика, сценарии операторов.</li><li><b>Спецификация полей</b>Состав и порядок полей зафиксированы в field-maps.json — единый источник правды.</li><li><b>Структура формы</b>Группы по сценарию поиска, фиксированные ряды, ширина поля по длине значения.</li><li><b>Правило подсказок</b>Дерево решений для тултипов, маски ввода и валидация.</li><li><b>Дизайн-система</b>Токены и компоненты со всеми состояниями.</li><li><b>MVP и макеты</b>Живой MVP и макеты для Figma собираются из одного кода.</li><li><b>Проверка</b>Замер высоты форм, сквозные сценарии в браузере, локализация.</li></ol>
+  </section>
+
+  <section>
+    <h2>Архитектура</h2>
+    <div class="arch">
+      <div class="card">
+        <h3>Экран «Список платежей»</h3>
+<pre>Список платежей
+├─ Шапка: роль · режим
+├─ Панель фильтров
+│   ├─ Данные операции
+│   ├─ Данные банковской карты
+│   ├─ Данные плательщика
+│   ├─ Дата              ← расширенный
+│   └─ Мошенничество     ← расширенный
+├─ Таблица результатов
+│   сортировка · выбор · пагинация · XLSX
+└─ Drawer «Детали транзакции»</pre>
+      </div>
+      <div class="card">
+        <h3>Проект</h3>
+        <div class="flow">
+          <div class="row"><div class="node"><b>ТЗ и референсы</b></div><span class="arrow" aria-hidden="true">→</span><div class="node"><b>Спецификация полей</b><code>field-maps.json</code></div><div class="node"><b>Токены</b><code>design-tokens.json</code></div></div>
+          <div class="row"><span class="arrow" aria-hidden="true">↓</span><div class="node"><b>Общие модули</b><code>src/console</code></div><span class="node"><b>Локализация</b><code>i18n.js · en.js</code></span></div>
+          <div class="row out"><span class="arrow" aria-hidden="true">↓</span><div class="node"><b>Живой MVP</b><code>5 рабочих мест</code></div><div class="node"><b>Макеты для Figma</b><code>116 экранов</code></div><div class="node"><b>Дизайн-система</b><code>/ds</code></div></div>
+        </div>
+        <p class="note">MVP и макеты рендерятся одними и теми же модулями, поэтому не расходятся между собой.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>Концепт, не продукт: данные вымышлены, бэкенда нет. Код — <a href="https://github.com/verunch/paid-ops-console">github.com/verunch/paid-ops-console</a></footer>
+</main>
 </body>
 </html>

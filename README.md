@@ -6,11 +6,11 @@ A UX/UI concept for an internal payment-operations console, modeled loosely on a
 
 **This is a concept exploration — not a production application and not an official release.** There is no backend: the MVP runs entirely in the browser on a fixed, fictional data set (57 operations, masked personal data).
 
-**Live:** https://verunch.github.io/paid-ops-console/ (English: `?lang=en`)
+**Live:** https://verunch.github.io/paid-ops-console/ — case landing; MVP at [`/mvp/`](https://verunch.github.io/paid-ops-console/mvp/) (English: `/mvp/?lang=en`)
 
 ## Live MVP
 
-`/` — an operations console with five workspaces (switcher in the sidebar; the route lives in the URL, e.g. `#/support/tx-edit`):
+`/` is the case landing page (cover, summary, plan, architecture). `/mvp/` is an operations console with five workspaces (switcher in the sidebar; the route lives in the URL, e.g. `/mvp/#/support/tx-edit`; old `/#/…` and `/?lang=…` links are forwarded):
 
 | Workspace | Screens |
 |---|---|
@@ -26,7 +26,7 @@ Everything works on a fixed, fictional data set: validation with input masks, ke
 
 ## Localization
 
-The project was designed for a Russian-speaking client, so Russian is the source language. The live MVP switches between RU and EN (sidebar switch, remembered, shareable as `/?lang=en`); 13 key states are also published in English at `/en` and `site-figma-export/en/`. How it works: [`docs/WORK-SUMMARY.md`](docs/WORK-SUMMARY.md#3-локализация).
+The project was designed for a Russian-speaking client, so Russian is the source language. The live MVP switches between RU and EN (sidebar switch, remembered, shareable as `/mvp/?lang=en`); 13 key states are also published in English at `/en` and `site-figma-export/en/`. How it works: [`docs/WORK-SUMMARY.md`](docs/WORK-SUMMARY.md#3-локализация).
 
 ## Screens for Figma
 

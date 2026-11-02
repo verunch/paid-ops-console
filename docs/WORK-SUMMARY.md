@@ -5,8 +5,8 @@
 Проект делался под русскоязычного заказчика, поэтому основной язык интерфейса и полной документации русский. MVP локализован (RU / EN), ключевые макеты есть на английском.
 
 - Репозиторий: `github.com/verunch/paid-ops-console`
-- Локально: `python3 -m http.server 4173 --directory site` → http://localhost:4173/
-- Английская версия MVP: http://localhost:4173/?lang=en
+- Локально: `python3 -m http.server 4173 --directory site` → http://localhost:4173/ (стартовая страница кейса), MVP — http://localhost:4173/mvp/
+- Английская версия MVP: http://localhost:4173/mvp/?lang=en
 - Ключевые экраны на английском: http://localhost:4173/en/
 - Сборка: `node tools/build-site.mjs` (генерирует `site/` и `site-figma-export/`)
 - Схемы ИА и флоу в Miro: https://miro.com/app/board/uXjVHMdVl74=/?moveToWidget=3458764689133524864

@@ -771,7 +771,7 @@ const ALL_ROUTES = [
 function protoNav(currentHref) {
   return `<nav class="proto-nav">
     <span class="proto-tag">Prototype nav — not part of design</span>
-    <a href="/">Live MVP</a>
+    <a href="/mvp/">Live MVP</a>
     <span class="sep">·</span>
     <a href="/screens">All Screens</a>
     <span class="sep">/</span>
@@ -973,7 +973,7 @@ function buildCover() {
       <span class="role-badge role-user"><span class="dot"></span>Клиент — ограниченный доступ</span>
     </div>
     <div style="margin-top:48px;" class="swatch-row" style="justify-content:center;">
-      <a class="btn btn-primary" href="/">Живой MVP</a>
+      <a class="btn btn-primary" href="/mvp/">Живой MVP</a>
       <a class="btn btn-secondary" href="/screens">Все экраны</a>
       <a class="btn btn-secondary" href="/admin/basic/default">Admin · Basic</a>
       <a class="btn btn-secondary" href="/user/basic/default">User · Basic</a>
@@ -1123,7 +1123,7 @@ ${HEAD_LINKS}
 </head>
 <body>
 <h1 class="text-h1">Экраны для Figma</h1>
-<p class="text-body-sm text-secondary">Paid — консоль платёжных операций. ${ALL_ROUTES.length + newPages.length} статичных состояний для импорта в Figma · <a href="/" style="color:var(--color-action-primary)">живой MVP →</a></p>
+<p class="text-body-sm text-secondary">Paid — консоль платёжных операций. ${ALL_ROUTES.length + newPages.length} статичных состояний для импорта в Figma · <a href="/mvp/" style="color:var(--color-action-primary)">живой MVP →</a></p>
 <h2 class="text-h2" style="margin:32px 0 12px">Список платежей · исходные экраны</h2>
 <ul>${items}</ul>
 <h2 class="text-h2" style="margin:40px 0 0">Рабочие места</h2>
@@ -1170,6 +1170,8 @@ buildTransactionDetails();
 buildExportSuccess();
 const { pages: newPages, enPages, workspaces } = buildConsole({ ROOT, PLAN_DIR, writeFile, HEAD_LINKS });
 buildIndex(newPages, workspaces);
+const { buildLanding } = await import("./build-landing.mjs");
+buildLanding({ ROOT, writeFile, HEAD_LINKS });
 
 console.log(`Site generated at ${SITE_DIR}`);
 
@@ -1198,7 +1200,7 @@ function collectHtmlFiles(dir) {
 
 function buildFigmaExport() {
   fs.rmSync(FIGMA_DIR, { recursive: true, force: true }); // clean slate: no stale numbered files
-  const htmlFiles = collectHtmlFiles(SITE_DIR).filter((f) => !/^(new|en|ds)\//.test(path.relative(SITE_DIR, f).split(path.sep).join("/")));
+  const htmlFiles = collectHtmlFiles(SITE_DIR).filter((f) => !/^(new|en|ds|mvp)\//.test(path.relative(SITE_DIR, f).split(path.sep).join("/")));
   for (const file of htmlFiles) {
     const rel = path.relative(SITE_DIR, file);
     if (rel === "index.html") continue; // live MVP needs JS — not an importable frame
