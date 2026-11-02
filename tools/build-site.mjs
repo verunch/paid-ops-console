@@ -1333,3 +1333,15 @@ function copyFlatEn() {
   console.log(`Flat EN copy: ${files.length} files in ${out}`);
 }
 copyFlatEn();
+
+// Case-study cover: PNG (2x screenshot) + HTML with the inline SVG for HTML-to-Figma importers.
+function copyCaseCover() {
+  const out = path.join(FIGMA_DIR, "обложка-кейса");
+  fs.mkdirSync(out, { recursive: true });
+  fs.copyFileSync(path.join(ROOT, "docs/case-cover.png"), path.join(out, "paid-case-cover.png"));
+  const svg = fs.readFileSync(path.join(ROOT, "docs/case-cover.svg"), "utf8");
+  fs.writeFileSync(path.join(out, "paid-case-cover.html"),
+    `<!doctype html>\n<html lang="ru">\n<head>\n<meta charset="utf-8" />\n<title>Paid · Обложка кейса</title>\n${HEAD_LINKS}\n<style>html,body{margin:0;padding:0}svg{display:block}</style>\n</head>\n<body>\n${svg}</body>\n</html>\n`, "utf8");
+  console.log(`Case cover: ${out}`);
+}
+copyCaseCover();
