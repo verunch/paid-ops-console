@@ -138,6 +138,6 @@
 ## Ссылки
 
 - Код и макеты: https://github.com/verunch/paid-ops-console
-- Живой MVP: `/` (английская версия — `/?lang=en`); локально http://localhost:4173/
+- Живой MVP: https://verunch.github.io/paid-ops-console/ (английская версия — https://verunch.github.io/paid-ops-console/?lang=en)
 - Описание проделанной работы и группировки макетов: [`docs/WORK-SUMMARY.md`](WORK-SUMMARY.md)
 - ИА и пользовательские флоу (Miro): https://miro.com/app/board/uXjVHMdVl74=/?moveToWidget=3458764689133524864
