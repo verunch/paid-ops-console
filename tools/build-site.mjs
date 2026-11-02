@@ -1098,14 +1098,19 @@ function buildDesignSystem() {
 // ---------------------------------------------------------------------------
 // All Screens index
 // ---------------------------------------------------------------------------
-function buildIndex() {
-  const items = ALL_ROUTES.map((r) => `<li><a class="swatch-card" style="display:block;" href="${r.href}">${esc(r.label)}<div class="swatch-label">${r.href}</div></a></li>`).join("");
+// One catalog for both sets: the original «Список платежей» screens and the
+// workspace screens, kept in separate sections under a single link (/screens).
+function buildIndex(newPages, workspaces) {
+  const card = (href, label, meta) => `<li><a class="swatch-card" style="display:block;" href="${href}">${esc(label)}<div class="swatch-label">${esc(meta)}</div></a></li>`;
+  const items = ALL_ROUTES.map((r) => card(r.href, r.label, r.href)).join("");
+  const wsSections = workspaces.map((w) => `<h3 class="text-h3" style="margin:24px 0 12px">${esc(w.title)}</h3>
+<ul>${newPages.filter((p) => p.ws === w.id).map((p) => card(p.href, p.title.replace(/^NEW · /, ""), p.name)).join("")}</ul>`).join("");
   const html = `<!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>All Screens — Paid Prototype</title>
+<title>Экраны для Figma — Paid Prototype</title>
 ${HEAD_LINKS}
 <link rel="stylesheet" href="/assets/css/tokens.css" />
 <link rel="stylesheet" href="/assets/css/base.css" />
@@ -1117,9 +1122,12 @@ ${HEAD_LINKS}
 </style>
 </head>
 <body>
-<h1 class="text-h1">All Screens</h1>
-<p class="text-body-sm text-secondary">Paid — Internal Payment Operations Console. ${ALL_ROUTES.length} static routes for Figma import · <a href="/" style="color:var(--color-action-primary)">open the live MVP →</a></p>
+<h1 class="text-h1">Экраны для Figma</h1>
+<p class="text-body-sm text-secondary">Paid — консоль платёжных операций. ${ALL_ROUTES.length + newPages.length} статичных состояний для импорта в Figma · <a href="/" style="color:var(--color-action-primary)">живой MVP →</a></p>
+<h2 class="text-h2" style="margin:32px 0 12px">Список платежей · исходные экраны</h2>
 <ul>${items}</ul>
+<h2 class="text-h2" style="margin:40px 0 0">Рабочие места</h2>
+${wsSections}
 </body>
 </html>
 `;
@@ -1160,8 +1168,8 @@ buildCover();
 buildDesignSystem();
 buildTransactionDetails();
 buildExportSuccess();
-buildIndex();
-const { pages: newPages, enPages } = buildConsole({ ROOT, PLAN_DIR, writeFile, HEAD_LINKS });
+const { pages: newPages, enPages, workspaces } = buildConsole({ ROOT, PLAN_DIR, writeFile, HEAD_LINKS });
+buildIndex(newPages, workspaces);
 
 console.log(`Site generated at ${SITE_DIR}`);
 

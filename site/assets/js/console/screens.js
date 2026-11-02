@@ -672,7 +672,7 @@ export function renderSidebar(state, opts = {}) {
     </div>${opts.live ? `
     <div class="sidebar-lang" style="display:flex;align-items:center;justify-content:space-between;gap:var(--spacing-sm)"><span class="sidebar-label" id="lang-label">Язык</span><div class="mode-tabs" role="group" aria-labelledby="lang-label">${I.LANGS.map((l) => `<button type="button" data-lang="${l}" lang="${l}" aria-pressed="${I.getLang() === l}">${l.toUpperCase()}</button>`).join("")}</div></div>` : ""}
     <nav class="sidebar-nav"><ul>${w.screens.map((id) => `<li><a href="${routeHash({ ...state, screen: id, mode: "basic", tab: "profit" })}" class="nav-link"${id === base ? ' aria-current="page"' : ""}>${ICONS.nav[NAV[id].icon]}<span>${esc(NAV[id].label)}</span></a></li>`).join("")}</ul></nav>
-    <div class="sidebar-foot text-caption"><a href="/new/design-system/">Дизайн-система</a><a href="/screens">Экраны для Figma</a><a href="/new">NEW экраны для Figma</a></div>
+    <div class="sidebar-foot text-caption"><a href="/new/design-system/">Дизайн-система</a><a href="/screens">Экраны для Figma</a></div>
   </aside>`;
 }
 

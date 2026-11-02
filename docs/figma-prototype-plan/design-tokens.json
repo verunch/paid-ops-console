@@ -137,16 +137,16 @@
           ]
         },
         "border/contrast": {
-          "hex": "#000000",
+          "hex": "#262626",
           "rgb01": [
-            0.0,
-            0.0,
-            0.0
+            0.149,
+            0.149,
+            0.149
           ],
           "scopes": [
             "STROKE_COLOR"
           ],
-          "desc": "Secondary button + checkbox outline"
+          "desc": "Secondary button + checkbox outline (black at 85 %, softened from #000000)"
         },
         "action/primary": {
           "hex": "#D95032",

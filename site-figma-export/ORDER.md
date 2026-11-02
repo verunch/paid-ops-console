@@ -6,7 +6,7 @@
 |---|---|---|
 | 1 | `cover/001-cover.html` | Cover |
 | 2 | `design-system/002-design-system.html` | Design System |
-| 3 | `screens/003-screens.html` | All Screens |
+| 3 | `screens/003-screens.html` | Экраны для Figma |
 | 4 | `admin/basic/default/004-admin-basic-default.html` | Admin · Basic · default |
 | 5 | `admin/basic/loading/005-admin-basic-loading.html` | Admin · Basic · loading |
 | 6 | `admin/basic/results/006-admin-basic-results.html` | Admin · Basic · results |
@@ -23,7 +23,7 @@
 | 17 | `user/advanced/results/017-user-advanced-results.html` | User · Advanced · results |
 | 18 | `transaction/details/018-transaction-details.html` | Transaction Details |
 | 19 | `export/success/019-export-success.html` | Export Success |
-| 20 | `new/020-new.html` | NEW Screens |
+| 20 | `new/020-new.html` | Экраны рабочих мест |
 | 21 | `new/design-system/021-new-design-system.html` | NEW · Дизайн-система |
 | 22 | `new/admin/payments/basic-default/022-new-admin-payments-basic-default.html` | NEW · Администрирование · Платежи · basic-default |
 | 23 | `new/admin/payments/basic-results/023-new-admin-payments-basic-results.html` | NEW · Администрирование · Платежи · basic-results |

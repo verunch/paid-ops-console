@@ -314,14 +314,14 @@ ${HEAD_LINKS}
   }
 
   // ---- NEW screens index -----------------------------------------------------
-  const groups = spec.workspaces.map((w) => `<h2 class="text-h2" style="margin:32px 0 12px">${UI.esc(w.title)} <span class="new-tag">NEW</span></h2>
+  const groups = spec.workspaces.map((w) => `<h2 class="text-h2" style="margin:32px 0 12px">${UI.esc(w.title)}</h2>
 <ul>${pages.filter((p) => p.ws === w.id).map((p) => `<li><a class="swatch-card" style="display:block;" href="${p.href}">${UI.esc(p.title)}<div class="swatch-label">${UI.esc(p.name)}</div></a></li>`).join("")}</ul>`).join("");
   writeFile("new/index.html", `<!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NEW Screens — Paid Prototype</title>
+<title>Экраны рабочих мест — Paid Prototype</title>
 ${HEAD_LINKS}
 <link rel="stylesheet" href="/assets/css/tokens.css" />
 <link rel="stylesheet" href="/assets/css/base.css" />
@@ -331,12 +331,11 @@ ${HEAD_LINKS}
   body { padding: 48px; }
   ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; max-width: 1280px; }
   ul a:hover { border-color: var(--color-border-strong); }
-  .new-tag { display: inline-block; vertical-align: middle; font-size: 11px; font-weight: 700; letter-spacing: .08em; padding: 2px 8px; border-radius: 999px; background: var(--color-action-primary); color: #fff; }
 </style>
 </head>
 <body>
-<h1 class="text-h1">NEW Screens <span class="new-tag">NEW</span></h1>
-<p class="text-body-sm text-secondary">Paid — новые экраны по референсам Group 7: ${pages.length} статичных состояний для импорта в Figma. Исходные экраны остаются в <a href="/screens">/screens</a>. Живая версия — <a href="/" style="color:var(--color-action-primary)">MVP →</a></p>
+<h1 class="text-h1">Экраны рабочих мест</h1>
+<p class="text-body-sm text-secondary">Paid — ${pages.length} статичных состояний для импорта в Figma. Общий каталог со всеми экранами — <a href="/screens">/screens</a>. Живая версия — <a href="/" style="color:var(--color-action-primary)">MVP →</a></p>
 ${groups}
 </body>
 </html>
@@ -366,5 +365,5 @@ ${HEAD_LINKS}
 </body>
 </html>
 `);
-  return { pages, enPages };
+  return { pages, enPages, workspaces: spec.workspaces.map((w) => ({ id: w.id, title: w.title })) };
 }

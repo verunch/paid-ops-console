@@ -30,7 +30,8 @@ The project was designed for a Russian-speaking client, so Russian is the source
 
 ## Screens for Figma
 
-- `/screens` and `site-figma-export/` (top level) — the original static screens, kept byte-for-byte unchanged.
+- `/screens` — **one catalog for all static screens**: the original «Список платежей» set and the workspace screens in separate sections (the MVP sidebar links only here).
+- `site-figma-export/` (top level) — the original static screens.
 - `/new` and `site-figma-export/new/` — **NEW** screens from the second round of references: 82 states across all workspaces (defaults, results, validation, tooltips, open dropdowns, drawers, toasts, tabs) plus `new/design-system` with the components added for them (switch, radio, tabs, multi-select, search, textarea, file, stats, sidebar navigation). Every NEW page title starts with `NEW ·`.
 - In `site-figma-export/` every file is named after its folder path with a running number (`admin/basic/default/004-admin-basic-default.html`), so frames import in story order; the full list is in `site-figma-export/ORDER.md`. What was built and how screens are grouped: [`docs/WORK-SUMMARY.md`](docs/WORK-SUMMARY.md).
 
@@ -76,7 +77,7 @@ Per the original behavior notes, tooltip behavior applies to both Admin and Clie
 Control styling follows the Paid design-system sheet (`docs/Group 1.png`) — buttons, text inputs, selects and checkboxes with Default / Hover / Focus / Filled / Disabled / Error states:
 
 - **Primary action** orange `#D95032` (hover `#C13E22`), used for the primary button, checked checkboxes and active tab/page.
-- **Secondary** buttons and checkboxes outlined in black; ghost buttons text-only; hover fill `#F4F7F6`.
+- **Secondary** buttons, checkboxes and radios outlined in near-black `#262626` (black at 85 %); ghost buttons text-only; hover fill `#F4F7F6`.
 - **Focus** is a 2px `#D95032` border; **error** is a 2px `#9E321C` border with a message underneath; **disabled** is a flat `#F2F2F2` fill.
 - 40px control height, 6px radius, light borders `#E2E8E6` (hover `#C3D5D0`), primary text `#2B3936`, placeholder `#737373` (darkened from the sheet's `#8C8C8C` to reach WCAG AA 4.5:1). Field text is left-aligned for scanning.
 - IBM Plex Sans / IBM Plex Mono type scale, 8px spacing grid; Admin and User keep their own restrained accent colors for role indicators.
