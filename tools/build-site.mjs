@@ -1161,7 +1161,7 @@ buildDesignSystem();
 buildTransactionDetails();
 buildExportSuccess();
 buildIndex();
-const newCount = buildConsole({ ROOT, PLAN_DIR, writeFile, HEAD_LINKS });
+const newPages = buildConsole({ ROOT, PLAN_DIR, writeFile, HEAD_LINKS });
 
 console.log(`Site generated at ${SITE_DIR}`);
 
@@ -1189,6 +1189,7 @@ function collectHtmlFiles(dir) {
 }
 
 function buildFigmaExport() {
+  fs.rmSync(FIGMA_DIR, { recursive: true, force: true }); // clean slate: no stale numbered files
   const htmlFiles = collectHtmlFiles(SITE_DIR).filter((f) => !path.relative(SITE_DIR, f).startsWith(`new${path.sep}`));
   for (const file of htmlFiles) {
     const rel = path.relative(SITE_DIR, file);
@@ -1218,6 +1219,35 @@ function buildNewFigmaExport() {
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
     fs.writeFileSync(outPath, html, "utf8");
   }
-  console.log(`NEW screens: ${newCount} states rendered, ${files.length} files exported to ${path.join(FIGMA_DIR, "new")}`);
+  console.log(`NEW screens: ${newPages.length} states rendered, ${files.length} files exported to ${path.join(FIGMA_DIR, "new")}`);
 }
 buildNewFigmaExport();
+
+// Every exported index.html is renamed after its folder path and prefixed
+// with a running number, so the importer lays the frames out in story order:
+// site-figma-export/admin/basic/default/index.html → …/004-admin-basic-default.html
+const FIGMA_ORDER = [
+  "cover", "design-system", "screens",
+  "admin/basic/default", "admin/basic/loading", "admin/basic/results", "admin/basic/empty",
+  "admin/advanced/default", "admin/advanced/validation", "admin/advanced/results",
+  "user/basic/default", "user/basic/loading", "user/basic/results", "user/basic/empty",
+  "user/advanced/default", "user/advanced/validation", "user/advanced/results",
+  "transaction/details", "export/success",
+  "new",
+  ...newPages.map((p) => p.href.slice(1)),
+];
+function numberFigmaExport() {
+  const found = new Set(collectHtmlFiles(FIGMA_DIR).map((f) => path.dirname(path.relative(FIGMA_DIR, f)).split(path.sep).join("/")));
+  const missing = [...found].filter((d) => !FIGMA_ORDER.includes(d));
+  if (missing.length) throw new Error(`FIGMA_ORDER is missing: ${missing.join(", ")}`);
+  const width = String(FIGMA_ORDER.length).length < 3 ? 3 : String(FIGMA_ORDER.length).length;
+  const rows = FIGMA_ORDER.map((dir, i) => {
+    const name = `${String(i + 1).padStart(width, "0")}-${dir.replace(/\//g, "-")}.html`;
+    fs.renameSync(path.join(FIGMA_DIR, dir, "index.html"), path.join(FIGMA_DIR, dir, name));
+    const title = (fs.readFileSync(path.join(FIGMA_DIR, dir, name), "utf8").match(/<title>([^<]*)<\/title>/) || [, ""])[1].replace(/ — Paid Prototype$/, "");
+    return `| ${i + 1} | \`${dir}/${name}\` | ${title} |`;
+  });
+  fs.writeFileSync(path.join(FIGMA_DIR, "ORDER.md"), `# Порядок макетов для импорта в Figma\n\nФайлы названы по своей папке и пронумерованы в порядке раскладки. Файл генерируется \`node tools/build-site.mjs\`.\n\n| № | Файл | Экран |\n|---|---|---|\n${rows.join("\n")}\n`, "utf8");
+  console.log(`Figma export numbered: ${rows.length} files, order in ${path.join(FIGMA_DIR, "ORDER.md")}`);
+}
+numberFigmaExport();

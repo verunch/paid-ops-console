@@ -284,7 +284,7 @@ ${HEAD_LINKS}
 </body>
 </html>
 `);
-    pages.push({ ws: "admin", screen: "design-system", name: "components", title: "NEW · Дизайн-система", href: "/new/design-system" });
+    pages.unshift({ ws: "admin", screen: "design-system", name: "components", title: "NEW · Дизайн-система", href: "/new/design-system" });
   }
 
   // ---- NEW screens index -----------------------------------------------------
@@ -315,5 +315,5 @@ ${groups}
 </body>
 </html>
 `);
-  return pages.length;
+  return pages;
 }

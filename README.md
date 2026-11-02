@@ -24,6 +24,7 @@ Everything works on a fixed, fictional data set: validation with input masks, ke
 
 - `/screens` and `site-figma-export/` (top level) — the original static screens, kept byte-for-byte unchanged.
 - `/new` and `site-figma-export/new/` — **NEW** screens from the second round of references: 82 states across all workspaces (defaults, results, validation, tooltips, open dropdowns, drawers, toasts, tabs) plus `new/design-system` with the components added for them (switch, radio, tabs, multi-select, search, textarea, file, stats, sidebar navigation). Every NEW page title starts with `NEW ·`.
+- In `site-figma-export/` every file is named after its folder path with a running number (`admin/basic/default/004-admin-basic-default.html`), so frames import in story order; the full list is in `site-figma-export/ORDER.md`. What was built and how screens are grouped: [`docs/WORK-SUMMARY.md`](docs/WORK-SUMMARY.md).
 
 ## Figma
 
