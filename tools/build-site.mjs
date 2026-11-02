@@ -1190,7 +1190,7 @@ function collectHtmlFiles(dir) {
 
 function buildFigmaExport() {
   fs.rmSync(FIGMA_DIR, { recursive: true, force: true }); // clean slate: no stale numbered files
-  const htmlFiles = collectHtmlFiles(SITE_DIR).filter((f) => !/^(new|en)\//.test(path.relative(SITE_DIR, f).split(path.sep).join("/")));
+  const htmlFiles = collectHtmlFiles(SITE_DIR).filter((f) => !/^(new|en|ds)\//.test(path.relative(SITE_DIR, f).split(path.sep).join("/")));
   for (const file of htmlFiles) {
     const rel = path.relative(SITE_DIR, file);
     if (rel === "index.html") continue; // live MVP needs JS — not an importable frame
@@ -1284,3 +1284,41 @@ function copyFlat() {
   console.log(`Flat copy: ${files.length} files in ${out}`);
 }
 copyFlat();
+
+// Consolidated design-system sheet (/ds) for Figma conversion. Its export
+// drops real :hover/:focus rules — every state is drawn explicitly, and
+// leaving the pseudo-classes in makes importers generate junk variant sets.
+const { buildDesignSystemSheet } = await import("./build-ds.mjs");
+function stripPseudoStates(css) {
+  const PSEUDO = /:(hover|focus|focus-visible|focus-within|active)\b/;
+  const out = [];
+  let i = 0;
+  while (i < css.length) {
+    const open = css.indexOf("{", i);
+    if (open === -1) { out.push(css.slice(i)); break; }
+    const prelude = css.slice(i, open);
+    if (prelude.trim().startsWith("@")) {
+      // at-rule block: recurse into its body
+      let depth = 1, j = open + 1;
+      while (j < css.length && depth) { if (css[j] === "{") depth++; else if (css[j] === "}") depth--; j++; }
+      out.push(prelude, "{", stripPseudoStates(css.slice(open + 1, j - 1)), "}");
+      i = j;
+      continue;
+    }
+    const close = css.indexOf("}", open);
+    const selectors = prelude.split(",").filter((s) => !PSEUDO.test(s));
+    if (selectors.length) out.push(selectors.join(","), css.slice(open, close + 1));
+    i = close + 1;
+  }
+  return out.join("");
+}
+function buildDesignSystemExport() {
+  const html = buildDesignSystemSheet({ PLAN_DIR, writeFile, HEAD_LINKS });
+  const consoleCss = fs.readFileSync(path.join(SITE_DIR, "assets/css/console.css"), "utf8");
+  const inlined = html.replace(NEW_LINKS_RE, `<style>\n${stripPseudoStates(`${combinedCss}\n${consoleCss}`)}\n</style>`);
+  const out = path.join(FIGMA_DIR, "дизайн-система", "paid-design-system.html");
+  fs.mkdirSync(path.dirname(out), { recursive: true });
+  fs.writeFileSync(out, inlined, "utf8");
+  console.log(`Design-system sheet: /ds and ${out}`);
+}
+buildDesignSystemExport();

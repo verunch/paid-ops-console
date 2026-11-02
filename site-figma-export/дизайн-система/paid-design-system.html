@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paid — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<style>
+/* GENERATED FILE — do not hand-edit. Source: docs/figma-prototype-plan/design-tokens.json */
+:root {
+  --color-bg-canvas: #FBFBFA;
+  --color-surface-default: #FFFFFF;
+  --color-surface-subtle: #FAFAFA;
+  --color-surface-sunken: #F7F8F7;
+  --color-surface-hover: #F4F7F6;
+  --color-text-primary: #2B3936;
+  --color-text-secondary: #6B7370;
+  --color-text-muted: #737373;
+  --color-text-inverse: #FFFFFF;
+  --color-border-default: #E2E8E6;
+  --color-border-strong: #C3D5D0;
+  --color-border-contrast: #000000;
+  --color-action-primary: #D95032;
+  --color-action-primary-hover: #C13E22;
+  --color-accent-admin: #3E6FA8;
+  --color-accent-admin-bg: #EAF1F8;
+  --color-accent-user: #85A49E;
+  --color-accent-user-bg: #EEF3F2;
+  --color-status-success: #3E9268;
+  --color-status-success-bg: #ECF4EF;
+  --color-status-success-border: #D3E7DC;
+  --color-status-warning: #C68A2E;
+  --color-status-warning-bg: #FBF2E2;
+  --color-status-warning-border: #F5E0B8;
+  --color-status-error: #9E321C;
+  --color-status-error-bg: #FCEEEA;
+  --color-status-error-border: #F7D6CC;
+  --color-status-info: #3E6FA8;
+  --color-status-info-bg: #EAF1F8;
+  --color-status-info-border: #CBDDF0;
+  --color-focus-ring: #D95032;
+  --color-disabled-bg: #F2F2F2;
+  --color-disabled-border: #E2E8E6;
+  --color-disabled-text: #ABABAB;
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-full: 999px;
+  --font-display-size: 34px;
+  --font-display-weight: 700;
+  --font-display-lh: 110%;
+  --font-h1-size: 24px;
+  --font-h1-weight: 600;
+  --font-h1-lh: 120%;
+  --font-h2-size: 19px;
+  --font-h2-weight: 600;
+  --font-h2-lh: 130%;
+  --font-h3-size: 16px;
+  --font-h3-weight: 600;
+  --font-h3-lh: 140%;
+  --font-body-size: 15px;
+  --font-body-weight: 400;
+  --font-body-lh: 155%;
+  --font-body-sm-size: 13px;
+  --font-body-sm-weight: 400;
+  --font-body-sm-lh: 145%;
+  --font-caption-size: 12px;
+  --font-caption-weight: 500;
+  --font-caption-lh: 140%;
+  --font-overline-size: 11px;
+  --font-overline-weight: 600;
+  --font-overline-lh: 140%;
+  --font-overline-tracking: 0.08em;
+  --font-mono-body-sm-size: 13px;
+  --font-mono-body-sm-lh: 145%;
+  --font-family-sans: "IBM Plex Sans", Inter, system-ui, -apple-system, sans-serif;
+  --font-family-mono: "IBM Plex Mono", "Roboto Mono", ui-monospace, "SFMono-Regular", monospace;
+  --shadow-card: 0 1px 2px rgba(30, 41, 38, 0.05);
+  --shadow-popover: 0 4px 12px rgba(30, 41, 38, 0.07);
+  --shadow-modal: 0 12px 32px rgba(30, 41, 38, 0.12);
+  --layout-frame-width: 1440px;
+  --layout-content-max-width: 1280px;
+  --layout-page-padding-x: 32px;
+  --layout-row-height-compact: 36px;
+  --control-height-sm: 28px;
+  --control-height-md: 40px;
+  --control-height-lg: 48px;
+}
+
+/* base.css — reset + page chrome + frame container */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: #E7E8E6;
+  font-family: var(--font-family-sans);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+input, select { font-family: inherit; }
+
+/* ---- prototype meta navigation (NOT part of the product design) ---- */
+.proto-nav {
+  font-family: var(--font-family-mono);
+  font-size: 12px;
+  color: #6B7370;
+  background: #F1F1EF;
+  border-bottom: 1px dashed #C7CAC7;
+  padding: 10px var(--layout-page-padding-x);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.proto-nav .proto-tag {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9AA19E;
+  font-weight: 700;
+}
+.proto-nav a { color: #3E6FA8; }
+.proto-nav .sep { color: #C7CAC7; }
+
+/* ---- the actual importable frame ---- */
+.frame {
+  width: var(--layout-frame-width);
+  margin: 32px auto 64px;
+  background: var(--color-bg-canvas);
+  box-shadow: var(--shadow-card);
+  min-height: 400px;
+  position: relative;
+}
+.frame-inner {
+  padding: var(--spacing-2xl) var(--layout-page-padding-x) var(--spacing-3xl);
+}
+.content-narrow {
+  max-width: var(--layout-content-max-width);
+  margin: 0 auto;
+}
+
+/* components.css — shared UI components, all token-driven */
+
+/* Typography utility classes */
+.text-display { font-size: var(--font-display-size); font-weight: var(--font-display-weight); line-height: var(--font-display-lh); }
+.text-h1 { font-size: var(--font-h1-size); font-weight: var(--font-h1-weight); line-height: var(--font-h1-lh); }
+.text-h2 { font-size: var(--font-h2-size); font-weight: var(--font-h2-weight); line-height: var(--font-h2-lh); }
+.text-h3 { font-size: var(--font-h3-size); font-weight: var(--font-h3-weight); line-height: var(--font-h3-lh); }
+.text-body { font-size: var(--font-body-size); font-weight: var(--font-body-weight); line-height: var(--font-body-lh); }
+.text-body-sm { font-size: var(--font-body-sm-size); font-weight: var(--font-body-sm-weight); line-height: var(--font-body-sm-lh); }
+.text-caption { font-size: var(--font-caption-size); font-weight: var(--font-caption-weight); line-height: var(--font-caption-lh); }
+.text-overline { font-size: var(--font-overline-size); font-weight: var(--font-overline-weight); line-height: var(--font-overline-lh); letter-spacing: var(--font-overline-tracking); text-transform: uppercase; }
+.text-mono { font-family: var(--font-family-mono); font-size: var(--font-mono-body-sm-size); line-height: var(--font-mono-body-sm-lh); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+
+/* ---- App header ---- */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+.app-header .page-title { color: var(--color-text-primary); margin: 0; }
+.header-meta { display: flex; align-items: center; gap: var(--spacing-sm); }
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+}
+.role-badge .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.role-badge.role-admin { background: var(--color-accent-admin-bg); color: var(--color-accent-admin); }
+.role-badge.role-admin .dot { background: var(--color-accent-admin); }
+.role-badge.role-user { background: var(--color-accent-user-bg); color: var(--color-accent-user); }
+.role-badge.role-user .dot { background: var(--color-accent-user); }
+
+.mode-tabs { display: inline-flex; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden; }
+.mode-tabs a { padding: 6px 14px; font-size: var(--font-caption-size); color: var(--color-text-secondary); background: var(--color-surface-default); }
+.mode-tabs a.active { background: var(--color-action-primary); color: var(--color-text-inverse); }
+.mode-tabs a + a { border-left: 1px solid var(--color-border-default); }
+
+.role-switch-link { font-size: var(--font-caption-size); color: var(--color-text-secondary); border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: 6px 12px; background: var(--color-surface-default); }
+
+/* ---- Search panel ---- */
+.search-panel {
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-card);
+}
+.field-group + .field-group { margin-top: var(--spacing-lg); }
+.field-group-title { margin: 0 0 var(--spacing-sm); font-weight: var(--font-h3-weight); }
+.field-row { display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
+.field-row:last-child { margin-bottom: 0; }
+.field-wrap { flex: 1 1 0; min-width: 0; position: relative; }
+
+/* ---- Text Input ---- */
+.field-input {
+  width: 100%;
+  height: var(--control-height-md);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-default);
+  color: var(--color-text-primary);
+  padding: 0 var(--spacing-sm);
+  font-size: var(--font-body-sm-size);
+  outline: none;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+/* 2px states (focus / error) = 1px border + 1px inset ring, so the box never shifts */
+.field-input::placeholder { color: var(--color-text-muted); } .field-input.is-hover { border-color: var(--color-border-strong); } .field-input.is-focus { border-color: var(--color-focus-ring); box-shadow: inset 0 0 0 1px var(--color-focus-ring); }
+.field-input.filled { color: var(--color-text-primary); }
+.field-input.is-cardnum { font-family: var(--font-family-mono); }
+.field-input:disabled { background: var(--color-disabled-bg); border-color: var(--color-disabled-border); color: var(--color-disabled-text); cursor: not-allowed; }
+.field-input:disabled::placeholder { color: var(--color-disabled-text); }
+.field-input.has-error{ border-color: var(--color-status-error); box-shadow: inset 0 0 0 1px var(--color-status-error); }
+
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: var(--font-overline-size);
+  font-weight: var(--font-caption-weight);
+  color: var(--color-status-error);
+}
+
+/* ---- Select ---- */
+.field-select {
+  width: 100%;
+  height: var(--control-height-md);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-default);
+  color: var(--color-text-muted);
+  padding: 0 var(--spacing-sm);
+  font-size: var(--font-body-sm-size);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2xs);
+  transition: border-color .12s ease;
+} .field-select.is-hover { border-color: var(--color-border-strong); }
+.field-select.filled { color: var(--color-text-primary); }
+.field-select .chevron { flex: none; width: 12px; height: 7px; } .field-select.is-open, .field-select.is-focus { outline: none; } .field-select.is-open, .field-select.is-focus { border-color: var(--color-focus-ring); box-shadow: inset 0 0 0 1px var(--color-focus-ring); }
+.field-select.has-error { border-color: var(--color-status-error); box-shadow: inset 0 0 0 1px var(--color-status-error); }
+.field-select.is-disabled { background: var(--color-disabled-bg); border-color: var(--color-disabled-border); color: var(--color-disabled-text); cursor: not-allowed; }
+.select-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-popover);
+  z-index: 20;
+  overflow: hidden;
+}
+.select-panel .opt { padding: 8px var(--spacing-sm); font-size: var(--font-body-sm-size); color: var(--color-text-primary); } .select-panel .opt.active { background: var(--color-surface-hover); }
+
+/* ---- Checkbox ---- */
+.checkbox { display: inline-flex; align-items: center; gap: var(--spacing-2xs); font-size: var(--font-body-sm-size); color: var(--color-text-primary); user-select: none; }
+.checkbox .box {
+  width: 16px; height: 16px;
+  border: 1.5px solid var(--color-border-contrast);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-default);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none;
+}
+.checkbox.checked .box { background: var(--color-action-primary); border-color: var(--color-action-primary); }
+.checkbox.checked .box svg { display: block; }
+.checkbox .box svg { display: none; }
+.checkbox.disabled { color: var(--color-disabled-text); }
+.checkbox.disabled .box { background: var(--color-disabled-bg); }
+
+/* ---- Tooltip ----
+   Rendered in normal document flow (not position:absolute) so it reserves
+   real vertical space and pushes following rows down instead of overlapping
+   them — these are "persistent" tooltips that are always visible, not
+   hover-only popovers. */
+.tooltip {
+  position: relative;
+  margin-top: 8px;
+  background: #33383A;
+  color: #FFFFFF;
+  font-size: var(--font-caption-size);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-popover);
+  white-space: nowrap;
+  display: inline-block;
+  z-index: 10;
+}
+.tooltip::before {
+  content: "";
+  position: absolute;
+  top: -5px; left: 16px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #33383A;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: var(--control-height-md);
+  padding: 0 var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-body-sm-size);
+  font-weight: var(--font-h3-weight);
+  border: 1px solid transparent;
+  outline: none;
+  transition: background-color .12s ease, border-color .12s ease;
+  gap: 6px;
+}
+.btn-sm { height: var(--control-height-sm); padding: 0 var(--spacing-sm); }
+.btn-lg { height: var(--control-height-lg); padding: 0 var(--spacing-lg); }
+.btn-primary { background: var(--color-action-primary); color: var(--color-text-inverse); } .btn-primary.is-hover { background: var(--color-action-primary-hover); }
+.btn-secondary { background: var(--color-surface-default); color: var(--color-text-primary); border-color: var(--color-border-contrast); }
+.btn-ghost { background: transparent; color: var(--color-text-primary); } .btn-secondary.is-hover, .btn-ghost.is-hover { background: var(--color-surface-hover); } .btn-secondary.is-focus, .btn-ghost.is-focus { border-color: var(--color-focus-ring); box-shadow: inset 0 0 0 1px var(--color-focus-ring); }
+.btn-destructive { background: var(--color-status-error); color: var(--color-text-inverse); }
+.btn[disabled] { background: var(--color-disabled-bg); color: var(--color-disabled-text); cursor: not-allowed; }
+.btn-ghost[disabled] { background: transparent; }
+
+/* ---- Design-system state grids ---- */
+.state-grid, .state-grid-head { display: grid; grid-template-columns: repeat(6, minmax(0, 196px)); gap: var(--spacing-md); align-items: start; }
+.state-grid + .state-grid { margin-top: var(--spacing-lg); }
+.state-grid .btn { justify-self: start; }
+.state-grid-head { margin-bottom: var(--spacing-xs); font-size: var(--font-overline-size); text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-muted); }
+
+/* ---- Footer row ---- */
+.footer-row { display: flex; align-items: center; justify-content: space-between; margin-top: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md); }
+.footer-left, .footer-right { display: flex; align-items: center; gap: var(--spacing-sm); }
+
+/* ---- Status Badge (icon/shape + label, never color alone) ---- */
+.status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.status-badge svg { flex: none; }
+.status-badge.success { background: var(--color-status-success-bg); color: var(--color-status-success); border-color: var(--color-status-success-border); }
+.status-badge.warning { background: var(--color-status-warning-bg); color: var(--color-status-warning); border-color: var(--color-status-warning-border); }
+.status-badge.error { background: var(--color-status-error-bg); color: var(--color-status-error); border-color: var(--color-status-error-border); }
+.status-badge.info { background: var(--color-status-info-bg); color: var(--color-status-info); border-color: var(--color-status-info-border); }
+.status-badge.neutral { background: var(--color-surface-subtle); color: var(--color-text-secondary); border-color: var(--color-border-default); }
+
+/* ---- Table ----
+   table-layout:fixed with an explicit <colgroup> keeps the ~10-14 column
+   results table within (or close to) the frame width; overflow-x:auto is
+   a safety net for the Admin variant's extra columns, with a visible
+   scrollbar so nothing is silently hidden. */
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-default);
+  scrollbar-color: var(--color-border-strong) var(--color-surface-subtle);
+  scrollbar-width: thin;
+}
+.table-scroll::-webkit-scrollbar { height: 10px; }
+.table-scroll::-webkit-scrollbar-track { background: var(--color-surface-subtle); }
+.table-scroll::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: var(--radius-full); }
+table.data-table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+table.data-table th {
+  background: var(--color-surface-sunken);
+  text-align: left;
+  padding: 8px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid var(--color-border-default);
+  position: relative;
+}
+table.data-table th.sortable { cursor: pointer; }
+table.data-table th .th-inner { display: inline-flex; align-items: center; gap: 4px; }
+table.data-table th.num, table.data-table td.num { text-align: right; }
+table.data-table th.status-col, table.data-table td.status-col { text-align: center; }
+table.data-table td {
+  padding: 8px 10px;
+  height: var(--layout-row-height-compact);
+  border-bottom: 1px solid var(--color-border-default);
+  font-size: var(--font-body-sm-size);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+table.data-table td.mono { font-family: var(--font-family-mono); font-size: 12px; }
+table.data-table tbody tr:last-child td { border-bottom: none; }
+table.data-table tbody tr:nth-child(even) { background: var(--color-surface-subtle); }
+table.data-table tbody tr.selected { background: var(--color-accent-user-bg); }
+table.data-table .row-check { width: 36px; }
+table.data-table .actions-cell { display: flex; gap: 6px; overflow: visible; }
+table.data-table .icon-btn {
+  width: 26px; height: 26px; border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-default);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none;
+}
+
+.results-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-sm); }
+.results-toolbar h2 { margin: 0; }
+
+/* ---- Pagination ---- */
+.pagination { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-sm) var(--spacing-md); }
+.pagination .pages { display: flex; align-items: center; gap: 4px; }
+.pagination .page-btn {
+  min-width: 28px; height: 28px; border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-default);
+  font-size: var(--font-caption-size);
+  color: var(--color-text-secondary);
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 6px;
+}
+.pagination .page-btn.active { background: var(--color-action-primary); color: var(--color-text-inverse); border-color: var(--color-action-primary); }
+.pagination .rows-per-page { display: flex; align-items: center; gap: 8px; font-size: var(--font-caption-size); color: var(--color-text-secondary); }
+.pagination .rows-per-page .field-select { width: 72px; height: var(--control-height-sm); }
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: var(--spacing-xl);
+  right: var(--spacing-xl);
+  display: flex; align-items: center; gap: 10px;
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-status-success-border);
+  border-left: 4px solid var(--color-status-success);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-modal);
+  padding: 14px 18px;
+  font-size: var(--font-body-sm-size);
+  z-index: 100;
+}
+.toast .toast-icon { color: var(--color-status-success); flex: none; }
+.toast .toast-title { font-weight: var(--font-caption-weight); color: var(--color-text-primary); }
+.toast .toast-body { color: var(--color-text-secondary); }
+.toast .toast-close { margin-left: 8px; color: var(--color-text-muted); }
+
+/* ---- Drawer / Modal ---- */
+.drawer-overlay { position: absolute; inset: 0; background: rgba(30, 41, 38, 0.32); z-index: 40; }
+.drawer {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 420px;
+  background: var(--color-surface-default);
+  box-shadow: var(--shadow-modal);
+  z-index: 41;
+  display: flex; flex-direction: column;
+}
+.drawer-header { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-lg); border-bottom: 1px solid var(--color-border-default); }
+.drawer-header h2 { margin: 0; }
+.drawer-close { width: 32px; height: 32px; border-radius: var(--radius-md); border: 1px solid var(--color-border-default); background: var(--color-surface-default); display: inline-flex; align-items: center; justify-content: center; }
+.drawer-body { padding: var(--spacing-lg); overflow-y: auto; flex: 1; }
+.drawer-field { display: flex; justify-content: space-between; gap: var(--spacing-md); padding: 10px 0; border-bottom: 1px solid var(--color-border-default); }
+.drawer-field:last-child { border-bottom: none; }
+.drawer-field .k { color: var(--color-text-secondary); font-size: var(--font-body-sm-size); }
+.drawer-field .v { color: var(--color-text-primary); font-size: var(--font-body-sm-size); text-align: right; }
+.drawer-field .v.mono { font-family: var(--font-family-mono); }
+.drawer-section-title { margin: var(--spacing-md) 0 var(--spacing-2xs); color: var(--color-text-secondary); }
+.drawer-section-title:first-child { margin-top: 0; }
+
+/* ---- Loading Skeleton ---- */
+@keyframes shimmer { 0% { background-position: -200px 0; } 100% { background-position: 200px 0; } }
+.skeleton-block {
+  background: linear-gradient(90deg, var(--color-surface-subtle) 0%, var(--color-border-default) 50%, var(--color-surface-subtle) 100%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+table.data-table tr.skeleton-row td { height: var(--layout-row-height-compact); }
+
+/* ---- Empty State ---- */
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--spacing-3xl) var(--spacing-lg); text-align: center; gap: var(--spacing-2xs); }
+.empty-state .icon { color: var(--color-text-muted); margin-bottom: var(--spacing-xs); }
+.empty-state .title { color: var(--color-text-primary); font-weight: var(--font-h3-weight); }
+.empty-state .hint { color: var(--color-text-secondary); max-width: 360px; }
+
+/* ---- misc ---- */
+.section-block + .section-block { margin-top: var(--spacing-xl); }
+.swatch-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; align-items: flex-start; }
+.swatch-card { border: 1px solid var(--color-border-default); border-radius: var(--radius-md); padding: var(--spacing-md); background: var(--color-surface-default); }
+.swatch-label { font-size: var(--font-caption-size); color: var(--color-text-muted); margin-top: 6px; }
+.color-chip { width: 96px; }
+.color-chip .swatch { height: 56px; border-radius: var(--radius-md); border: 1px solid var(--color-border-default); }
+
+/* console.css — layer on top of tokens.css / base.css / components.css for
+   the console (live MVP + NEW static screens): app shell, components added
+   for the new screens, real form controls, floating tooltips, drawers,
+   toasts and responsive rules. components.css itself stays untouched so the
+   original exported screens keep rendering exactly as before. */
+
+body.console-body { background: var(--color-bg-canvas); }
+body.has-drawer { overflow: hidden; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--spacing-md); top: -48px;
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-contrast);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  font-size: var(--font-body-sm-size);
+  z-index: 300;
+}
+
+/* ---- Header controls as real buttons ---- */
+button.role-switch-link { font: inherit; font-size: var(--font-caption-size); cursor: pointer; }
+.mode-tabs button {
+  font: inherit;
+  font-size: var(--font-caption-size);
+  padding: 6px 14px;
+  border: 0;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-default);
+  cursor: pointer;
+}
+.mode-tabs button + button { border-left: 1px solid var(--color-border-default); }
+.mode-tabs button[aria-pressed="true"] { background: var(--color-action-primary); color: var(--color-text-inverse); }
+
+/* ---- Form ---- */
+.form-banner { margin-bottom: var(--spacing-sm); font-size: var(--font-body-sm-size); }
+.form-banner:empty { display: none; }
+.field-wrap-check { display: flex; align-items: center; min-height: var(--control-height-md); }
+.field-error[hidden] { display: none; }
+
+/* ---- Select (APG select-only combobox) ---- */
+.select-wrap { position: relative; }
+.field-select { cursor: pointer; user-select: none; }
+.field-select .value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.field-select .chevron { transition: transform .12s ease; }
+.field-select[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+.select-panel {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 264px;
+  overflow-y: auto;
+}
+.select-panel[hidden] { display: none; }
+.select-panel.is-above { top: auto; bottom: calc(100% + 4px); }
+.select-panel .opt { cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.select-panel .opt[aria-selected="true"] { font-weight: var(--font-h3-weight); }
+.select-panel .opt.is-reset { color: var(--color-text-muted); }
+
+/* ---- Checkbox with a real <input> ---- */
+.checkbox { position: relative; cursor: pointer; }
+.checkbox input {
+  position: absolute; left: 0; top: 50%;
+  width: 16px; height: 16px;
+  margin: -8px 0 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkbox input:checked + .box,
+.checkbox input:indeterminate + .box { background: var(--color-action-primary); border-color: var(--color-action-primary); }
+.checkbox input:checked + .box svg { display: block; }
+.checkbox input:indeterminate + .box svg { display: none; }
+.checkbox input:indeterminate + .box::after { content: ""; width: 8px; height: 2px; border-radius: 1px; background: var(--color-text-inverse); }
+
+/* ---- Floating tooltip (hover / focus, never in layout flow) ---- */
+.tooltip.tooltip-floating {
+  position: fixed;
+  top: 0; left: 0;
+  margin: 0;
+  max-width: 360px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+  z-index: 200;
+}
+.tooltip.tooltip-floating[hidden] { display: none; }
+.tooltip.tooltip-floating::before { left: var(--arrow-x, 16px); }
+.tooltip.tooltip-floating.is-above::before {
+  top: auto; bottom: -5px;
+  border-bottom: none;
+  border-top: 5px solid #33383A;
+}
+
+/* ---- Buttons ---- */
+.btn[aria-busy="true"] { cursor: progress; opacity: .8; }
+.btn-sm { font-size: var(--font-caption-size); }
+
+/* ---- Results ---- */
+#results { margin-top: var(--spacing-xl); }
+.results-toolbar { gap: var(--spacing-md); flex-wrap: wrap; }
+.results-meta { display: flex; align-items: center; gap: var(--spacing-sm); color: var(--color-text-secondary); font-size: var(--font-body-sm-size); }
+.results-meta strong { color: var(--color-text-primary); font-weight: var(--font-h3-weight); }
+
+table.data-table tbody tr.is-clickable { cursor: pointer; }
+table.data-table th[aria-sort] { padding: 0; }
+.th-sort {
+  all: unset;
+  box-sizing: border-box;
+  display: flex; align-items: center; gap: 4px;
+  width: 100%;
+  padding: 8px 10px;
+  cursor: pointer;
+  /* all:unset wipes .text-overline — restore the header type style */
+  font-size: var(--font-overline-size);
+  font-weight: var(--font-overline-weight);
+  line-height: var(--font-overline-lh);
+  letter-spacing: var(--font-overline-tracking);
+  text-transform: uppercase;
+}
+th.num .th-sort { justify-content: flex-end; }
+th.status-col .th-sort { justify-content: center; }
+th[aria-sort="descending"] .sort-icon { transform: rotate(180deg); }
+table.data-table .icon-btn { cursor: pointer; color: var(--color-text-secondary); }
+table.data-table .icon-btn[aria-pressed="true"] { color: var(--color-status-error); border-color: var(--color-status-error-border); background: var(--color-status-error-bg); }
+table.data-table td.row-check, table.data-table th.row-check { overflow: visible; vertical-align: middle; }
+table.data-table .row-check .checkbox { display: flex; }
+
+.pagination { flex-wrap: wrap; gap: var(--spacing-sm); }
+.pagination .rows-per-page .select-wrap { width: 72px; }
+.pagination .rows-per-page .field-select { width: 72px; padding: 0 8px; }
+.pagination .range { color: var(--color-text-secondary); font-size: var(--font-caption-size); margin-left: var(--spacing-sm); }
+.pagination .page-btn { cursor: pointer; font: inherit; font-size: var(--font-caption-size); }
+.pagination .page-btn:disabled { color: var(--color-disabled-text); cursor: not-allowed; }
+.pagination .page-ellipsis { min-width: 20px; text-align: center; color: var(--color-text-muted); font-size: var(--font-caption-size); }
+
+/* ---- Drawer: fixed to the viewport here, not to a 1440px frame ---- */
+.console-body .drawer-overlay { position: fixed; animation: fade-in .16s ease; }
+.console-body .drawer { position: fixed; max-width: 100vw; animation: slide-in .2s ease; }
+.drawer-close { cursor: pointer; }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes slide-in { from { transform: translateX(24px); opacity: 0; } }
+
+/* ---- Toasts ---- */
+.toast-region {
+  position: fixed;
+  right: var(--spacing-xl);
+  bottom: var(--spacing-xl);
+  display: flex; flex-direction: column; gap: var(--spacing-xs);
+  z-index: 100;
+}
+.toast-region .toast { position: static; animation: slide-in .2s ease; max-width: 420px; }
+.toast-close { background: none; border: 0; padding: 4px; cursor: pointer; border-radius: var(--radius-sm); }
+.toast.toast-warning { border-color: var(--color-status-warning-border); border-left-color: var(--color-status-warning); }
+.toast.toast-warning .toast-icon { color: var(--color-status-warning); }
+.toast.toast-info { border-color: var(--color-status-info-border); border-left-color: var(--color-status-info); }
+.toast.toast-info .toast-icon { color: var(--color-status-info); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+
+/* =====================================================================
+   App shell: sidebar navigation + main column
+   ===================================================================== */
+.console { display: flex; min-height: 100vh; }
+.sidebar {
+  position: sticky; top: 0;
+  flex: 0 0 248px;
+  height: 100vh;
+  display: flex; flex-direction: column; gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-md);
+  background: var(--color-surface-default);
+  border-right: 1px solid var(--color-border-default);
+  overflow-y: auto;
+}
+.sidebar-brand { display: flex; align-items: center; gap: var(--spacing-xs); color: var(--color-action-primary); font-weight: var(--font-h3-weight); font-size: var(--font-h3-size); }
+.sidebar-brand span:first-of-type { color: var(--color-text-primary); }
+.sidebar-brand .brand-sub { color: var(--color-text-muted); font-weight: 400; font-size: var(--font-caption-size); margin-left: auto; text-transform: uppercase; letter-spacing: .08em; }
+.sidebar-ws { display: flex; flex-direction: column; gap: 6px; }
+.sidebar-label { font-size: var(--font-overline-size); text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-muted); }
+.sidebar-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.nav-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  font-size: var(--font-body-sm-size);
+  color: var(--color-text-secondary);
+}
+.nav-link svg { flex: none; color: var(--color-text-muted); }
+.nav-link[aria-current="page"] { background: var(--color-status-error-bg); color: var(--color-action-primary-hover); font-weight: var(--font-caption-weight); }
+.nav-link[aria-current="page"] svg { color: var(--color-action-primary); }
+.sidebar-foot { margin-top: auto; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted); }
+.sidebar-foot a { color: var(--color-text-secondary); text-decoration: underline; text-underline-offset: 2px; }
+
+.console-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: calc(var(--layout-content-max-width) + 2 * var(--layout-page-padding-x));
+  padding: var(--spacing-xl) var(--layout-page-padding-x) var(--spacing-2xl);
+}
+.crumb { display: inline-block; margin-bottom: var(--spacing-xs); font-size: var(--font-caption-size); color: var(--color-text-secondary); }
+.role-badge.role-neutral { background: var(--color-surface-sunken); color: var(--color-text-secondary); }
+.role-badge.role-neutral .dot { background: var(--color-text-muted); }
+
+/* =====================================================================
+   Form layout additions
+   ===================================================================== */
+.field-group { border: 0; padding: 0; margin: 0; min-width: 0; }
+.field-group > legend { padding: 0; }
+.field-group + .field-group { margin-top: var(--spacing-lg); }
+.groups-inline { display: flex; flex-wrap: wrap; gap: var(--spacing-xl); align-items: flex-start; }
+.groups-inline > .field-group { flex: 1 1 320px; margin-top: 0; }
+.field-wrap.w-xs { flex: 0 0 88px; }
+.field-wrap.w-sm { flex: 0.6 1 0; }
+.field-wrap.w-lg { flex: 2 1 0; }
+.field-wrap.t-date { flex: 0 1 200px; }
+.field-row > .field-wrap.field-wrap-check { flex: 0 0 auto; }
+.field-row:has(> .field-wrap-check:only-child) { margin-bottom: var(--spacing-xs); }
+.field-row > .btn { flex: none; }
+.form-option { margin-top: var(--spacing-md); }
+.form-hint { margin: var(--spacing-xs) 0 0; color: var(--color-text-muted); }
+.link-btn { all: unset; cursor: pointer; color: var(--color-action-primary); font-family: var(--font-family-mono); text-decoration: underline; text-underline-offset: 2px; }
+.footer-row.is-end { justify-content: flex-end; }
+.footer-row.is-end .footer-left:empty { display: none; }
+.field-input.is-search { padding-left: 34px; background: var(--color-surface-default) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none'%3E%3Ccircle cx='7' cy='7' r='5' stroke='%23737373' stroke-width='1.4'/%3E%3Cpath d='m11 11 3 3' stroke='%23737373' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 12px center; }
+.field-input.is-search::-webkit-search-cancel-button { cursor: pointer; }
+
+/* Horizontal "label | control" form (Добавить пользователя) */
+.form-line { display: grid; grid-template-columns: 180px minmax(0, 600px); align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
+.form-line .form-control { min-width: 0; }
+.form-line .form-control .field-wrap { max-width: 420px; }
+.form-label { font-size: var(--font-body-sm-size); color: var(--color-text-secondary); }
+.form-stack { display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--spacing-md); }
+.form-stack .field-wrap, .form-control .field-wrap { flex: none; }
+.check-row { display: flex; flex-wrap: wrap; gap: var(--spacing-md); min-height: var(--control-height-md); align-items: center; }
+
+/* Transaction edit block */
+.edit-block { margin-top: var(--spacing-lg); padding-top: var(--spacing-lg); border-top: 1px solid var(--color-border-default); }
+.edit-title { margin: 0 0 4px; color: var(--color-text-secondary); }
+.edit-title .mono { font-family: var(--font-family-mono); color: var(--color-text-primary); }
+.edit-block > p { margin: 0 0 var(--spacing-md); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.radio-line { margin-bottom: var(--spacing-md); }
+.inline-fields { display: flex; flex-wrap: wrap; gap: var(--spacing-md) var(--spacing-lg); }
+.inline-field { display: flex; align-items: center; gap: var(--spacing-xs); }
+.inline-field .field-wrap { width: 190px; flex: none; }
+.inline-field .field-wrap[data-name="Payment date"], .inline-field .field-wrap[data-name="Settled date"] { width: 250px; }
+.inline-field:has(.radio-group) { gap: var(--spacing-md); }
+
+/* =====================================================================
+   New components
+   ===================================================================== */
+/* Switch — orange track when on, label text inside like the reference */
+.switch { position: relative; display: inline-flex; align-items: center; gap: var(--spacing-xs); cursor: pointer; }
+.switch input { position: absolute; opacity: 0; width: 44px; height: 24px; margin: 0; cursor: pointer; }
+.switch-track {
+  position: relative; display: inline-flex; align-items: center;
+  width: 44px; height: 24px; border-radius: var(--radius-full);
+  background: var(--color-border-strong);
+  transition: background-color .15s ease;
+}
+.switch-thumb { position: absolute; left: 3px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--color-surface-default); box-shadow: var(--shadow-card); transition: transform .15s ease; }
+.switch-text { position: absolute; right: 7px; font-size: 10px; font-weight: var(--font-h3-weight); color: var(--color-text-secondary); }
+.switch input:checked + .switch-track { background: var(--color-action-primary); }
+.switch input:checked + .switch-track .switch-thumb { transform: translateX(20px); }
+.switch input:checked + .switch-track .switch-text { right: auto; left: 7px; color: var(--color-text-inverse); }
+.switch-label { font-size: var(--font-body-sm-size); }
+
+/* Radio */
+.radio-group { display: inline-flex; gap: var(--spacing-md); }
+.radio { position: relative; display: inline-flex; align-items: center; gap: 6px; font-size: var(--font-body-sm-size); cursor: pointer; }
+.radio input { position: absolute; opacity: 0; width: 16px; height: 16px; margin: 0; cursor: pointer; }
+.radio-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--color-border-contrast); background: var(--color-surface-default); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.radio input:checked + .radio-dot { border-color: var(--color-action-primary); }
+.radio input:checked + .radio-dot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--color-action-primary); }
+
+/* Tabs — folder tabs attached to the panel below */
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; position: relative; z-index: 1; margin-bottom: -1px; }
+.tab {
+  font: inherit; font-size: var(--font-body-sm-size);
+  padding: 9px 16px;
+  border: 1px solid var(--color-border-default);
+  border-bottom-color: transparent;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: var(--color-surface-sunken);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+.tab[aria-selected="true"] { background: var(--color-surface-default); color: var(--color-text-primary); font-weight: var(--font-caption-weight); box-shadow: inset 0 2px 0 var(--color-action-primary); border-bottom-color: var(--color-surface-default); }
+.search-panel.has-tabs { border-top-left-radius: 0; }
+
+/* Textarea + file */
+.field-input.field-textarea { height: auto; min-height: 104px; padding: 10px var(--spacing-sm); line-height: 1.45; resize: vertical; font-family: var(--font-family-mono); font-size: 12px; }
+.field-input.field-textarea::placeholder { font-family: var(--font-family-sans); font-size: var(--font-body-sm-size); }
+.file-field { display: flex; align-items: center; gap: var(--spacing-sm); }
+.file-btn { cursor: pointer; white-space: nowrap; flex: none; }
+.file-name { font-size: var(--font-body-sm-size); color: var(--color-text-muted); }
+.file-name.has-file { color: var(--color-text-primary); font-family: var(--font-family-mono); font-size: 12px; }
+.t-file .field-error { margin-top: 6px; }
+
+/* Multi-select options show a checkbox */
+.select-panel.is-multi .opt { display: flex; align-items: center; gap: 8px; }
+.opt-box { width: 14px; height: 14px; flex: none; border: 1.5px solid var(--color-border-contrast); border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; }
+.opt-box svg { display: none; width: 9px; }
+.opt[aria-selected="true"] .opt-box { background: var(--color-action-primary); border-color: var(--color-action-primary); }
+.opt[aria-selected="true"] .opt-box svg { display: block; }
+.select-panel.is-multi .opt[aria-selected="true"] { font-weight: 400; }
+
+/* Stats */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
+.stat { background: var(--color-surface-default); border: 1px solid var(--color-border-default); border-radius: var(--radius-lg); padding: var(--spacing-md); }
+.stat-label { font-size: var(--font-caption-size); color: var(--color-text-secondary); }
+.stat-value { font-size: var(--font-h2-size); font-weight: var(--font-h2-weight); margin-top: 4px; color: var(--color-text-primary); }
+.stat-value.mono { font-family: var(--font-family-mono); font-size: 18px; }
+.stat-hint { font-size: var(--font-caption-size); color: var(--color-text-muted); margin-top: 4px; }
+
+.chip { display: inline-block; padding: 2px 8px; border-radius: var(--radius-full); background: var(--color-surface-sunken); border: 1px solid var(--color-border-default); font-size: var(--font-caption-size); color: var(--color-text-secondary); margin: 1px 0; }
+.drawer-footer { display: flex; gap: var(--spacing-sm); padding: var(--spacing-md) var(--spacing-lg); border-top: 1px solid var(--color-border-default); }
+
+/* Static screens: tooltips drawn in place for Figma (never used live) */
+.field-wrap:has(> .tooltip-static) { position: relative; }
+.tooltip.tooltip-static { position: absolute; left: 0; top: calc(100% + 8px); margin: 0; z-index: 30; }
+.drawer.is-static, .toast.is-static { animation: none; }
+.toast.is-static { position: absolute; }
+#sidebar-root { display: contents; }
+.console.is-static { min-height: 900px; }
+.console.is-static .sidebar { position: static; height: auto; }
+
+/* =====================================================================
+   Responsive
+   ===================================================================== */
+@media (max-width: 1100px) {
+  .field-row { flex-wrap: wrap; }
+  .field-row .field-wrap { flex: 1 1 200px; }
+  .field-row .field-wrap.w-xs { flex: 0 0 88px; }
+}
+@media (max-width: 900px) {
+  .console { flex-direction: column; }
+  .sidebar { position: static; height: auto; flex: none; border-right: 0; border-bottom: 1px solid var(--color-border-default); padding: var(--spacing-md); gap: var(--spacing-sm); }
+  .sidebar-nav ul { flex-direction: row; overflow-x: auto; scrollbar-width: none; }
+  .nav-link { white-space: nowrap; }
+  .sidebar-foot { display: none; }
+}
+@media (max-width: 640px) {
+  .console-main { padding: var(--spacing-lg) var(--spacing-md); }
+  .header-meta { flex-wrap: wrap; }
+  .footer-row, .footer-left, .footer-right { flex-direction: column; align-items: stretch; width: 100%; }
+  .toast-region { left: var(--spacing-md); right: var(--spacing-md); bottom: var(--spacing-md); }
+  .console-body .drawer { width: 100%; }
+  .form-line { grid-template-columns: 1fr; gap: 6px; }
+  .inline-field { flex-wrap: wrap; }
+}
+
+/* NEW design-system sheet */
+.ds-section + .ds-section { margin-top: var(--spacing-2xl); }
+.ds-section > h2 { margin: 0 0 var(--spacing-md); }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--spacing-lg); align-items: flex-start; }
+.ds-cell { display: flex; flex-direction: column; gap: var(--spacing-xs); min-width: 160px; }
+.ds-cell > .ds-label { font-size: var(--font-overline-size); text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-muted); }
+.ds-cell .select-wrap, .ds-cell .field-wrap { width: 260px; position: relative; }
+
+</style>
+<style>
+body.ds-page { background: var(--color-bg-canvas); margin: 0; }
+.ds-wrap { max-width: 1360px; margin: 0 auto; padding: 48px 40px 96px; }
+.ds-cover { padding: 8px 0 32px; border-bottom: 1px solid var(--color-border-default); margin-bottom: 16px; }
+.ds-cover p { color: var(--color-text-secondary); max-width: 760px; }
+.ds-toc { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; margin-top: 16px; }
+.ds-toc a { color: var(--color-text-secondary); }
+.ds-chapter { display: flex; align-items: baseline; gap: 16px; margin: 64px 0 8px; }
+.ds-chapter-num { font-family: var(--font-family-mono); color: var(--color-action-primary); font-size: 14px; }
+.ds-chapter h1 { margin: 0; }
+.ds-block { background: var(--color-surface-default); border: 1px solid var(--color-border-default); border-radius: var(--radius-lg); padding: 32px; margin-top: 24px; }
+.ds-block-head { margin-bottom: 24px; }
+.ds-block-head h2 { margin: 0 0 6px; }
+.ds-intro { margin: 0; color: var(--color-text-secondary); font-size: var(--font-body-sm-size); max-width: 820px; }
+.ds-sub { margin-top: 24px; }
+.ds-sub:first-child { margin-top: 0; }
+.ds-sub h3 { margin: 0 0 12px; }
+.ds-swatches { display: flex; flex-wrap: wrap; gap: 16px; }
+.ds-swatch { display: flex; flex-direction: column; gap: 4px; width: 148px; }
+.ds-chip { width: 148px; height: 56px; border-radius: var(--radius-md); border: 1px solid var(--color-border-default); }
+.ds-radius { background: var(--color-surface-sunken); }
+.ds-elev { background: var(--color-surface-default); border-color: transparent; }
+.ds-swatch-name { font-size: 12px; color: var(--color-text-primary); font-weight: 500; }
+.ds-swatch-hex { font-family: var(--font-family-mono); font-size: 11px; color: var(--color-text-muted); }
+.ds-swatch-desc { font-size: 11px; color: var(--color-text-muted); }
+.ds-control { display: flex; align-items: center; justify-content: center; width: 148px; border: 1px dashed var(--color-border-strong); border-radius: var(--radius-md); font-size: 12px; color: var(--color-text-secondary); }
+.ds-space { display: grid; grid-template-columns: 120px auto 60px; align-items: center; gap: 12px; margin-bottom: 6px; }
+.ds-space-bar { height: 12px; background: var(--color-action-primary); border-radius: 2px; }
+.ds-type-row { display: grid; grid-template-columns: 220px 1fr; align-items: center; gap: 24px; padding: 12px 0; border-bottom: 1px solid var(--color-border-default); }
+.ds-type-meta { font-size: 12px; color: var(--color-text-muted); }
+.ds-type-meta b { color: var(--color-text-primary); font-weight: 600; }
+.ds-icons { display: flex; flex-wrap: wrap; gap: 12px; }
+.ds-icon { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 96px; }
+.ds-icon-box { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); color: var(--color-text-primary); background: var(--color-surface-subtle); }
+.ds-icon-box svg path[stroke="white"] { stroke: var(--color-text-primary); }
+.ds-matrix + .ds-matrix { margin-top: 32px; }
+.ds-matrix-head, .ds-matrix-row { display: grid; gap: 16px; align-items: start; }
+.ds-matrix-head { font-size: var(--font-overline-size); text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-muted); padding-bottom: 8px; border-bottom: 1px solid var(--color-border-default); margin-bottom: 12px; }
+.ds-matrix-row { padding: 10px 0; }
+.ds-matrix-row.ds-tall { padding-bottom: 190px; margin-top: 16px; border-top: 1px solid var(--color-border-default); padding-top: 20px; }
+.ds-row-label { font-size: 12px; font-weight: 600; color: var(--color-text-secondary); padding-top: 10px; }
+.ds-empty { color: var(--color-text-muted); padding-top: 10px; }
+.ds-cell { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-width: 0; }
+.ds-cell > .field-wrap, .ds-cell > .ds-tip-host, .ds-cell > .ds-drawer-box, .ds-cell > .pagination { align-self: stretch; }
+.ds-cell .field-wrap { width: 100%; flex: none; }
+.ds-note { font-size: 11px; color: var(--color-text-muted); }
+.ds-inline { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+.ds-tip-row { padding-bottom: 8px; }
+.ds-tip-host { position: relative; width: 260px; padding-bottom: 44px; }
+.ds-open-host { position: relative; }
+.ds-table-ctx { display: inline-flex; padding: 6px; }
+.ds-table-ctx .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: var(--radius-md); border: 1px solid var(--color-border-default); background: var(--color-surface-default); color: var(--color-text-secondary); }
+.ds-nav-ctx { width: 220px; }
+.ds-legend { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 12px; font-size: 12px; color: var(--color-text-muted); }
+.ds-card { border: 1px solid var(--color-border-default); border-radius: var(--radius-lg); }
+.ds-drawers .ds-cell { width: 520px; }
+.ds-drawer-box { position: relative; height: 460px; overflow: hidden; border: 1px solid var(--color-border-default); border-radius: var(--radius-lg); background: var(--color-surface-subtle); }
+.ds-drawer-box .drawer-overlay { display: none; }
+.ds-drawer-box .drawer { position: absolute; top: 0; right: 0; bottom: 0; width: 480px; max-width: 100%; }
+.ds-sidebar-box { width: 260px; height: 420px; border: 1px solid var(--color-border-default); border-radius: var(--radius-lg); overflow: hidden; }
+.ds-sidebar-box .sidebar { position: static; height: 100%; }
+.toast.is-static { position: static; }
+
+/* static stand-ins for interactive states (the importer can't see :hover/:focus) */
+.btn-primary.is-focus { box-shadow: 0 0 0 2px var(--color-surface-default), 0 0 0 4px var(--color-focus-ring); }
+.btn-secondary.is-focus { border-color: var(--color-focus-ring); box-shadow: inset 0 0 0 1px var(--color-focus-ring); }
+.btn-destructive.is-hover { filter: brightness(.9); }
+.btn-destructive.is-focus { box-shadow: 0 0 0 2px var(--color-surface-default), 0 0 0 4px var(--color-focus-ring); }
+.icon-btn.is-hover { border-color: var(--color-border-strong); background: var(--color-surface-subtle); }
+.icon-btn.is-focus { outline: 2px solid var(--color-focus-ring); outline-offset: 1px; }
+.field-textarea.is-hover { border-color: var(--color-border-strong); }
+.checkbox.is-focus .box, .radio.is-focus .radio-dot, .switch.is-focus .switch-track { box-shadow: 0 0 0 2px var(--color-surface-default), 0 0 0 4px var(--color-focus-ring); }
+.switch.is-disabled { opacity: .5; }
+.mode-tabs button.is-hover { background: var(--color-surface-hover); }
+.mode-tabs button.is-focus { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
+.tab.is-hover { color: var(--color-text-primary); background: var(--color-surface-hover); }
+.tab.is-focus { outline: 2px solid var(--color-focus-ring); outline-offset: -2px; }
+.nav-link.is-hover { background: var(--color-surface-hover); color: var(--color-text-primary); }
+.nav-link.is-focus { outline: 2px solid var(--color-focus-ring); outline-offset: 1px; }
+.pagination .page-btn.is-hover { background: var(--color-surface-hover); }
+.pagination .page-btn.is-focus { outline: 2px solid var(--color-focus-ring); outline-offset: 1px; }
+table.data-table tbody tr.is-hover { background: var(--color-accent-admin-bg); }
+</style>
+</head>
+<body class="ds-page">
+<div class="ds-wrap">
+<div class="ds-cover"><h1 class="text-display">Paid — Design System</h1>
+<p>Все токены и компоненты консоли в одном файле. Каждое состояние нарисовано отдельно (Default, Hover, Focus, Filled, Disabled, Error), подписи строк и колонок — это будущие свойства вариантов в Figma: Component / Variant / State.</p>
+<div class="ds-toc"><span><b>Foundations:</b> <a href="#color">color</a> · <a href="#typography">typography</a> · <a href="#scale">scale</a> · <a href="#icons">icons</a></span><span><b>Components:</b> <a href="#button">button</a> · <a href="#icon-button">icon-button</a> · <a href="#input">input</a> · <a href="#select">select</a> · <a href="#checkbox">checkbox</a> · <a href="#segmented">segmented</a> · <a href="#tabs">tabs</a> · <a href="#nav-item">nav-item</a> · <a href="#pagination">pagination</a> · <a href="#badge">badge</a> · <a href="#tooltip">tooltip</a> · <a href="#toast">toast</a> · <a href="#table">table</a> · <a href="#drawer">drawer</a></span><span><b>Patterns:</b> <a href="#page-header">page-header</a> · <a href="#filter-panel">filter-panel</a> · <a href="#sidebar">sidebar</a></span></div></div>
+<div class="ds-chapter" id="chapter-1"><span class="ds-chapter-num">01</span><h1 class="text-h1">Foundations</h1></div>
+<section class="ds-block" id="color" data-name="Color">
+  <header class="ds-block-head"><h2 class="text-h2">Color</h2><p class="ds-intro">Переменные: группа/роль. В компонентах используются только переменные, без «сырых» hex.</p></header>
+  <div class="ds-sub"><h3 class="text-h3">Background</h3><div class="ds-swatches"><div class="ds-swatch" data-name="color/bg/canvas"><span class="ds-chip" style="background:#FBFBFA"></span><span class="ds-swatch-name">bg/canvas</span><span class="ds-swatch-hex">#FBFBFA</span></div></div></div><div class="ds-sub"><h3 class="text-h3">Surface</h3><div class="ds-swatches"><div class="ds-swatch" data-name="color/surface/default"><span class="ds-chip" style="background:#FFFFFF"></span><span class="ds-swatch-name">surface/default</span><span class="ds-swatch-hex">#FFFFFF</span></div><div class="ds-swatch" data-name="color/surface/subtle"><span class="ds-chip" style="background:#FAFAFA"></span><span class="ds-swatch-name">surface/subtle</span><span class="ds-swatch-hex">#FAFAFA</span></div><div class="ds-swatch" data-name="color/surface/sunken"><span class="ds-chip" style="background:#F7F8F7"></span><span class="ds-swatch-name">surface/sunken</span><span class="ds-swatch-hex">#F7F8F7</span><span class="ds-swatch-desc">table header bg</span></div><div class="ds-swatch" data-name="color/surface/hover"><span class="ds-chip" style="background:#F4F7F6"></span><span class="ds-swatch-name">surface/hover</span><span class="ds-swatch-hex">#F4F7F6</span><span class="ds-swatch-desc">Hover fill for secondary/ghost buttons and menu options</span></div></div></div><div class="ds-sub"><h3 class="text-h3">Text</h3><div class="ds-swatches"><div class="ds-swatch" data-name="color/text/primary"><span class="ds-chip" style="background:#2B3936"></span><span class="ds-swatch-name">text/primary</span><span class="ds-swatch-hex">#2B3936</span></div><div class="ds-swatch" data-name="color/text/secondary"><span class="ds-chip" style="background:#6B7370"></span><span class="ds-swatch-name">text/secondary</span><span class="ds-swatch-hex">#6B7370</span></div><div class="ds-swatch" data-name="color/text/muted"><span class="ds-chip" style="background:#737373"></span><span class="ds-swatch-name">text/muted</span><span class="ds-swatch-hex">#737373</span><span class="ds-swatch-desc">Placeholders and secondary meta text; 4.7:1 on white (WCAG AA)</span></div><div class="ds-swatch" data-name="color/text/inverse"><span class="ds-chip" style="background:#FFFFFF"></span><span class="ds-swatch-name">text/inverse</span><span class="ds-swatch-hex">#FFFFFF</span></div></div></div><div class="ds-sub"><h3 class="text-h3">Border</h3><div class="ds-swatches"><div class="ds-swatch" data-name="color/border/default"><span class="ds-chip" style="background:#E2E8E6"></span><span class="ds-swatch-name">border/default</span><span class="ds-swatch-hex">#E2E8E6</span></div><div class="ds-swatch" data-name="color/border/strong"><span class="ds-chip" style="background:#C3D5D0"></span><span class="ds-swatch-name">border/strong</span><span class="ds-swatch-hex">#C3D5D0</span></div><div class="ds-swatch" data-name="color/border/contrast"><span class="ds-chip" style="background:#000000"></span><span class="ds-swatch-name">border/contrast</span><span class="ds-swatch-hex">#000000</span><span class="ds-swatch-desc">Secondary button + checkbox outline</span></div></div></div><div class="ds-sub"><h3 class="text-h3">Action</h3><div class="ds-swatches"><div class="ds-swatch" data-name="color/action/primary"><span class="ds-chip" style="background:#D95032"></span><span class="ds-swatch-name">action/primary</span><span class="ds-swatch-hex">#D95032</span><span class="ds-swatch-desc">Primary button, checked checkbox, active tab/page — shared by both roles</span></div><div class="ds-swatch" data-name="color/action/primary-hover"><span class="ds-chip" style="background:#C13E22"></span><span class="ds-swatch-name">action/primary-hover</span><span class="ds-swatch-hex">#C13E22</span></div></div></div><div class="ds-sub"><h3 class="text-h3">Role accent</h3><div class="ds-swatches"><div class="ds-swatch" data-name="color/accent/admin"><span class="ds-chip" style="background:#3E6FA8"></span><span class="ds-swatch-name">accent/admin</span><span class="ds-swatch-hex">#3E6FA8</span></div><div class="ds-swatch" data-name="color/accent/admin-bg"><span class="ds-chip" style="background:#EAF1F8"></span><span class="ds-swatch-name">accent/admin-bg</span><span class="ds-swatch-hex">#EAF1F8</span></div><div class="ds-swatch" data-name="color/accent/user"><span class="ds-chip" style="background:#85A49E"></span><span class="ds-swatch-name">accent/user</span><span class="ds-swatch-hex">#85A49E</span></div><div class="ds-swatch" data-name="color/accent/user-bg"><span class="ds-chip" style="background:#EEF3F2"></span><span class="ds-swatch-name">accent/user-bg</span><span class="ds-swatch-hex">#EEF3F2</span></div></div></div><div class="ds-sub"><h3 class="text-h3">Status</h3><div class="ds-swatches"><div class="ds-swatch" data-name="color/status/success"><span class="ds-chip" style="background:#3E9268"></span><span class="ds-swatch-name">status/success</span><span class="ds-swatch-hex">#3E9268</span></div><div class="ds-swatch" data-name="color/status/success-bg"><span class="ds-chip" style="background:#ECF4EF"></span><span class="ds-swatch-name">status/success-bg</span><span class="ds-swatch-hex">#ECF4EF</span></div><div class="ds-swatch" data-name="color/status/success-border"><span class="ds-chip" style="background:#D3E7DC"></span><span class="ds-swatch-name">status/success-border</span><span class="ds-swatch-hex">#D3E7DC</span></div><div class="ds-swatch" data-name="color/status/warning"><span class="ds-chip" style="background:#C68A2E"></span><span class="ds-swatch-name">status/warning</span><span class="ds-swatch-hex">#C68A2E</span></div><div class="ds-swatch" data-name="color/status/warning-bg"><span class="ds-chip" style="background:#FBF2E2"></span><span class="ds-swatch-name">status/warning-bg</span><span class="ds-swatch-hex">#FBF2E2</span></div><div class="ds-swatch" data-name="color/status/warning-border"><span class="ds-chip" style="background:#F5E0B8"></span><span class="ds-swatch-name">status/warning-border</span><span class="ds-swatch-hex">#F5E0B8</span></div><div class="ds-swatch" data-name="color/status/error"><span class="ds-chip" style="background:#9E321C"></span><span class="ds-swatch-name">status/error</span><span class="ds-swatch-hex">#9E321C</span><span class="ds-swatch-desc">Field error border + message; also error badge text</span></div><div class="ds-swatch" data-name="color/status/error-bg"><span class="ds-chip" style="background:#FCEEEA"></span><span class="ds-swatch-name">status/error-bg</span><span class="ds-swatch-hex">#FCEEEA</span></div><div class="ds-swatch" data-name="color/status/error-border"><span class="ds-chip" style="background:#F7D6CC"></span><span class="ds-swatch-name">status/error-border</span><span class="ds-swatch-hex">#F7D6CC</span></div><div class="ds-swatch" data-name="color/status/info"><span class="ds-chip" style="background:#3E6FA8"></span><span class="ds-swatch-name">status/info</span><span class="ds-swatch-hex">#3E6FA8</span></div><div class="ds-swatch" data-name="color/status/info-bg"><span class="ds-chip" style="background:#EAF1F8"></span><span class="ds-swatch-name">status/info-bg</span><span class="ds-swatch-hex">#EAF1F8</span></div><div class="ds-swatch" data-name="color/status/info-border"><span class="ds-chip" style="background:#CBDDF0"></span><span class="ds-swatch-name">status/info-border</span><span class="ds-swatch-hex">#CBDDF0</span></div></div></div><div class="ds-sub"><h3 class="text-h3">Focus</h3><div class="ds-swatches"><div class="ds-swatch" data-name="color/focus/ring"><span class="ds-chip" style="background:#D95032"></span><span class="ds-swatch-name">focus/ring</span><span class="ds-swatch-hex">#D95032</span><span class="ds-swatch-desc">solid 2px focus border (buttons, inputs, selects)</span></div></div></div><div class="ds-sub"><h3 class="text-h3">Disabled</h3><div class="ds-swatches"><div class="ds-swatch" data-name="color/disabled/bg"><span class="ds-chip" style="background:#F2F2F2"></span><span class="ds-swatch-name">disabled/bg</span><span class="ds-swatch-hex">#F2F2F2</span></div><div class="ds-swatch" data-name="color/disabled/border"><span class="ds-chip" style="background:#E2E8E6"></span><span class="ds-swatch-name">disabled/border</span><span class="ds-swatch-hex">#E2E8E6</span></div><div class="ds-swatch" data-name="color/disabled/text"><span class="ds-chip" style="background:#ABABAB"></span><span class="ds-swatch-name">disabled/text</span><span class="ds-swatch-hex">#ABABAB</span></div></div></div>
+</section>
+<section class="ds-block" id="typography" data-name="Typography">
+  <header class="ds-block-head"><h2 class="text-h2">Typography</h2></header>
+  <p class="ds-intro">Основной шрифт IBM Plex Sans, идентификаторы и суммы IBM Plex Mono. Не больше двух начертаний в одной таблице.</p><div class="ds-type-row" data-name="text/Display"><span class="ds-type-meta"><b>Display</b><br>34/37 · Bold</span><span class="text-display">Список платежей</span></div><div class="ds-type-row" data-name="text/H1"><span class="ds-type-meta"><b>H1</b><br>24/29 · SemiBold</span><span class="text-h1">Список платежей</span></div><div class="ds-type-row" data-name="text/H2"><span class="ds-type-meta"><b>H2</b><br>19/25 · SemiBold</span><span class="text-h2">Список платежей</span></div><div class="ds-type-row" data-name="text/H3"><span class="ds-type-meta"><b>H3</b><br>16/22 · SemiBold</span><span class="text-h3">Список платежей</span></div><div class="ds-type-row" data-name="text/Body"><span class="ds-type-meta"><b>Body</b><br>15/23 · Regular</span><span class="text-body">Список платежей</span></div><div class="ds-type-row" data-name="text/Body-sm"><span class="ds-type-meta"><b>Body-sm</b><br>13/19 · Regular</span><span class="text-body-sm">Список платежей</span></div><div class="ds-type-row" data-name="text/Caption"><span class="ds-type-meta"><b>Caption</b><br>12/17 · Medium</span><span class="text-caption">Список платежей</span></div><div class="ds-type-row" data-name="text/Overline"><span class="ds-type-meta"><b>Overline</b><br>11/15 · SemiBold · +8% · UPPER</span><span class="text-overline">Список платежей</span></div><div class="ds-type-row" data-name="text/Mono"><span class="ds-type-meta"><b>Mono</b><br>13 · Regular · IBM Plex Mono</span><span class="mono" style="font-family:var(--font-family-mono);font-size:13px">PMT-8842190 · 158,49 BYN</span></div>
+</section>
+<section class="ds-block" id="scale" data-name="Spacing · Radius · Elevation · Layout">
+  <header class="ds-block-head"><h2 class="text-h2">Spacing · Radius · Elevation · Layout</h2></header>
+  <div class="ds-sub"><h3 class="text-h3">Spacing</h3><div class="ds-space" data-name="spacing/2xs"><span class="ds-swatch-name">spacing/2xs</span><span class="ds-space-bar" style="width:4px"></span><span class="ds-swatch-hex">4px</span></div><div class="ds-space" data-name="spacing/xs"><span class="ds-swatch-name">spacing/xs</span><span class="ds-space-bar" style="width:8px"></span><span class="ds-swatch-hex">8px</span></div><div class="ds-space" data-name="spacing/sm"><span class="ds-swatch-name">spacing/sm</span><span class="ds-space-bar" style="width:12px"></span><span class="ds-swatch-hex">12px</span></div><div class="ds-space" data-name="spacing/md"><span class="ds-swatch-name">spacing/md</span><span class="ds-space-bar" style="width:16px"></span><span class="ds-swatch-hex">16px</span></div><div class="ds-space" data-name="spacing/lg"><span class="ds-swatch-name">spacing/lg</span><span class="ds-space-bar" style="width:24px"></span><span class="ds-swatch-hex">24px</span></div><div class="ds-space" data-name="spacing/xl"><span class="ds-swatch-name">spacing/xl</span><span class="ds-space-bar" style="width:32px"></span><span class="ds-swatch-hex">32px</span></div><div class="ds-space" data-name="spacing/2xl"><span class="ds-swatch-name">spacing/2xl</span><span class="ds-space-bar" style="width:48px"></span><span class="ds-swatch-hex">48px</span></div><div class="ds-space" data-name="spacing/3xl"><span class="ds-swatch-name">spacing/3xl</span><span class="ds-space-bar" style="width:64px"></span><span class="ds-swatch-hex">64px</span></div></div>
+  <div class="ds-sub"><h3 class="text-h3">Radius</h3><div class="ds-swatches"><div class="ds-swatch" data-name="radius/sm"><span class="ds-chip ds-radius" style="border-radius:3px"></span><span class="ds-swatch-name">radius/sm</span><span class="ds-swatch-hex">3px</span></div><div class="ds-swatch" data-name="radius/md"><span class="ds-chip ds-radius" style="border-radius:6px"></span><span class="ds-swatch-name">radius/md</span><span class="ds-swatch-hex">6px</span></div><div class="ds-swatch" data-name="radius/lg"><span class="ds-chip ds-radius" style="border-radius:10px"></span><span class="ds-swatch-name">radius/lg</span><span class="ds-swatch-hex">10px</span></div><div class="ds-swatch" data-name="radius/full"><span class="ds-chip ds-radius" style="border-radius:28px"></span><span class="ds-swatch-name">radius/full</span><span class="ds-swatch-hex">999px</span></div></div></div>
+  <div class="ds-sub"><h3 class="text-h3">Elevation</h3><div class="ds-swatches"><div class="ds-swatch" data-name="shadow/card"><span class="ds-chip ds-elev" style="box-shadow:0 1px 2px rgba(30,41,38,0.05)"></span><span class="ds-swatch-name">shadow/card</span><span class="ds-swatch-hex">y1 · blur 2 · 5%</span></div><div class="ds-swatch" data-name="shadow/popover"><span class="ds-chip ds-elev" style="box-shadow:0 4px 12px rgba(30,41,38,0.07)"></span><span class="ds-swatch-name">shadow/popover</span><span class="ds-swatch-hex">y4 · blur 12 · 7%</span></div><div class="ds-swatch" data-name="shadow/modal"><span class="ds-chip ds-elev" style="box-shadow:0 12px 32px rgba(30,41,38,0.12)"></span><span class="ds-swatch-name">shadow/modal</span><span class="ds-swatch-hex">y12 · blur 32 · 12%</span></div></div></div>
+  <div class="ds-sub"><h3 class="text-h3">Control height · layout</h3><div class="ds-swatches"><div class="ds-swatch" data-name="control/sm"><span class="ds-control" style="height:28px">sm</span><span class="ds-swatch-hex">28px</span></div><div class="ds-swatch" data-name="control/md"><span class="ds-control" style="height:40px">md</span><span class="ds-swatch-hex">40px</span></div><div class="ds-swatch" data-name="control/lg"><span class="ds-control" style="height:48px">lg</span><span class="ds-swatch-hex">48px</span></div><div class="ds-swatch"><span class="ds-swatch-name">Frame 1440 · content 1280</span><span class="ds-swatch-hex">12 cols · gutter 24 · row 36</span></div></div></div>
+</section>
+<section class="ds-block" id="icons" data-name="Icons">
+  <header class="ds-block-head"><h2 class="text-h2">Icons</h2><p class="ds-intro">Отдельный компонент на каждую иконку: Icon/name. Цвет наследуется от текста.</p></header>
+  <div class="ds-sub"><h3 class="text-h3">UI</h3><div class="ds-icons"><div class="ds-icon" data-name="Icon/chevron"><span class="ds-icon-box"><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">chevron</span></div><div class="ds-icon" data-name="Icon/check"><span class="ds-icon-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">check</span></div><div class="ds-icon" data-name="Icon/sortAsc"><span class="ds-icon-box"><svg class="sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg></span><span class="ds-swatch-name">sortAsc</span></div><div class="ds-icon" data-name="Icon/sortNone"><span class="ds-icon-box"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 0.5L8 4H2L5 0.5Z" fill="currentColor" opacity="0.3"/><path d="M5 9.5L2 6H8L5 9.5Z" fill="currentColor" opacity="0.3"/></svg></span><span class="ds-swatch-name">sortNone</span></div><div class="ds-icon" data-name="Icon/dot"><span class="ds-icon-box"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg></span><span class="ds-swatch-name">dot</span></div><div class="ds-icon" data-name="Icon/eye"><span class="ds-icon-box"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></span><span class="ds-swatch-name">eye</span></div><div class="ds-icon" data-name="Icon/flag"><span class="ds-icon-box"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">flag</span></div><div class="ds-icon" data-name="Icon/close"><span class="ds-icon-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="ds-swatch-name">close</span></div><div class="ds-icon" data-name="Icon/search"><span class="ds-icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="ds-swatch-name">search</span></div><div class="ds-icon" data-name="Icon/toastCheck"><span class="ds-icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor" opacity="0.15"/><path d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">toastCheck</span></div><div class="ds-icon" data-name="Icon/toastInfo"><span class="ds-icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor" opacity="0.15"/><path d="M10 6v5M10 14h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="ds-swatch-name">toastInfo</span></div><div class="ds-icon" data-name="Icon/download"><span class="ds-icon-box"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0l-3-3m3 3l3-3M2 12v2h12v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">download</span></div><div class="ds-icon" data-name="Icon/edit"><span class="ds-icon-box"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 2.5l3 3L6 13H3v-3l7.5-7.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">edit</span></div><div class="ds-icon" data-name="Icon/trash"><span class="ds-icon-box"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 4h11M6 4V2.5h4V4M4 4l.7 9.5h6.6L12 4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">trash</span></div><div class="ds-icon" data-name="Icon/paperclip"><span class="ds-icon-box"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 7.5L8 12.5a3.2 3.2 0 0 1-4.5-4.5l5.3-5.3a2.1 2.1 0 0 1 3 3L6.5 11a1 1 0 0 1-1.5-1.5L10 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="ds-swatch-name">paperclip</span></div><div class="ds-icon" data-name="Icon/logo"><span class="ds-icon-box"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M11 23V9h6.2a4.6 4.6 0 0 1 0 9.2H11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">logo</span></div></div></div>
+  <div class="ds-sub"><h3 class="text-h3">Navigation</h3><div class="ds-icons"><div class="ds-icon" data-name="Icon/nav/payments"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 6.5h13" stroke="currentColor" stroke-width="1.3"/></svg></span><span class="ds-swatch-name">nav/payments</span></div><div class="ds-icon" data-name="Icon/nav/list"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 4h9M5 8h9M5 12h9M2 4h.01M2 8h.01M2 12h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span><span class="ds-swatch-name">nav/list</span></div><div class="ds-icon" data-name="Icon/nav/shield"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5l5.5 2v4c0 3.2-2.3 5.8-5.5 7-3.2-1.2-5.5-3.8-5.5-7v-4l5.5-2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/shield</span></div><div class="ds-icon" data-name="Icon/nav/megaphone"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 6.5v3h2.5L10 13V3L4.5 6.5H2ZM12.5 6a2.5 2.5 0 0 1 0 4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/megaphone</span></div><div class="ds-icon" data-name="Icon/nav/users"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 13.5c.6-2.3 2.3-3.5 4.5-3.5s3.9 1.2 4.5 3.5M11 3.2a2.4 2.4 0 0 1 0 4.6M12.5 10.2c1 .5 1.7 1.6 2 3.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="ds-swatch-name">nav/users</span></div><div class="ds-icon" data-name="Icon/nav/report"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 1.5h6l3 3v10h-9v-13Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6 8.5v3M8 6.5v5M10 9.5v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="ds-swatch-name">nav/report</span></div><div class="ds-icon" data-name="Icon/nav/store"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 6.5l1-4h10l1 4M2.5 6.5v7h11v-7M2 6.5h12M6.5 13.5V10h3v3.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/store</span></div><div class="ds-icon" data-name="Icon/nav/building"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 14.5v-12h7v12M9.5 6.5h4v8M1 14.5h14M5 5h2M5 8h2M5 11h2" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/building</span></div><div class="ds-icon" data-name="Icon/nav/repeat"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 7a5 5 0 0 1 9-2.5M13.5 9a5 5 0 0 1-9 2.5M11.5 1.5v3h-3M4.5 14.5v-3h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/repeat</span></div><div class="ds-icon" data-name="Icon/nav/ban"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 3.5l9 9" stroke="currentColor" stroke-width="1.3"/></svg></span><span class="ds-swatch-name">nav/ban</span></div><div class="ds-icon" data-name="Icon/nav/log"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 3h12M2 6.5h8M2 10h12M2 13.5h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="ds-swatch-name">nav/log</span></div><div class="ds-icon" data-name="Icon/nav/edit"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 2.5l3 3L6 13H3v-3l7.5-7.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/edit</span></div><div class="ds-icon" data-name="Icon/nav/bell"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 11V7a4 4 0 0 1 8 0v4l1.5 1.5h-11L4 11ZM6.5 14a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/bell</span></div><div class="ds-icon" data-name="Icon/nav/payout"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5v9m0 0L5 7.5m3 3l3-3M2 12.5h12v2H2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/payout</span></div><div class="ds-icon" data-name="Icon/nav/safe"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.3"/></svg></span><span class="ds-swatch-name">nav/safe</span></div><div class="ds-icon" data-name="Icon/nav/wallet"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 4.5h11.5v9H2v-9ZM2 4.5l8.5-3v3M10.5 9h1.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/wallet</span></div><div class="ds-icon" data-name="Icon/nav/stack"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5l6.5 3.5L8 8.5 1.5 5 8 1.5ZM1.5 8.5L8 12l6.5-3.5M1.5 11.5L8 15l6.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/stack</span></div><div class="ds-icon" data-name="Icon/nav/chart"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 14.5h12.5M3.5 11l3-3.5 2.5 2 4.5-5.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ds-swatch-name">nav/chart</span></div><div class="ds-icon" data-name="Icon/nav/sub"><span class="ds-icon-box"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2.5" width="12" height="11.5" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2 6h12M5 1v3M11 1v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="ds-swatch-name">nav/sub</span></div></div></div>
+</section>
+<div class="ds-chapter" id="chapter-2"><span class="ds-chapter-num">02</span><h1 class="text-h1">Components</h1></div>
+<section class="ds-block" id="button" data-name="Button">
+  <header class="ds-block-head"><h2 class="text-h2">Button</h2><p class="ds-intro">Primary — одно главное действие на форме. Secondary — остальные действия. Ghost — второстепенные действия в шапке и тулбаре. Destructive — удаление.</p></header>
+  <div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(4, minmax(0, 1fr))"><span></span><span>Default</span><span>Hover</span><span>Focus</span><span>Disabled</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(4, minmax(0, 1fr))"><span class="ds-row-label">Primary</span><div class="ds-cell" data-name="Button / Primary / Default"><button type="button" class="btn btn-primary"  >Искать</button></div><div class="ds-cell" data-name="Button / Primary / Hover"><button type="button" class="btn btn-primary is-hover"  >Искать</button></div><div class="ds-cell" data-name="Button / Primary / Focus"><button type="button" class="btn btn-primary is-focus"  >Искать</button></div><div class="ds-cell" data-name="Button / Primary / Disabled"><button disabled type="button" class="btn btn-primary"  >Искать</button></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(4, minmax(0, 1fr))"><span class="ds-row-label">Secondary</span><div class="ds-cell" data-name="Button / Secondary / Default"><button type="button" class="btn btn-secondary"  >Искать</button></div><div class="ds-cell" data-name="Button / Secondary / Hover"><button type="button" class="btn btn-secondary is-hover"  >Искать</button></div><div class="ds-cell" data-name="Button / Secondary / Focus"><button type="button" class="btn btn-secondary is-focus"  >Искать</button></div><div class="ds-cell" data-name="Button / Secondary / Disabled"><button disabled type="button" class="btn btn-secondary"  >Искать</button></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(4, minmax(0, 1fr))"><span class="ds-row-label">Ghost</span><div class="ds-cell" data-name="Button / Ghost / Default"><button type="button" class="btn btn-ghost"  >Искать</button></div><div class="ds-cell" data-name="Button / Ghost / Hover"><button type="button" class="btn btn-ghost is-hover"  >Искать</button></div><div class="ds-cell" data-name="Button / Ghost / Focus"><button type="button" class="btn btn-ghost is-focus"  >Искать</button></div><div class="ds-cell" data-name="Button / Ghost / Disabled"><button disabled type="button" class="btn btn-ghost"  >Искать</button></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(4, minmax(0, 1fr))"><span class="ds-row-label">Destructive</span><div class="ds-cell" data-name="Button / Destructive / Default"><button type="button" class="btn btn-destructive"  >Удалить</button></div><div class="ds-cell" data-name="Button / Destructive / Hover"><button type="button" class="btn btn-destructive is-hover"  >Удалить</button></div><div class="ds-cell" data-name="Button / Destructive / Focus"><button type="button" class="btn btn-destructive is-focus"  >Удалить</button></div><div class="ds-cell" data-name="Button / Destructive / Disabled"><button disabled type="button" class="btn btn-destructive"  >Удалить</button></div></div></div>
+</section><section class="ds-block" id="button-size" data-name="Button · size">
+  <header class="ds-block-head"><h2 class="text-h2">Button · size</h2><p class="ds-intro">md — по умолчанию в формах; sm — тулбары таблиц; lg — редкие крупные CTA.</p></header>
+  <div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span></span><span>sm · 28</span><span>md · 40</span><span>lg · 48</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">Primary</span><div class="ds-cell" data-name="Button size / Primary / sm · 28"><button type="button" class="btn btn-primary btn-sm"  >Искать</button></div><div class="ds-cell" data-name="Button size / Primary / md · 40"><button type="button" class="btn btn-primary"  >Искать</button></div><div class="ds-cell" data-name="Button size / Primary / lg · 48"><button type="button" class="btn btn-primary btn-lg"  >Искать</button></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">Secondary</span><div class="ds-cell" data-name="Button size / Secondary / sm · 28"><button type="button" class="btn btn-secondary btn-sm"  >Искать</button></div><div class="ds-cell" data-name="Button size / Secondary / md · 40"><button type="button" class="btn btn-secondary"  >Искать</button></div><div class="ds-cell" data-name="Button size / Secondary / lg · 48"><button type="button" class="btn btn-secondary btn-lg"  >Искать</button></div></div></div>
+</section><section class="ds-block" id="icon-button" data-name="Icon button">
+  <header class="ds-block-head"><h2 class="text-h2">Icon button</h2><p class="ds-intro">Действия в строке таблицы. Всегда с aria-label.</p></header>
+  <div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span></span><span>Default</span><span>Hover</span><span>Focus</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">eye</span><div class="ds-cell" data-name="Icon button / eye / Default"><div class="ds-table-ctx"><button type="button" class="icon-btn" aria-label="Детали"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button></div></div><div class="ds-cell" data-name="Icon button / eye / Hover"><div class="ds-table-ctx"><button type="button" class="icon-btn is-hover" aria-label="Детали"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button></div></div><div class="ds-cell" data-name="Icon button / eye / Focus"><div class="ds-table-ctx"><button type="button" class="icon-btn is-focus" aria-label="Детали"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button></div></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">flag</span><div class="ds-cell" data-name="Icon button / flag / Default"><div class="ds-table-ctx"><button type="button" class="icon-btn" aria-label="Пометить"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button></div></div><div class="ds-cell" data-name="Icon button / flag / Hover"><div class="ds-table-ctx"><button type="button" class="icon-btn is-hover" aria-label="Пометить"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button></div></div><div class="ds-cell" data-name="Icon button / flag / Focus"><div class="ds-table-ctx"><button type="button" class="icon-btn is-focus" aria-label="Пометить"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 1v14M3 2h9l-2 3 2 3H3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button></div></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">edit</span><div class="ds-cell" data-name="Icon button / edit / Default"><div class="ds-table-ctx"><button type="button" class="icon-btn" aria-label="Редактировать"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 2.5l3 3L6 13H3v-3l7.5-7.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button></div></div><div class="ds-cell" data-name="Icon button / edit / Hover"><div class="ds-table-ctx"><button type="button" class="icon-btn is-hover" aria-label="Редактировать"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 2.5l3 3L6 13H3v-3l7.5-7.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button></div></div><div class="ds-cell" data-name="Icon button / edit / Focus"><div class="ds-table-ctx"><button type="button" class="icon-btn is-focus" aria-label="Редактировать"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 2.5l3 3L6 13H3v-3l7.5-7.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button></div></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">download</span><div class="ds-cell" data-name="Icon button / download / Default"><div class="ds-table-ctx"><button type="button" class="icon-btn" aria-label="Скачать"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0l-3-3m3 3l3-3M2 12v2h12v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="ds-cell" data-name="Icon button / download / Hover"><div class="ds-table-ctx"><button type="button" class="icon-btn is-hover" aria-label="Скачать"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0l-3-3m3 3l3-3M2 12v2h12v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="ds-cell" data-name="Icon button / download / Focus"><div class="ds-table-ctx"><button type="button" class="icon-btn is-focus" aria-label="Скачать"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0l-3-3m3 3l3-3M2 12v2h12v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">trash</span><div class="ds-cell" data-name="Icon button / trash / Default"><div class="ds-table-ctx"><button type="button" class="icon-btn" aria-label="Удалить"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 4h11M6 4V2.5h4V4M4 4l.7 9.5h6.6L12 4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button></div></div><div class="ds-cell" data-name="Icon button / trash / Hover"><div class="ds-table-ctx"><button type="button" class="icon-btn is-hover" aria-label="Удалить"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 4h11M6 4V2.5h4V4M4 4l.7 9.5h6.6L12 4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button></div></div><div class="ds-cell" data-name="Icon button / trash / Focus"><div class="ds-table-ctx"><button type="button" class="icon-btn is-focus" aria-label="Удалить"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 4h11M6 4V2.5h4V4M4 4l.7 9.5h6.6L12 4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button></div></div></div></div>
+</section><section class="ds-block" id="button-misc" data-name="Button with icon · Link · Breadcrumb">
+  <header class="ds-block-head"><h2 class="text-h2">Button with icon · Link · Breadcrumb</h2></header>
+  <div class="ds-inline"><button type="button" class="btn btn-secondary"  ><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 7.5L8 12.5a3.2 3.2 0 0 1-4.5-4.5l5.3-5.3a2.1 2.1 0 0 1 3 3L6.5 11a1 1 0 0 1-1.5-1.5L10 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span>Прикрепите файл</span></button><button type="button" class="link-btn">PMT-8842190</button><a class="crumb" href="#">← Список пользователей</a></div>
+</section>
+<section class="ds-block" id="input" data-name="Text input">
+  <header class="ds-block-head"><h2 class="text-h2">Text input</h2><p class="ds-intro">Высота 40. Плейсхолдер равен имени поля. Ошибка — рамка error и сообщение под полем; у заполненного поля тултип показывает имя поля.</p></header>
+  <div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(6, minmax(0, 1fr))"><span></span><span>Default</span><span>Hover</span><span>Focus</span><span>Filled</span><span>Disabled</span><span>Error</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(6, minmax(0, 1fr))"><span class="ds-row-label">Text</span><div class="ds-cell" data-name="Input / Text / Default"><div class="field-wrap t-text" data-name="UID операции"><input id="in-1" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="UID операции" aria-label="UID операции"   data-field="UID операции" data-tip-name="UID операции"  aria-describedby="in-1-err"/><div class="field-error" id="in-1-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Text / Hover"><div class="field-wrap t-text" data-name="UID операции"><input id="in-2" class="field-input is-hover" type="text" autocomplete="off" spellcheck="false" value="" placeholder="UID операции" aria-label="UID операции"   data-field="UID операции" data-tip-name="UID операции"  aria-describedby="in-2-err"/><div class="field-error" id="in-2-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Text / Focus"><div class="field-wrap t-text" data-name="UID операции"><input id="in-3" class="field-input is-focus" type="text" autocomplete="off" spellcheck="false" value="" placeholder="UID операции" aria-label="UID операции"   data-field="UID операции" data-tip-name="UID операции"  aria-describedby="in-3-err"/><div class="field-error" id="in-3-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Text / Filled"><div class="field-wrap t-text" data-name="UID операции"><input id="in-4" class="field-input filled" type="text" autocomplete="off" spellcheck="false" value="PMT-8842190" placeholder="UID операции" aria-label="UID операции"   data-field="UID операции" data-tip-name="UID операции"  aria-describedby="in-4-err"/><div class="field-error" id="in-4-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Text / Disabled"><div class="field-wrap t-text" data-name="UID операции"><input disabled id="in-5" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="UID операции" aria-label="UID операции"   data-field="UID операции" data-tip-name="UID операции"  aria-describedby="in-5-err"/><div class="field-error" id="in-5-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Text / Error"><div class="field-wrap t-text" data-name="UID операции"><input id="in-6" class="field-input has-error filled" type="text" autocomplete="off" spellcheck="false" value="PMT-8842190" placeholder="UID операции" aria-label="UID операции"   data-field="UID операции" data-tip-name="UID операции"  aria-describedby="in-6-err" aria-invalid="true"/><div class="field-error" id="in-6-err">Операция не найдена</div></div></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(6, minmax(0, 1fr))"><span class="ds-row-label">Amount</span><div class="ds-cell" data-name="Input / Amount / Default"><div class="field-wrap w-sm t-text" data-name="Сумма"><input id="in-7" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Сумма" aria-label="Сумма"  inputmode="decimal" data-field="Сумма" data-tip-name="Сумма"  aria-describedby="in-7-err"/><div class="field-error" id="in-7-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Amount / Hover"><div class="field-wrap w-sm t-text" data-name="Сумма"><input id="in-8" class="field-input is-hover" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Сумма" aria-label="Сумма"  inputmode="decimal" data-field="Сумма" data-tip-name="Сумма"  aria-describedby="in-8-err"/><div class="field-error" id="in-8-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Amount / Focus"><div class="field-wrap w-sm t-text" data-name="Сумма"><input id="in-9" class="field-input is-focus" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Сумма" aria-label="Сумма"  inputmode="decimal" data-field="Сумма" data-tip-name="Сумма"  aria-describedby="in-9-err"/><div class="field-error" id="in-9-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Amount / Filled"><div class="field-wrap w-sm t-text" data-name="Сумма"><input id="in-10" class="field-input filled" type="text" autocomplete="off" spellcheck="false" value="145.00" placeholder="Сумма" aria-label="Сумма"  inputmode="decimal" data-field="Сумма" data-tip-name="Сумма"  aria-describedby="in-10-err"/><div class="field-error" id="in-10-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Amount / Disabled"><div class="field-wrap w-sm t-text" data-name="Сумма"><input disabled id="in-11" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Сумма" aria-label="Сумма"  inputmode="decimal" data-field="Сумма" data-tip-name="Сумма"  aria-describedby="in-11-err"/><div class="field-error" id="in-11-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Amount / Error"><div class="field-wrap w-sm t-text" data-name="Сумма"><input id="in-12" class="field-input has-error filled" type="text" autocomplete="off" spellcheck="false" value="145.00" placeholder="Сумма" aria-label="Сумма"  inputmode="decimal" data-field="Сумма" data-tip-name="Сумма"  aria-describedby="in-12-err" aria-invalid="true"/><div class="field-error" id="in-12-err">Введите сумму, например 145.00</div></div></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(6, minmax(0, 1fr))"><span class="ds-row-label">Card number</span><div class="ds-cell" data-name="Input / Card number / Default"><div class="field-wrap t-cardnum" data-name="Маска карты"><input id="in-13" class="field-input is-cardnum" type="text" autocomplete="off" spellcheck="false" value="" placeholder="123456 xxxx 1234" aria-label="Маска карты" inputmode="numeric" maxlength="4" data-digits  data-field="Маска карты" data-tip-name="Маска карты"  aria-describedby="in-13-err"/><div class="field-error" id="in-13-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Card number / Hover"><div class="field-wrap t-cardnum" data-name="Маска карты"><input id="in-14" class="field-input is-hover is-cardnum" type="text" autocomplete="off" spellcheck="false" value="" placeholder="123456 xxxx 1234" aria-label="Маска карты" inputmode="numeric" maxlength="4" data-digits  data-field="Маска карты" data-tip-name="Маска карты"  aria-describedby="in-14-err"/><div class="field-error" id="in-14-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Card number / Focus"><div class="field-wrap t-cardnum" data-name="Маска карты"><input id="in-15" class="field-input is-focus is-cardnum" type="text" autocomplete="off" spellcheck="false" value="" placeholder="123456 xxxx 1234" aria-label="Маска карты" inputmode="numeric" maxlength="4" data-digits  data-field="Маска карты" data-tip-name="Маска карты"  aria-describedby="in-15-err"/><div class="field-error" id="in-15-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Card number / Filled"><div class="field-wrap t-cardnum" data-name="Маска карты"><input id="in-16" class="field-input is-cardnum filled" type="text" autocomplete="off" spellcheck="false" value="472839 xxxx 5829" placeholder="123456 xxxx 1234" aria-label="Маска карты" inputmode="numeric" maxlength="4" data-digits  data-field="Маска карты" data-tip-name="Маска карты"  aria-describedby="in-16-err"/><div class="field-error" id="in-16-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Card number / Disabled"><div class="field-wrap t-cardnum" data-name="Маска карты"><input disabled id="in-17" class="field-input is-cardnum" type="text" autocomplete="off" spellcheck="false" value="" placeholder="123456 xxxx 1234" aria-label="Маска карты" inputmode="numeric" maxlength="4" data-digits  data-field="Маска карты" data-tip-name="Маска карты"  aria-describedby="in-17-err"/><div class="field-error" id="in-17-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Card number / Error"><div class="field-wrap t-cardnum" data-name="Маска карты"><input id="in-18" class="field-input is-cardnum has-error filled" type="text" autocomplete="off" spellcheck="false" value="472839 xxxx 5829" placeholder="123456 xxxx 1234" aria-label="Маска карты" inputmode="numeric" maxlength="4" data-digits  data-field="Маска карты" data-tip-name="Маска карты"  aria-describedby="in-18-err" aria-invalid="true"/><div class="field-error" id="in-18-err">Формат маски: 123456 xxxx 1234</div></div></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(6, minmax(0, 1fr))"><span class="ds-row-label">Date</span><div class="ds-cell" data-name="Input / Date / Default"><div class="field-wrap t-date" data-name="С"><input id="in-19" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="дд.мм.гггг" aria-label="С" inputmode="numeric" maxlength="10" data-date  data-field="С" data-tip-name="С"  aria-describedby="in-19-err"/><div class="field-error" id="in-19-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Date / Hover"><div class="field-wrap t-date" data-name="С"><input id="in-20" class="field-input is-hover" type="text" autocomplete="off" spellcheck="false" value="" placeholder="дд.мм.гггг" aria-label="С" inputmode="numeric" maxlength="10" data-date  data-field="С" data-tip-name="С"  aria-describedby="in-20-err"/><div class="field-error" id="in-20-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Date / Focus"><div class="field-wrap t-date" data-name="С"><input id="in-21" class="field-input is-focus" type="text" autocomplete="off" spellcheck="false" value="" placeholder="дд.мм.гггг" aria-label="С" inputmode="numeric" maxlength="10" data-date  data-field="С" data-tip-name="С"  aria-describedby="in-21-err"/><div class="field-error" id="in-21-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Date / Filled"><div class="field-wrap t-date" data-name="С"><input id="in-22" class="field-input filled" type="text" autocomplete="off" spellcheck="false" value="25.10.2026" placeholder="дд.мм.гггг" aria-label="С" inputmode="numeric" maxlength="10" data-date  data-field="С" data-tip-name="С"  aria-describedby="in-22-err"/><div class="field-error" id="in-22-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Date / Disabled"><div class="field-wrap t-date" data-name="С"><input disabled id="in-23" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="дд.мм.гггг" aria-label="С" inputmode="numeric" maxlength="10" data-date  data-field="С" data-tip-name="С"  aria-describedby="in-23-err"/><div class="field-error" id="in-23-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Date / Error"><div class="field-wrap t-date" data-name="С"><input id="in-24" class="field-input has-error filled" type="text" autocomplete="off" spellcheck="false" value="25.10.2026" placeholder="дд.мм.гггг" aria-label="С" inputmode="numeric" maxlength="10" data-date  data-field="С" data-tip-name="С"  aria-describedby="in-24-err" aria-invalid="true"/><div class="field-error" id="in-24-err">Введите дату в формате дд.мм.гггг</div></div></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(6, minmax(0, 1fr))"><span class="ds-row-label">Search</span><div class="ds-cell" data-name="Input / Search / Default"><div class="field-wrap t-search" data-name="Поиск"><input id="in-25" class="field-input is-search" type="search" autocomplete="off" spellcheck="false" value="" placeholder="Введите данные для поиска…" aria-label="Поиск"   data-field="Поиск" data-tip-name="Поиск"  aria-describedby="in-25-err"/><div class="field-error" id="in-25-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Search / Hover"><div class="field-wrap t-search" data-name="Поиск"><input id="in-26" class="field-input is-hover is-search" type="search" autocomplete="off" spellcheck="false" value="" placeholder="Введите данные для поиска…" aria-label="Поиск"   data-field="Поиск" data-tip-name="Поиск"  aria-describedby="in-26-err"/><div class="field-error" id="in-26-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Search / Focus"><div class="field-wrap t-search" data-name="Поиск"><input id="in-27" class="field-input is-focus is-search" type="search" autocomplete="off" spellcheck="false" value="" placeholder="Введите данные для поиска…" aria-label="Поиск"   data-field="Поиск" data-tip-name="Поиск"  aria-describedby="in-27-err"/><div class="field-error" id="in-27-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Search / Filled"><div class="field-wrap t-search" data-name="Поиск"><input id="in-28" class="field-input is-search filled" type="search" autocomplete="off" spellcheck="false" value="Технопарк" placeholder="Введите данные для поиска…" aria-label="Поиск"   data-field="Поиск" data-tip-name="Поиск"  aria-describedby="in-28-err"/><div class="field-error" id="in-28-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Search / Disabled"><div class="field-wrap t-search" data-name="Поиск"><input disabled id="in-29" class="field-input is-search" type="search" autocomplete="off" spellcheck="false" value="" placeholder="Введите данные для поиска…" aria-label="Поиск"   data-field="Поиск" data-tip-name="Поиск"  aria-describedby="in-29-err"/><div class="field-error" id="in-29-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Search / Error"><div class="field-wrap t-search" data-name="Поиск"><input id="in-30" class="field-input is-search has-error filled" type="search" autocomplete="off" spellcheck="false" value="Технопарк" placeholder="Введите данные для поиска…" aria-label="Поиск"   data-field="Поиск" data-tip-name="Поиск"  aria-describedby="in-30-err" aria-invalid="true"/><div class="field-error" id="in-30-err">Минимум 2 символа</div></div></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(6, minmax(0, 1fr))"><span class="ds-row-label">Textarea</span><div class="ds-cell" data-name="Input / Textarea / Default"><div class="field-wrap t-textarea" data-name="UIDs"><textarea id="in-31" class="field-input field-textarea" rows="4" placeholder="Пожалуйста, разделяйте UID переводом строки" aria-label="UIDs" spellcheck="false" data-field="UIDs" data-tip-name="UIDs"  aria-describedby="in-31-err"></textarea><div class="field-error" id="in-31-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Textarea / Hover"><div class="field-wrap t-textarea" data-name="UIDs"><textarea id="in-32" class="field-input field-textarea is-hover" rows="4" placeholder="Пожалуйста, разделяйте UID переводом строки" aria-label="UIDs" spellcheck="false" data-field="UIDs" data-tip-name="UIDs"  aria-describedby="in-32-err"></textarea><div class="field-error" id="in-32-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Textarea / Focus"><div class="field-wrap t-textarea" data-name="UIDs"><textarea id="in-33" class="field-input field-textarea is-focus" rows="4" placeholder="Пожалуйста, разделяйте UID переводом строки" aria-label="UIDs" spellcheck="false" data-field="UIDs" data-tip-name="UIDs"  aria-describedby="in-33-err"></textarea><div class="field-error" id="in-33-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Textarea / Filled"><div class="field-wrap t-textarea" data-name="UIDs"><textarea id="in-34" class="field-input field-textarea" rows="4" placeholder="Пожалуйста, разделяйте UID переводом строки" aria-label="UIDs" spellcheck="false" data-field="UIDs" data-tip-name="UIDs"  aria-describedby="in-34-err">PMT-8842190
+PMT-8842177</textarea><div class="field-error" id="in-34-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Textarea / Disabled"><div class="field-wrap t-textarea" data-name="UIDs"><textarea disabled id="in-35" class="field-input field-textarea" rows="4" placeholder="Пожалуйста, разделяйте UID переводом строки" aria-label="UIDs" spellcheck="false" data-field="UIDs" data-tip-name="UIDs"  aria-describedby="in-35-err"></textarea><div class="field-error" id="in-35-err" hidden></div></div></div><div class="ds-cell" data-name="Input / Textarea / Error"><div class="field-wrap t-textarea" data-name="UIDs"><textarea id="in-36" class="field-input field-textarea has-error" rows="4" placeholder="Пожалуйста, разделяйте UID переводом строки" aria-label="UIDs" spellcheck="false" data-field="UIDs" data-tip-name="UIDs"  aria-describedby="in-36-err" aria-invalid="true">PMT-8842190
+PMT-8842177</textarea><div class="field-error" id="in-36-err">Укажите хотя бы один UID или e-mail</div></div></div></div></div>
+</section>
+<section class="ds-block" id="select" data-name="Select">
+  <header class="ds-block-head"><h2 class="text-h2">Select</h2><p class="ds-intro">Список с выбором одного значения; «Не выбрано» сбрасывает поле. Мультивыбор включается на экранах отчётов: список не закрывается после выбора, в поле показываются первые значения и счётчик.</p></header>
+  <div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(6, minmax(0, 1fr))"><span></span><span>Default</span><span>Hover</span><span>Focus</span><span>Filled</span><span>Disabled</span><span>Error</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(6, minmax(0, 1fr))"><span class="ds-row-label">Single</span><div class="ds-cell" data-name="Select / Single / Default"><div class="field-wrap t-select"><div class="field-select" id="sel-38" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="sel-38-lb" aria-label="Статус" ><span class="value">Выберите статус</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="sel-38-lb" role="listbox" aria-label="Статус" hidden><li role="option" id="sel-38-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="sel-38-lb-1" class="opt" data-value="Одобрена" aria-selected="false">Одобрена</li><li role="option" id="sel-38-lb-2" class="opt" data-value="В обработке" aria-selected="false">В обработке</li><li role="option" id="sel-38-lb-3" class="opt" data-value="Отклонена" aria-selected="false">Отклонена</li><li role="option" id="sel-38-lb-4" class="opt" data-value="Возврат" aria-selected="false">Возврат</li><li role="option" id="sel-38-lb-5" class="opt" data-value="Отменена" aria-selected="false">Отменена</li></ul></div></div><div class="ds-cell" data-name="Select / Single / Hover"><div class="field-wrap t-select"><div class="field-select is-hover" id="sel-39" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="sel-39-lb" aria-label="Статус" ><span class="value">Выберите статус</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="sel-39-lb" role="listbox" aria-label="Статус" hidden><li role="option" id="sel-39-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="sel-39-lb-1" class="opt" data-value="Одобрена" aria-selected="false">Одобрена</li><li role="option" id="sel-39-lb-2" class="opt" data-value="В обработке" aria-selected="false">В обработке</li><li role="option" id="sel-39-lb-3" class="opt" data-value="Отклонена" aria-selected="false">Отклонена</li><li role="option" id="sel-39-lb-4" class="opt" data-value="Возврат" aria-selected="false">Возврат</li><li role="option" id="sel-39-lb-5" class="opt" data-value="Отменена" aria-selected="false">Отменена</li></ul></div></div><div class="ds-cell" data-name="Select / Single / Focus"><div class="field-wrap t-select"><div class="field-select is-focus" id="sel-40" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="sel-40-lb" aria-label="Статус" ><span class="value">Выберите статус</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="sel-40-lb" role="listbox" aria-label="Статус" hidden><li role="option" id="sel-40-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="sel-40-lb-1" class="opt" data-value="Одобрена" aria-selected="false">Одобрена</li><li role="option" id="sel-40-lb-2" class="opt" data-value="В обработке" aria-selected="false">В обработке</li><li role="option" id="sel-40-lb-3" class="opt" data-value="Отклонена" aria-selected="false">Отклонена</li><li role="option" id="sel-40-lb-4" class="opt" data-value="Возврат" aria-selected="false">Возврат</li><li role="option" id="sel-40-lb-5" class="opt" data-value="Отменена" aria-selected="false">Отменена</li></ul></div></div><div class="ds-cell" data-name="Select / Single / Filled"><div class="field-wrap t-select"><div class="field-select filled" id="sel-41" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="sel-41-lb" aria-label="Статус" ><span class="value">Одобрена</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="sel-41-lb" role="listbox" aria-label="Статус" hidden><li role="option" id="sel-41-lb-0" class="opt is-reset" data-value="" aria-selected="false">Не выбрано</li><li role="option" id="sel-41-lb-1" class="opt" data-value="Одобрена" aria-selected="true">Одобрена</li><li role="option" id="sel-41-lb-2" class="opt" data-value="В обработке" aria-selected="false">В обработке</li><li role="option" id="sel-41-lb-3" class="opt" data-value="Отклонена" aria-selected="false">Отклонена</li><li role="option" id="sel-41-lb-4" class="opt" data-value="Возврат" aria-selected="false">Возврат</li><li role="option" id="sel-41-lb-5" class="opt" data-value="Отменена" aria-selected="false">Отменена</li></ul></div></div><div class="ds-cell" data-name="Select / Single / Disabled"><div class="field-wrap t-select"><div class="field-select is-disabled" id="sel-42" tabindex="-1" aria-disabled="true" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="sel-42-lb" aria-label="Статус" ><span class="value">Выберите статус</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="sel-42-lb" role="listbox" aria-label="Статус" hidden><li role="option" id="sel-42-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="sel-42-lb-1" class="opt" data-value="Одобрена" aria-selected="false">Одобрена</li><li role="option" id="sel-42-lb-2" class="opt" data-value="В обработке" aria-selected="false">В обработке</li><li role="option" id="sel-42-lb-3" class="opt" data-value="Отклонена" aria-selected="false">Отклонена</li><li role="option" id="sel-42-lb-4" class="opt" data-value="Возврат" aria-selected="false">Возврат</li><li role="option" id="sel-42-lb-5" class="opt" data-value="Отменена" aria-selected="false">Отменена</li></ul></div></div><div class="ds-cell" data-name="Select / Single / Error"><div class="field-wrap t-select"><div class="field-select has-error" id="sel-43" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="sel-43-lb" aria-label="Статус" ><span class="value">Выберите статус</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="sel-43-lb" role="listbox" aria-label="Статус" hidden><li role="option" id="sel-43-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li><li role="option" id="sel-43-lb-1" class="opt" data-value="Одобрена" aria-selected="false">Одобрена</li><li role="option" id="sel-43-lb-2" class="opt" data-value="В обработке" aria-selected="false">В обработке</li><li role="option" id="sel-43-lb-3" class="opt" data-value="Отклонена" aria-selected="false">Отклонена</li><li role="option" id="sel-43-lb-4" class="opt" data-value="Возврат" aria-selected="false">Возврат</li><li role="option" id="sel-43-lb-5" class="opt" data-value="Отменена" aria-selected="false">Отменена</li></ul><div class="field-error">Выберите значение</div></div></div></div></div><div class="ds-matrix-row ds-tall" style="grid-template-columns:140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">Open</span><div class="ds-cell" data-name="Select / Single / Open"><div class="field-wrap t-select ds-open-host"><div class="field-select filled is-open" id="sel-44" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="true" aria-controls="sel-44-lb" aria-label="Способ оплаты" ><span class="value">Visa</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="sel-44-lb" role="listbox" aria-label="Способ оплаты"><li role="option" id="sel-44-lb-0" class="opt is-reset active" data-value="" aria-selected="false">Не выбрано</li><li role="option" id="sel-44-lb-1" class="opt" data-value="Visa" aria-selected="true">Visa</li><li role="option" id="sel-44-lb-2" class="opt" data-value="Mastercard" aria-selected="false">Mastercard</li><li role="option" id="sel-44-lb-3" class="opt" data-value="Белкарт" aria-selected="false">Белкарт</li></ul></div></div><div class="ds-cell" data-name="Select / Multi / Open"><div class="field-wrap t-select ds-open-host"><div class="field-select filled is-open" id="sel-45" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="true" aria-controls="sel-45-lb" aria-label="Способ оплаты" ><span class="value">Visa, Mastercard</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel is-multi" id="sel-45-lb" role="listbox" aria-label="Способ оплаты" aria-multiselectable="true"><li role="option" id="sel-45-lb-0" class="opt active" data-value="Visa" aria-selected="true"><span class="opt-box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Visa</li><li role="option" id="sel-45-lb-1" class="opt" data-value="Mastercard" aria-selected="true"><span class="opt-box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Mastercard</li><li role="option" id="sel-45-lb-2" class="opt" data-value="Белкарт" aria-selected="false"><span class="opt-box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Белкарт</li></ul></div></div><div class="ds-cell" data-name="Select / With persistent tooltip"><div class="ds-tip-host"><div class="field-wrap t-select" data-name="Временная зона"><div class="field-select filled" id="tz-37" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="tz-37-lb" aria-label="Временная зона" data-field="Временная зона" data-tip-name="Временная зона"  aria-describedby="tz-37-err"><span class="value">(GMT + 01:00) Amsterdam</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="tz-37-lb" role="listbox" aria-label="Временная зона" hidden><li role="option" id="tz-37-lb-0" class="opt is-reset" data-value="" aria-selected="false">Не выбрано</li></ul><div class="tooltip tooltip-static" aria-hidden="true">Временная зона (GMT + 01:00) Amsterdam</div><div class="field-error" id="tz-37-err" hidden></div></div></div></div></div>
+</section>
+<section class="ds-block" id="checkbox" data-name="Checkbox · Switch · Radio">
+  <header class="ds-block-head"><h2 class="text-h2">Checkbox · Switch · Radio</h2><p class="ds-intro">Checkbox — фильтры и выбор строк. Switch — мгновенное включение (правило, «Активирован»). Radio — выбор одного из двух-трёх значений.</p></header>
+  <div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span></span><span>Default</span><span>Focus</span><span>Disabled</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">Unchecked</span><div class="ds-cell" data-name="Checkbox / Unchecked / Default"><label class="checkbox"><input type="checkbox"   /><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="">Тестовые транзакции</span></label></div><div class="ds-cell" data-name="Checkbox / Unchecked / Focus"><label class="checkbox is-focus"><input type="checkbox"   /><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="">Тестовые транзакции</span></label></div><div class="ds-cell" data-name="Checkbox / Unchecked / Disabled"><label class="checkbox disabled"><input type="checkbox"  disabled /><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="">Тестовые транзакции</span></label></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">Checked</span><div class="ds-cell" data-name="Checkbox / Checked / Default"><label class="checkbox"><input type="checkbox" checked  /><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="">Тестовые транзакции</span></label></div><div class="ds-cell" data-name="Checkbox / Checked / Focus"><label class="checkbox is-focus"><input type="checkbox" checked  /><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="">Тестовые транзакции</span></label></div><div class="ds-cell" data-name="Checkbox / Checked / Disabled"><label class="checkbox disabled"><input type="checkbox" checked disabled /><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="">Тестовые транзакции</span></label></div></div></div><div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span></span><span>Default</span><span>Focus</span><span>Disabled</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">Off</span><div class="ds-cell" data-name="Switch / Off / Default"><label class="switch"><input type="checkbox" role="switch"  /><span class="switch-track" aria-hidden="true"><span class="switch-text">Off</span><span class="switch-thumb"></span></span><span class="visually-hidden">Активно</span></label></div><div class="ds-cell" data-name="Switch / Off / Focus"><label class="switch is-focus"><input type="checkbox" role="switch"  /><span class="switch-track" aria-hidden="true"><span class="switch-text">Off</span><span class="switch-thumb"></span></span><span class="visually-hidden">Активно</span></label></div><div class="ds-cell" data-name="Switch / Off / Disabled"><label class="switch is-disabled"><input disabled type="checkbox" role="switch"  /><span class="switch-track" aria-hidden="true"><span class="switch-text">Off</span><span class="switch-thumb"></span></span><span class="visually-hidden">Активно</span></label></div></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">On</span><div class="ds-cell" data-name="Switch / On / Default"><label class="switch"><input type="checkbox" role="switch" checked /><span class="switch-track" aria-hidden="true"><span class="switch-text">On</span><span class="switch-thumb"></span></span><span class="visually-hidden">Активно</span></label></div><div class="ds-cell" data-name="Switch / On / Focus"><label class="switch is-focus"><input type="checkbox" role="switch" checked /><span class="switch-track" aria-hidden="true"><span class="switch-text">On</span><span class="switch-thumb"></span></span><span class="visually-hidden">Активно</span></label></div><div class="ds-cell" data-name="Switch / On / Disabled"><label class="switch is-disabled"><input disabled type="checkbox" role="switch" checked /><span class="switch-track" aria-hidden="true"><span class="switch-text">On</span><span class="switch-thumb"></span></span><span class="visually-hidden">Активно</span></label></div></div></div><div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span></span><span>Unselected</span><span>Selected</span><span>Focus</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">Group</span><div class="ds-cell" data-name="Radio / Group / Unselected"><div class="radio-group" role="radiogroup" aria-label="Статус"><label class="radio"><input type="radio" name="r-46" value="successful"  /><span class="radio-dot" aria-hidden="true"></span><span>successful</span></label><label class="radio"><input type="radio" name="r-46" value="failed"  /><span class="radio-dot" aria-hidden="true"></span><span>failed</span></label></div></div><div class="ds-cell" data-name="Radio / Group / Selected"><div class="radio-group" role="radiogroup" aria-label="Статус"><label class="radio"><input type="radio" name="r-47" value="successful"  /><span class="radio-dot" aria-hidden="true"></span><span>successful</span></label><label class="radio"><input type="radio" name="r-47" value="failed" checked /><span class="radio-dot" aria-hidden="true"></span><span>failed</span></label></div></div><div class="ds-cell" data-name="Radio / Group / Focus"><div class="radio-group" role="radiogroup" aria-label="Статус"><label class="radio is-focus"><input type="radio" name="r-48" value="successful"  /><span class="radio-dot" aria-hidden="true"></span><span>successful</span></label><label class="radio"><input type="radio" name="r-48" value="failed"  /><span class="radio-dot" aria-hidden="true"></span><span>failed</span></label></div></div></div></div>
+</section>
+<section class="ds-block" id="segmented" data-name="Segmented control">
+  <header class="ds-block-head"><h2 class="text-h2">Segmented control</h2><p class="ds-intro">Переключение режима (Простой / Расширенный) и языка (RU / EN).</p></header>
+  <div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span></span><span>Default</span><span>Hover</span><span>Focus</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">2 options</span><div class="ds-cell" data-name="Segmented / 2 options / Default"><div class="mode-tabs" role="group" aria-label="Режим поиска"><button type="button" aria-pressed="true">Простой</button><button type="button" aria-pressed="false">Расширенный</button></div></div><div class="ds-cell" data-name="Segmented / 2 options / Hover"><div class="mode-tabs" role="group" aria-label="Режим поиска"><button type="button" aria-pressed="true">Простой</button><button type="button" aria-pressed="false" class="is-hover">Расширенный</button></div></div><div class="ds-cell" data-name="Segmented / 2 options / Focus"><div class="mode-tabs" role="group" aria-label="Режим поиска"><button type="button" aria-pressed="true">Простой</button><button type="button" aria-pressed="false" class="is-focus">Расширенный</button></div></div></div></div>
+</section><section class="ds-block" id="tabs" data-name="Tabs">
+  <header class="ds-block-head"><h2 class="text-h2">Tabs</h2><p class="ds-intro">Разделы одного экрана (Финансовая информация). Переключение стрелками.</p></header>
+  <div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span></span><span>Default</span><span>Hover</span><span>Focus</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">3 tabs</span><div class="ds-cell" data-name="Tabs / 3 tabs / Default"><div class="tabs" role="tablist" id="tabs-49"><button type="button" role="tab" class="tab" id="tab-a-50" data-tab="a-50" aria-selected="true" aria-controls="tabs-49-panel" tabindex="-1">Прибыль</button><button type="button" role="tab" class="tab" id="tab-b-51" data-tab="b-51" aria-selected="false" aria-controls="tabs-49-panel" tabindex="-1">Оборот</button><button type="button" role="tab" class="tab" id="tab-c-52" data-tab="c-52" aria-selected="false" aria-controls="tabs-49-panel" tabindex="-1">К выплате</button></div></div><div class="ds-cell" data-name="Tabs / 3 tabs / Hover"><div class="tabs" role="tablist" id="tabs-53"><button type="button" role="tab" class="tab" id="tab-a-54" data-tab="a-54" aria-selected="true" aria-controls="tabs-53-panel" tabindex="-1">Прибыль</button><button type="button" role="tab" class="tab is-hover" id="tab-b-55" data-tab="b-55" aria-selected="false" aria-controls="tabs-53-panel" tabindex="-1">Оборот</button><button type="button" role="tab" class="tab" id="tab-c-56" data-tab="c-56" aria-selected="false" aria-controls="tabs-53-panel" tabindex="-1">К выплате</button></div></div><div class="ds-cell" data-name="Tabs / 3 tabs / Focus"><div class="tabs" role="tablist" id="tabs-57"><button type="button" role="tab" class="tab" id="tab-a-58" data-tab="a-58" aria-selected="true" aria-controls="tabs-57-panel" tabindex="-1">Прибыль</button><button type="button" role="tab" class="tab is-focus" id="tab-b-59" data-tab="b-59" aria-selected="false" aria-controls="tabs-57-panel" tabindex="-1">Оборот</button><button type="button" role="tab" class="tab" id="tab-c-60" data-tab="c-60" aria-selected="false" aria-controls="tabs-57-panel" tabindex="-1">К выплате</button></div></div></div></div>
+</section><section class="ds-block" id="nav-item" data-name="Nav item">
+  <header class="ds-block-head"><h2 class="text-h2">Nav item</h2><p class="ds-intro">Пункт бокового меню: иконка + подпись. Current — текущий экран.</p></header>
+  <div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(4, minmax(0, 1fr))"><span></span><span>Default</span><span>Hover</span><span>Focus</span><span>Current</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(4, minmax(0, 1fr))"><span class="ds-row-label">Item</span><div class="ds-cell" data-name="Nav item / Item / Default"><div class="ds-nav-ctx"><a class="nav-link" href="#"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 6.5h13" stroke="currentColor" stroke-width="1.3"/></svg><span>Платежи</span></a></div></div><div class="ds-cell" data-name="Nav item / Item / Hover"><div class="ds-nav-ctx"><a class="nav-link is-hover" href="#"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 6.5h13" stroke="currentColor" stroke-width="1.3"/></svg><span>Платежи</span></a></div></div><div class="ds-cell" data-name="Nav item / Item / Focus"><div class="ds-nav-ctx"><a class="nav-link is-focus" href="#"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 6.5h13" stroke="currentColor" stroke-width="1.3"/></svg><span>Платежи</span></a></div></div><div class="ds-cell" data-name="Nav item / Item / Current"><div class="ds-nav-ctx"><a class="nav-link" href="#" aria-current="page"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 6.5h13" stroke="currentColor" stroke-width="1.3"/></svg><span>Платежи</span></a></div></div></div></div>
+</section><section class="ds-block" id="pagination" data-name="Pagination">
+  <header class="ds-block-head"><h2 class="text-h2">Pagination</h2><p class="ds-intro">Строк на странице + номера страниц. Текущая — заливка action.</p></header>
+  <div class="ds-matrix"><div class="ds-matrix-head" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span></span><span>Default</span><span>Hover on page 3</span><span>Focus on page 3</span></div><div class="ds-matrix-row" style="grid-template-columns: 140px repeat(3, minmax(0, 1fr))"><span class="ds-row-label">Bar</span><div class="ds-cell" data-name="Pagination / Bar / Default"><div class="pagination">
+    <div class="rows-per-page"><span id="per-page-label">Показывать по</span>
+      <div class="select-wrap"><div class="field-select filled" id="per-page" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="per-page-lb" aria-label="Строк на странице" data-per-page aria-labelledby="per-page-label"><span class="value">10</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="per-page-lb" role="listbox" aria-label="Строк на странице" hidden><li role="option" id="per-page-lb-0" class="opt" data-value="10" aria-selected="true">10</li><li role="option" id="per-page-lb-1" class="opt" data-value="20" aria-selected="false">20</li><li role="option" id="per-page-lb-2" class="opt" data-value="50" aria-selected="false">50</li></ul></div>
+      <span>строк</span><span class="range">11–20 из 57</span>
+    </div>
+    <nav class="pages" aria-label="Страницы результатов">
+      <button type="button" class="page-btn" data-page="1" aria-label="Предыдущая страница" >‹</button>
+      <button type="button" class="page-btn" data-page="1"  aria-label="Страница 1">1</button><button type="button" class="page-btn active" data-page="2" aria-current="page" aria-label="Страница 2">2</button><button type="button" class="page-btn" data-page="3"  aria-label="Страница 3">3</button><button type="button" class="page-btn" data-page="4"  aria-label="Страница 4">4</button><button type="button" class="page-btn" data-page="5"  aria-label="Страница 5">5</button><button type="button" class="page-btn" data-page="6"  aria-label="Страница 6">6</button>
+      <button type="button" class="page-btn" data-page="3" aria-label="Следующая страница" >›</button>
+    </nav>
+  </div></div><div class="ds-cell" data-name="Pagination / Bar / Hover on page 3"><div class="pagination">
+    <div class="rows-per-page"><span id="per-page-label">Показывать по</span>
+      <div class="select-wrap"><div class="field-select filled" id="per-page" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="per-page-lb" aria-label="Строк на странице" data-per-page aria-labelledby="per-page-label"><span class="value">10</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="per-page-lb" role="listbox" aria-label="Строк на странице" hidden><li role="option" id="per-page-lb-0" class="opt" data-value="10" aria-selected="true">10</li><li role="option" id="per-page-lb-1" class="opt" data-value="20" aria-selected="false">20</li><li role="option" id="per-page-lb-2" class="opt" data-value="50" aria-selected="false">50</li></ul></div>
+      <span>строк</span><span class="range">11–20 из 57</span>
+    </div>
+    <nav class="pages" aria-label="Страницы результатов">
+      <button type="button" class="page-btn" data-page="1" aria-label="Предыдущая страница" >‹</button>
+      <button type="button" class="page-btn" data-page="1"  aria-label="Страница 1">1</button><button type="button" class="page-btn active" data-page="2" aria-current="page" aria-label="Страница 2">2</button><button type="button" class="page-btn is-hover" data-page="3"  aria-label="Страница 3">3</button><button type="button" class="page-btn" data-page="4"  aria-label="Страница 4">4</button><button type="button" class="page-btn" data-page="5"  aria-label="Страница 5">5</button><button type="button" class="page-btn" data-page="6"  aria-label="Страница 6">6</button>
+      <button type="button" class="page-btn" data-page="3" aria-label="Следующая страница" >›</button>
+    </nav>
+  </div></div><div class="ds-cell" data-name="Pagination / Bar / Focus on page 3"><div class="pagination">
+    <div class="rows-per-page"><span id="per-page-label">Показывать по</span>
+      <div class="select-wrap"><div class="field-select filled" id="per-page" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="per-page-lb" aria-label="Строк на странице" data-per-page aria-labelledby="per-page-label"><span class="value">10</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="per-page-lb" role="listbox" aria-label="Строк на странице" hidden><li role="option" id="per-page-lb-0" class="opt" data-value="10" aria-selected="true">10</li><li role="option" id="per-page-lb-1" class="opt" data-value="20" aria-selected="false">20</li><li role="option" id="per-page-lb-2" class="opt" data-value="50" aria-selected="false">50</li></ul></div>
+      <span>строк</span><span class="range">11–20 из 57</span>
+    </div>
+    <nav class="pages" aria-label="Страницы результатов">
+      <button type="button" class="page-btn" data-page="1" aria-label="Предыдущая страница" >‹</button>
+      <button type="button" class="page-btn" data-page="1"  aria-label="Страница 1">1</button><button type="button" class="page-btn active" data-page="2" aria-current="page" aria-label="Страница 2">2</button><button type="button" class="page-btn is-focus" data-page="3"  aria-label="Страница 3">3</button><button type="button" class="page-btn" data-page="4"  aria-label="Страница 4">4</button><button type="button" class="page-btn" data-page="5"  aria-label="Страница 5">5</button><button type="button" class="page-btn" data-page="6"  aria-label="Страница 6">6</button>
+      <button type="button" class="page-btn" data-page="3" aria-label="Следующая страница" >›</button>
+    </nav>
+  </div></div></div></div>
+</section>
+<section class="ds-block" id="badge" data-name="Status badge">
+  <header class="ds-block-head"><h2 class="text-h2">Status badge</h2><p class="ds-intro">Статус всегда текстом и точкой, не только цветом.</p></header>
+  <div class="ds-inline"><div class="ds-cell" data-name="Badge / success"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span><span class="ds-note">success</span></div><div class="ds-cell" data-name="Badge / warning"><span class="status-badge warning"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>В обработке</span><span class="ds-note">warning</span></div><div class="ds-cell" data-name="Badge / error"><span class="status-badge error"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Отклонена</span><span class="ds-note">error</span></div><div class="ds-cell" data-name="Badge / info"><span class="status-badge info"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Возврат</span><span class="ds-note">info</span></div><div class="ds-cell" data-name="Badge / neutral"><span class="status-badge neutral"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Отменена</span><span class="ds-note">neutral</span></div></div>
+</section><section class="ds-block" id="role-badge" data-name="Role badge · Chip">
+  <header class="ds-block-head"><h2 class="text-h2">Role badge · Chip</h2><p class="ds-intro">Рабочее место в шапке экрана; роли пользователя в таблице.</p></header>
+  <div class="ds-inline"><div class="ds-cell" data-name="Role badge / role-admin"><span class="role-badge role-admin"><span class="dot" aria-hidden="true"></span>Администрирование</span></div><div class="ds-cell" data-name="Role badge / role-user"><span class="role-badge role-user"><span class="dot" aria-hidden="true"></span>Клиент</span></div><div class="ds-cell" data-name="Role badge / role-neutral"><span class="role-badge role-neutral"><span class="dot" aria-hidden="true"></span>Поддержка</span></div><div class="ds-cell" data-name="Chip"><span class="chip">Администрирование</span></div><div class="ds-cell" data-name="Chip"><span class="chip">Бухгалтерия</span></div></div>
+</section><section class="ds-block" id="tooltip" data-name="Tooltip">
+  <header class="ds-block-head"><h2 class="text-h2">Tooltip</h2><p class="ds-intro">Правила одинаковы для клиента и админа.</p></header>
+  <div class="ds-inline ds-tip-row"><div class="ds-cell" data-name="Tooltip / Field name"><div class="ds-tip-host"><div class="field-wrap w-sm t-text" data-name="Сумма"><input id="t-61" class="field-input filled" type="text" autocomplete="off" spellcheck="false" value="10000" placeholder="Сумма" aria-label="Сумма"  inputmode="decimal" data-field="Сумма" data-tip-name="Сумма"  aria-describedby="t-61-err"/><div class="tooltip tooltip-static" aria-hidden="true">Сумма</div><div class="field-error" id="t-61-err" hidden></div></div></div><span class="ds-note">имя поля — у заполненного поля</span></div><div class="ds-cell" data-name="Tooltip / Persistent"><div class="ds-tip-host"><div class="field-wrap w-xs t-text" data-name="Последние 4 цифры карты"><input id="t-62" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Последние 4 цифры карты" aria-label="Последние 4 цифры карты"   data-field="Последние 4 цифры карты" data-tip-name="Последние 4 цифры карты"  aria-describedby="t-62-err"/><div class="tooltip tooltip-static" aria-hidden="true">Введите последние 4 цифры карты</div><div class="field-error" id="t-62-err" hidden></div></div></div><span class="ds-note">подсказка формата — всегда</span></div><div class="ds-cell" data-name="Tooltip / Truncated cell"><div class="ds-tip-host"><div class="tooltip tooltip-static" style="position:static">Возврат по заказу №4498 — частичный, 2 позиции</div></div><span class="ds-note">полный текст обрезанной ячейки</span></div></div>
+</section><section class="ds-block" id="toast" data-name="Toast">
+  <header class="ds-block-head"><h2 class="text-h2">Toast</h2><p class="ds-intro">Справа снизу, исчезает через 6 секунд; warning — role=alert.</p></header>
+  <div class="ds-inline"><div class="ds-cell" data-name="Toast / Success"><div class="toast toast-success is-static" role="status"><span class="toast-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor" opacity="0.15"/><path d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="toast-title">Экспорт завершён</div><div class="toast-body">payments_export_24-10-2026.xlsx — 51 строк</div></div><button type="button" class="toast-close" aria-label="Закрыть уведомление"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div></div><div class="ds-cell" data-name="Toast / Warning"><div class="toast toast-warning is-static" role="alert"><span class="toast-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor" opacity="0.15"/><path d="M10 6v5M10 14h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><div class="toast-title">Нечего экспортировать</div><div class="toast-body">Сначала выполните поиск — в файл попадут найденные записи.</div></div><button type="button" class="toast-close" aria-label="Закрыть уведомление"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div></div></div>
+</section><section class="ds-block" id="errors" data-name="Validation messages">
+  <header class="ds-block-head"><h2 class="text-h2">Validation messages</h2></header>
+  <div class="ds-inline"><div class="ds-cell" data-name="Form banner"><div class="form-banner field-error" role="alert">Форма содержит ошибки (3). Проверьте выделенные поля.</div></div><div class="ds-cell" data-name="Field error"><div class="field-error">Введите корректный e-mail</div></div></div>
+</section>
+<section class="ds-block" id="table" data-name="Table">
+  <header class="ds-block-head"><h2 class="text-h2">Table</h2><p class="ds-intro">Заголовки — Overline; идентификаторы и суммы — Mono, суммы по правому краю, статус по центру. Высота строки 36 (compact).</p></header>
+  <div class="table-scroll"><table class="data-table"><colgroup><col style="width:36px"><col style="width:130px"><col style="width:120px"><col style="width:220px"><col style="width:110px"><col style="width:130px"><col style="width:80px"></colgroup><thead><tr><th class="row-check" scope="col"><label class="checkbox"><input type="checkbox"   id="check-page" data-indeterminate="true"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать все на странице</span></label></th><th class="" scope="col" aria-sort="none"><button type="button" class="th-sort" data-sort="uid">UID операции<svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 0.5L8 4H2L5 0.5Z" fill="currentColor" opacity="0.3"/><path d="M5 9.5L2 6H8L5 9.5Z" fill="currentColor" opacity="0.3"/></svg></button></th><th class="" scope="col" aria-sort="descending"><button type="button" class="th-sort" data-sort="date">Дата и время<svg class="sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg></button></th><th class="" scope="col"><span class="th-inner text-overline">Описание платежа</span></th><th class="num" scope="col" aria-sort="none"><button type="button" class="th-sort" data-sort="amount">Сумма<svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 0.5L8 4H2L5 0.5Z" fill="currentColor" opacity="0.3"/><path d="M5 9.5L2 6H8L5 9.5Z" fill="currentColor" opacity="0.3"/></svg></button></th><th class="status-col" scope="col"><span class="th-inner text-overline">Статус</span></th><th class="" scope="col"><span class="th-inner text-overline">Действия</span></th></tr></thead><tbody><tr class="" data-uid="PMT-8842190"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842190"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842190</span></label></td><td class="mono">PMT-8842190</td><td class="">24.10 08:43</td><td class="">Оплата заказа №4521</td><td class="num mono">158,49 BYN</td><td class="status-col"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span></td><td class=""><div class="actions-cell"><button type="button" class="icon-btn" aria-label="Детали"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button></div></td></tr><tr class="is-hover" data-uid="PMT-8842177"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842177"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842177</span></label></td><td class="mono">PMT-8842177</td><td class="">24.10 07:12</td><td class="">Возврат по заказу №4498</td><td class="num mono">62,50 BYN</td><td class="status-col"><span class="status-badge info"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Возврат</span></td><td class=""><div class="actions-cell"><button type="button" class="icon-btn" aria-label="Детали"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button></div></td></tr><tr class="selected" data-uid="PMT-8842158"><td class="row-check"><label class="checkbox"><input type="checkbox" checked  data-row-check="PMT-8842158"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842158</span></label></td><td class="mono">PMT-8842158</td><td class="">23.10 21:05</td><td class="">Оплата подписки Premium</td><td class="num mono">29,90 BYN</td><td class="status-col"><span class="status-badge warning"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>В обработке</span></td><td class=""><div class="actions-cell"><button type="button" class="icon-btn" aria-label="Детали"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button></div></td></tr><tr class="" data-uid="PMT-8842133"><td class="row-check"><label class="checkbox"><input type="checkbox"   data-row-check="PMT-8842133"/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать PMT-8842133</span></label></td><td class="mono">PMT-8842133</td><td class="">23.10 18:40</td><td class="">Оплата доставки №4487</td><td class="num mono">310,00 BYN</td><td class="status-col"><span class="status-badge error"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Отклонена</span></td><td class=""><div class="actions-cell"><button type="button" class="icon-btn" aria-label="Детали"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8s2.7-5 7-5 7 5 7 5-2.7 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg></button></div></td></tr></tbody></table></div><div class="ds-legend"><span>Строка 1 — Default</span><span>Строка 2 — Hover</span><span>Строка 3 — Selected</span><span>«Дата и время» — Sort desc, остальные сортируемые — None</span></div>
+</section><section class="ds-block" id="pagination-ctx" data-name="Loading skeleton">
+  <header class="ds-block-head"><h2 class="text-h2">Loading skeleton</h2><p class="ds-intro">Показывается на время поиска вместо строк.</p></header>
+  <div class="table-scroll"><table class="data-table"><colgroup><col style="width:36px"><col style="width:130px"><col style="width:120px"><col style="width:220px"><col style="width:110px"><col style="width:130px"><col style="width:80px"></colgroup><thead><tr><th class="row-check" scope="col"><label class="checkbox"><input type="checkbox"   id="check-page" data-indeterminate="false" disabled/><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="visually-hidden">Выбрать все на странице</span></label></th><th class="" scope="col" aria-sort="none"><button type="button" class="th-sort" data-sort="uid">UID операции<svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 0.5L8 4H2L5 0.5Z" fill="currentColor" opacity="0.3"/><path d="M5 9.5L2 6H8L5 9.5Z" fill="currentColor" opacity="0.3"/></svg></button></th><th class="" scope="col" aria-sort="none"><button type="button" class="th-sort" data-sort="date">Дата и время<svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 0.5L8 4H2L5 0.5Z" fill="currentColor" opacity="0.3"/><path d="M5 9.5L2 6H8L5 9.5Z" fill="currentColor" opacity="0.3"/></svg></button></th><th class="" scope="col"><span class="th-inner text-overline">Описание платежа</span></th><th class="num" scope="col" aria-sort="none"><button type="button" class="th-sort" data-sort="amount">Сумма<svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 0.5L8 4H2L5 0.5Z" fill="currentColor" opacity="0.3"/><path d="M5 9.5L2 6H8L5 9.5Z" fill="currentColor" opacity="0.3"/></svg></button></th><th class="status-col" scope="col"><span class="th-inner text-overline">Статус</span></th><th class="" scope="col"><span class="th-inner text-overline">Действия</span></th></tr></thead><tbody><tr class="skeleton-row"><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td></tr><tr class="skeleton-row"><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td></tr><tr class="skeleton-row"><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td><td><span class="skeleton-block" style="width:70%;height:14px;"></span></td></tr></tbody></table></div>
+</section><section class="ds-block" id="empty" data-name="Empty state">
+  <header class="ds-block-head"><h2 class="text-h2">Empty state</h2></header>
+  <div class="ds-card"><div class="empty-state"><div class="icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="title">Нет результатов</div><div class="hint text-body-sm">По заданным параметрам ничего не найдено. Измените условия и попробуйте снова.</div><button type="button" class="btn btn-secondary"  >Очистить фильтры</button></div></div>
+</section><section class="ds-block" id="stat" data-name="Stat tile">
+  <header class="ds-block-head"><h2 class="text-h2">Stat tile</h2><p class="ds-intro">Итоги на экранах Баланс и Финансовая информация.</p></header>
+  <div class="stat-grid"><div class="stat"><div class="stat-label">Баланс</div><div class="stat-value mono">12 480,00 BYN</div><div class="stat-hint">Одобренные операции за 30 дней</div></div><div class="stat"><div class="stat-label">Доступно к выводу</div><div class="stat-value mono">9 310,50 BYN</div></div><div class="stat"><div class="stat-label">Операций</div><div class="stat-value">312</div></div></div>
+</section>
+<section class="ds-block" id="drawer" data-name="Drawer">
+  <header class="ds-block-head"><h2 class="text-h2">Drawer</h2><p class="ds-intro">Боковая панель 480px поверх затемнения: просмотр деталей или короткая форма создания. Закрывается крестиком, кликом по фону и Esc.</p></header>
+  <div class="ds-inline ds-drawers"><div class="ds-cell" data-name="Drawer / View"><div class="ds-drawer-box"><div class="drawer-overlay" data-action="close-drawer"></div>
+  <div class="drawer is-static" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="drawer-header"><h2 class="text-h2" id="drawer-title">Детали транзакции</h2><button type="button" class="drawer-close" data-action="close-drawer" aria-label="Закрыть"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+    <div class="drawer-body"><h3 class="text-overline drawer-section-title">Операция</h3><div class="drawer-field"><span class="k">UID операции</span><span class="v mono">PMT-8842190</span></div><div class="drawer-field"><span class="k">Статус</span><span class="v"><span class="status-badge success"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>Одобрена</span></span></div><div class="drawer-field"><span class="k">Сумма</span><span class="v mono">158,49 BYN</span></div><h3 class="text-overline drawer-section-title">Платёж</h3><div class="drawer-field"><span class="k">Карта</span><span class="v mono">Visa •••• 4471</span></div><div class="drawer-field"><span class="k">Плательщик</span><span class="v">a***@example.com</span></div></div>
+    
+  </div></div></div><div class="ds-cell" data-name="Drawer / Form"><div class="ds-drawer-box"><div class="drawer-overlay" data-action="close-drawer"></div>
+  <div class="drawer is-static" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="drawer-header"><h2 class="text-h2" id="drawer-title">Новая реклама — для PSP</h2><button type="button" class="drawer-close" data-action="close-drawer" aria-label="Закрыть"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+    <div class="drawer-body"><div class="form-stack"><div class="field-wrap t-text" data-name="Название"><input id="d-63" class="field-input filled" type="text" autocomplete="off" spellcheck="false" value="Осенняя акция" placeholder="Название" aria-label="Название"   data-field="Название" data-tip-name="Название"  aria-describedby="d-63-err" aria-required="true"/><div class="field-error" id="d-63-err" hidden></div></div><div class="field-wrap t-select" data-name="Получатель"><div class="field-select has-error" id="d-64" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="d-64-lb" aria-label="Получатель" data-field="Получатель" data-tip-name="Получатель"  aria-describedby="d-64-err" aria-invalid="true" aria-required="true"><span class="value">Выберите получателя</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="d-64-lb" role="listbox" aria-label="Получатель" hidden><li role="option" id="d-64-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li></ul><div class="field-error" id="d-64-err">Выберите значение</div></div></div></div>
+    <div class="drawer-footer"><button type="button" class="btn btn-primary"  >Создать</button><button type="button" class="btn btn-secondary"  >Отмена</button></div>
+  </div></div></div></div>
+</section>
+<div class="ds-chapter" id="chapter-3"><span class="ds-chapter-num">03</span><h1 class="text-h1">Patterns</h1></div>
+<section class="ds-block" id="page-header" data-name="Page header">
+  <header class="ds-block-head"><h2 class="text-h2">Page header</h2><p class="ds-intro">Заголовок экрана + рабочее место + режим + действия шапки.</p></header>
+  <header class="app-header"><h1 class="page-title text-h1">Список платежей</h1><div class="header-meta"><span class="role-badge role-admin"><span class="dot" aria-hidden="true"></span>Администрирование</span><div class="mode-tabs" role="group"><button type="button" aria-pressed="true">Простой</button><button type="button" aria-pressed="false">Расширенный</button></div><button type="button" class="btn btn-ghost"  >Заполнить пример</button></div></header>
+</section><section class="ds-block" id="filter-panel" data-name="Filter panel">
+  <header class="ds-block-head"><h2 class="text-h2">Filter panel</h2><p class="ds-intro">Группы полей с заголовком, ряды по 3–5 полей, футер: действия слева, переключатели справа.</p></header>
+  <div class="section-block"><form class="search-panel" onsubmit="return false">
+    <fieldset class="field-group"><legend class="field-group-title text-h3 text-secondary">Поиск по данным операции:</legend>
+      <div class="field-row"><div class="field-wrap t-text" data-name="UID операции"><input id="p-65" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="UID операции" aria-label="UID операции"   data-field="UID операции" data-tip-name="UID операции"  aria-describedby="p-65-err"/><div class="field-error" id="p-65-err" hidden></div></div><div class="field-wrap t-text" data-name="Трекинг ID"><input id="p-66" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Трекинг ID" aria-label="Трекинг ID"   data-field="Трекинг ID" data-tip-name="Трекинг ID"  aria-describedby="p-66-err"/><div class="field-error" id="p-66-err" hidden></div></div><div class="field-wrap w-sm t-text" data-name="Сумма"><input id="p-67" class="field-input" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Сумма" aria-label="Сумма"  inputmode="decimal" data-field="Сумма" data-tip-name="Сумма"  aria-describedby="p-67-err"/><div class="field-error" id="p-67-err" hidden></div></div><div class="field-wrap t-select" data-name="Статус"><div class="field-select" id="p-68" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="p-68-lb" aria-label="Статус" data-field="Статус" data-tip-name="Статус"  aria-describedby="p-68-err"><span class="value">Выберите статус</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="p-68-lb" role="listbox" aria-label="Статус" hidden><li role="option" id="p-68-lb-0" class="opt is-reset" data-value="" aria-selected="true">Не выбрано</li></ul><div class="field-error" id="p-68-err" hidden></div></div></div></fieldset>
+    <div class="footer-row"><div class="footer-left"><button type="button" class="btn btn-primary"  >Искать</button><button type="button" class="btn btn-secondary"  >Экспортировать в XLSX</button><button type="button" class="btn btn-secondary"  >Очистить поля</button></div><div class="footer-right"><label class="checkbox"><input type="checkbox"   /><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="">Расширенный поиск</span></label><label class="checkbox"><input type="checkbox"   /><span class="box" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="">Тестовые транзакции</span></label></div></div>
+  </form></div>
+</section><section class="ds-block" id="sidebar" data-name="Sidebar">
+  <header class="ds-block-head"><h2 class="text-h2">Sidebar</h2><p class="ds-intro">Логотип, выбор рабочего места, меню экранов.</p></header>
+  <div class="ds-sidebar-box"><aside class="sidebar"><div class="sidebar-brand"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M11 23V9h6.2a4.6 4.6 0 0 1 0 9.2H11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Paid</span><span class="brand-sub">Operations</span></div>
+    <div class="sidebar-ws"><span class="sidebar-label">Рабочее место</span><div class="select-wrap"><div class="field-select filled" id="ws-69" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="ws-69-lb" aria-label="Рабочее место" ><span class="value">Администрирование</span><svg class="chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <ul class="select-panel" id="ws-69-lb" role="listbox" aria-label="Рабочее место" hidden></ul></div></div>
+    <nav class="sidebar-nav"><ul><li><a href="#" class="nav-link" aria-current="page"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 6.5h13" stroke="currentColor" stroke-width="1.3"/></svg><span>Платежи</span></a></li><li><a href="#" class="nav-link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 3h12M2 6.5h8M2 10h12M2 13.5h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span>Журнал событий</span></a></li><li><a href="#" class="nav-link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5l5.5 2v4c0 3.2-2.3 5.8-5.5 7-3.2-1.2-5.5-3.8-5.5-7v-4l5.5-2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>Антифрод-правила</span></a></li><li><a href="#" class="nav-link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 6.5v3h2.5L10 13V3L4.5 6.5H2ZM12.5 6a2.5 2.5 0 0 1 0 4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>Реклама</span></a></li><li><a href="#" class="nav-link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 13.5c.6-2.3 2.3-3.5 4.5-3.5s3.9 1.2 4.5 3.5M11 3.2a2.4 2.4 0 0 1 0 4.6M12.5 10.2c1 .5 1.7 1.6 2 3.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span>Пользователи</span></a></li></ul></nav></aside></div>
+</section>
+</div>
+</body>
+</html>
