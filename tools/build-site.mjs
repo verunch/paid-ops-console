@@ -1253,3 +1253,22 @@ function numberFigmaExport() {
   console.log(`Figma export numbered: ${rows.length} files, order in ${path.join(FIGMA_DIR, "ORDER.md")}`);
 }
 numberFigmaExport();
+
+// Curated must-have NEW screens, copied flat into one folder so they can be
+// imported into Figma alongside the original admin/user screens.
+const MUST_HAVE_DIR = "обязательное";
+const MUST_HAVE = [
+  "new/design-system", "new/admin/rules/merchant-selected", "new/admin/users-new/default",
+  "new/service/reports/results", "new/support/tx-edit/found", "new/support/resend/sent",
+  "new/accounting/fin-info/profit-results", "new/accounting/mass-payouts-new/validation",
+];
+function copyMustHave() {
+  const out = path.join(FIGMA_DIR, MUST_HAVE_DIR);
+  fs.mkdirSync(out, { recursive: true });
+  for (const dir of MUST_HAVE) {
+    const [file] = fs.readdirSync(path.join(FIGMA_DIR, dir)).filter((f) => f.endsWith(".html"));
+    fs.copyFileSync(path.join(FIGMA_DIR, dir, file), path.join(out, file));
+  }
+  console.log(`Must-have screens: ${MUST_HAVE.length} files copied to ${out}`);
+}
+copyMustHave();
