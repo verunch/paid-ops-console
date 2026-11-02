@@ -1322,3 +1322,14 @@ function buildDesignSystemExport() {
   console.log(`Design-system sheet: /ds and ${out}`);
 }
 buildDesignSystemExport();
+
+// English key screens, flat in one folder.
+const FLAT_EN_DIR = "все-экраны-en";
+function copyFlatEn() {
+  const out = path.join(FIGMA_DIR, FLAT_EN_DIR);
+  fs.mkdirSync(out, { recursive: true });
+  const files = collectHtmlFiles(path.join(FIGMA_DIR, "en"));
+  for (const f of files) fs.copyFileSync(f, path.join(out, path.basename(f)));
+  console.log(`Flat EN copy: ${files.length} files in ${out}`);
+}
+copyFlatEn();
