@@ -14,7 +14,6 @@ export const EN = {
   "Перейти к содержимому": "Skip to content",
   "Дизайн-система": "Design system",
   "Экраны для Figma": "Screens for Figma",
-  "NEW экраны для Figma": "NEW screens for Figma",
   "Платежи": "Payments",
   "Отчёты": "Reports",
   "Выплаты": "Payouts",
