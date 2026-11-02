@@ -2,6 +2,8 @@
 
 A UX/UI concept for an internal payment-operations console, modeled loosely on a typical payment provider's search/reporting tooling. It ships as a **live MVP** (one interactive page), a set of **static screens** for Figma import, and a Figma file.
 
+**Case study (RU):** [`docs/CASE-STUDY.md`](docs/CASE-STUDY.md) — how a 27-field payment search fits one screen without field labels: semantic grouping, placeholder-as-name, and a tooltip rule that brings the field name back once the field is filled.
+
 **This is a concept exploration — not a production application and not an official release.** There is no backend: the MVP runs entirely in the browser on a fixed, fictional data set (57 operations, masked personal data).
 
 ## Live MVP
