@@ -6,6 +6,8 @@ A UX/UI concept for an internal payment-operations console, modeled loosely on a
 
 **This is a concept exploration — not a production application and not an official release.** There is no backend: the MVP runs entirely in the browser on a fixed, fictional data set (57 operations, masked personal data).
 
+**Live:** https://verunch.github.io/paid-ops-console/ (English: `?lang=en`)
+
 ## Live MVP
 
 `/` — an operations console with five workspaces (switcher in the sidebar; the route lives in the URL, e.g. `#/support/tx-edit`):
@@ -102,3 +104,15 @@ Contrast, visible focus states, comfortable desktop control sizing, and status l
 - `site/` — the generated site (deployed to Vercel): live MVP at `/`, original screens under `/screens`, NEW screens under `/new`.
 - `site-figma-export/` — self-contained copies of every page (CSS inlined) for HTML-to-Figma importers; NEW screens in `site-figma-export/new/`.
 - Original reference screenshots are intentionally not included.
+
+## Publishing
+
+GitHub Pages serves the site from a sub-path, so a copy with prefixed links is pushed to the `gh-pages` branch:
+
+```sh
+node tools/build-site.mjs
+node tools/build-pages.mjs /tmp/pages        # rewrites href="/…" and src="/…" to /paid-ops-console/…
+# then push /tmp/pages to the gh-pages branch
+```
+
+`vercel.json` is kept for a Vercel deployment at the domain root (no rewriting needed).
