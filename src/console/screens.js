@@ -5,6 +5,7 @@
 import { ICONS } from "./icons.js";
 import * as D from "./data.js";
 import * as UI from "./ui.js";
+import * as I from "./i18n.js";
 
 const { esc } = UI;
 let SPEC = null;
@@ -240,12 +241,14 @@ export function sampleValues(state) {
   };
   // forms whose keys aren't plain field names (dependent selects, role checkboxes)
   if (state.screen === "rules") return { "level:Merchant": true, "Торговец": rule.merchant };
-  if (state.screen === "users/new") return { "Имя пользователя": "Мария Новикова", "Email": "m.novikova@paid.example", "role:Поддержка": true, "role:Бухгалтерия": true, "Активирован": true };
+  if (state.screen === "users/new") return { "Имя пользователя": I.getLang() === "ru" ? "Мария Новикова" : "Maria Novikova", "Email": "m.novikova@paid.example", "role:Поддержка": true, "role:Бухгалтерия": true, "Активирован": true };
   const src = by[state.screen];
   if (!src) return null;
   const values = {};
   for (const f of activeFields(state)) {
     if (!(f.name in src)) continue;
+    // free text is matched against Russian data — don't show it in the English UI
+    if (I.getLang() !== "ru" && f.type !== "select" && /[А-Яа-яЁё]/.test(src[f.name])) continue;
     values[fieldKey(f)] = f.type === "select" && isMulti(state) ? [src[f.name]] : src[f.name];
   }
   return Object.keys(values).length ? values : null;
@@ -658,7 +661,7 @@ export const currentSort = (state) => list(state).sort || DEFAULT_SORT[layout(st
 // ---------------------------------------------------------------------------
 // Rendering — shell
 // ---------------------------------------------------------------------------
-export function renderSidebar(state) {
+export function renderSidebar(state, opts = {}) {
   const w = workspace(state.ws);
   const base = state.screen.split("/")[0];
   return `<aside class="sidebar" aria-label="Навигация">
@@ -666,7 +669,8 @@ export function renderSidebar(state) {
     <div class="sidebar-ws">
       <span class="sidebar-label" id="ws-label">Рабочее место</span>
       <div class="select-wrap">${UI.select({ id: "ws-switch", label: "Рабочее место", placeholder: "", value: w.title, options: SPEC.workspaces.map((x) => x.title), reset: false, attrs: 'data-ws-switch aria-labelledby="ws-label"' })}</div>
-    </div>
+    </div>${opts.live ? `
+    <div class="sidebar-lang" style="display:flex;align-items:center;justify-content:space-between;gap:var(--spacing-sm)"><span class="sidebar-label" id="lang-label">Язык</span><div class="mode-tabs" role="group" aria-labelledby="lang-label">${I.LANGS.map((l) => `<button type="button" data-lang="${l}" lang="${l}" aria-pressed="${I.getLang() === l}">${l.toUpperCase()}</button>`).join("")}</div></div>` : ""}
     <nav class="sidebar-nav"><ul>${w.screens.map((id) => `<li><a href="${routeHash({ ...state, screen: id, mode: "basic", tab: "profit" })}" class="nav-link"${id === base ? ' aria-current="page"' : ""}>${ICONS.nav[NAV[id].icon]}<span>${esc(NAV[id].label)}</span></a></li>`).join("")}</ul></nav>
     <div class="sidebar-foot text-caption"><a href="/new/design-system/">Дизайн-система</a><a href="/screens">Экраны для Figma</a><a href="/new">NEW экраны для Figma</a></div>
   </aside>`;

@@ -106,3 +106,17 @@
 | 100 | `new/accounting/fin-info/payable-results/100-new-accounting-fin-info-payable-results.html` | NEW · Бухгалтерия · Финансовая информация · payable-results |
 | 101 | `new/accounting/fin-info/deposits-default/101-new-accounting-fin-info-deposits-default.html` | NEW · Бухгалтерия · Финансовая информация · deposits-default |
 | 102 | `new/accounting/fin-info/deposits-results/102-new-accounting-fin-info-deposits-results.html` | NEW · Бухгалтерия · Финансовая информация · deposits-results |
+| 103 | `en/103-en.html` | EN Key Screens |
+| 104 | `en/admin/payments/basic-results/104-en-admin-payments-basic-results.html` | EN · Administration · Payments · basic-results |
+| 105 | `en/admin/payments/advanced-tooltips/105-en-admin-payments-advanced-tooltips.html` | EN · Administration · Payments · advanced-tooltips |
+| 106 | `en/admin/payments/advanced-validation/106-en-admin-payments-advanced-validation.html` | EN · Administration · Payments · advanced-validation |
+| 107 | `en/admin/payments/basic-details/107-en-admin-payments-basic-details.html` | EN · Administration · Payments · basic-details |
+| 108 | `en/admin/payments/basic-export-success/108-en-admin-payments-basic-export-success.html` | EN · Administration · Payments · basic-export-success |
+| 109 | `en/admin/users-new/default/109-en-admin-users-new-default.html` | EN · Administration · Add new user · default |
+| 110 | `en/user/payments/basic-results/110-en-user-payments-basic-results.html` | EN · Client · Payments · basic-results |
+| 111 | `en/service/reports/results/111-en-service-reports-results.html` | EN · Merchant services · Reports · results |
+| 112 | `en/support/tx-edit/found/112-en-support-tx-edit-found.html` | EN · Support · Edit transaction · found |
+| 113 | `en/support/resend/sent/113-en-support-resend-sent.html` | EN · Support · Resend notifications · sent |
+| 114 | `en/accounting/balance/result/114-en-accounting-balance-result.html` | EN · Accounting · Balance · result |
+| 115 | `en/accounting/mass-payouts-new/validation/115-en-accounting-mass-payouts-new-validation.html` | EN · Accounting · Create mass payout · validation |
+| 116 | `en/accounting/fin-info/profit-results/116-en-accounting-fin-info-profit-results.html` | EN · Accounting · Financial information · profit-results |

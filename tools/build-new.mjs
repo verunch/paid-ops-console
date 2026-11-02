@@ -9,10 +9,20 @@ import path from "node:path";
 import * as D from "../src/console/data.js";
 import * as S from "../src/console/screens.js";
 import * as UI from "../src/console/ui.js";
+import * as I from "../src/console/i18n.js";
 
 // Fixed clock for static screens so every build produces identical files.
 const STATIC_NOW = Date.UTC(2026, 9, 24, 12, 0, 0);
 const TEST_KEY = "Тестовые транзакции";
+
+// Key states also published in English (/en/…) — a curated set for reviewers,
+// not a full copy: the complete documentation stays in Russian under /new.
+const EN_SCREENS = [
+  "admin/payments/basic-results", "admin/payments/advanced-tooltips", "admin/payments/advanced-validation",
+  "admin/payments/basic-details", "admin/payments/basic-export-success", "user/payments/basic-results",
+  "support/tx-edit/found", "support/resend/sent", "service/reports/results", "admin/users-new/default",
+  "accounting/balance/result", "accounting/fin-info/profit-results", "accounting/mass-payouts-new/validation",
+];
 
 export function buildConsole({ ROOT, PLAN_DIR, writeFile, HEAD_LINKS }) {
   const SRC = path.join(ROOT, "src/console");
@@ -56,6 +66,7 @@ ${HEAD_LINKS}
 
   // ---- 2. NEW static screens -----------------------------------------------
   const pages = [];
+  const enPages = [];
   const fresh = (ws, screen, route = {}) => S.createState(D.createData(STATIC_NOW), { ws, screen, ...route });
   const results = (st) => { S.list(st).results = S.query(st); return st; };
   const label = (ws) => S.workspace(ws).title;
@@ -65,7 +76,7 @@ ${HEAD_LINKS}
     const main = S.renderMain(st, opts);
     const sidebar = S.renderSidebar(st).replace(/href="#\//g, 'href="/#/');
     const fullTitle = `NEW · ${label(ws)} · ${title} · ${name}`;
-    writeFile(`${route}/index.html`, `<!doctype html>
+    const html = `<!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8" />
@@ -95,8 +106,23 @@ ${overlay}
 </div>
 </body>
 </html>
-`);
+`;
+    writeFile(`${route}/index.html`, html);
     pages.push({ ws, screen, name, title, href: `/${route}` });
+    const enKey = `${ws}/${screen.replace("/", "-")}/${name}`;
+    if (EN_SCREENS.includes(enKey)) {
+      I.setLang("en");
+      const enHtml = I.html(html)
+        .replace('<html lang="ru">', '<html lang="en">')
+        .replace("<title>NEW · ", "<title>EN · ")
+        .replace("Prototype nav — NEW screen", "Prototype nav — EN screen")
+        .replace('<a href="/new">NEW screens</a>', '<a href="/en">EN screens</a>')
+        .replace(`<span>/${route}</span>`, `<span>/en/${enKey}</span>`)
+        .replace('<a href="/">Live MVP</a>', '<a href="/?lang=en">Live MVP</a>');
+      enPages.push({ ws, name, wsTitle: I.t(label(ws)), title: I.t(title), href: `/en/${enKey}` });
+      I.setLang("ru");
+      writeFile(`en/${enKey}/index.html`, enHtml);
+    }
   }
 
   const PAY_SAMPLE = { "Сумма": "10000", "Владелец карты": "SIDOROV", "Хэш карты": "1234567891123456789112345678911234", "Имя клиента": "Сидоров", "Телефон клиента": "+375291235678" };
@@ -315,5 +341,30 @@ ${groups}
 </body>
 </html>
 `);
-  return pages;
+  // ---- EN key screens index --------------------------------------------------
+  writeFile("en/index.html", `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EN Key Screens — Paid Prototype</title>
+${HEAD_LINKS}
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/console.css" />
+<style>
+  body { padding: 48px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; max-width: 1280px; }
+  ul a:hover { border-color: var(--color-border-strong); }
+</style>
+</head>
+<body>
+<h1 class="text-h1">Key screens in English</h1>
+<p class="text-body-sm text-secondary">Paid — internal payment operations console. The project was designed for a Russian-speaking client, so the full set of ${pages.length} states is in Russian (<a href="/new">/new</a>). These ${enPages.length} key states are the English version; the <a href="/?lang=en" style="color:var(--color-action-primary)">live MVP</a> switches between RU and EN.</p>
+<ul>${enPages.map((p) => `<li><a class="swatch-card" style="display:block;" href="${p.href}">${UI.esc(p.wsTitle)} · ${UI.esc(p.title)}<div class="swatch-label">${UI.esc(p.name)}</div></a></li>`).join("")}</ul>
+</body>
+</html>
+`);
+  return { pages, enPages };
 }

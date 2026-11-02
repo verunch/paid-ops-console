@@ -20,6 +20,10 @@ Everything works on a fixed, fictional data set: validation with input masks, ke
 
 **Tooltips** follow the reference rule: card digits, card mask and time zone show a persistent tooltip on hover/focus; any other field shows a tooltip with its **name** once it is filled (placeholder no longer visible). Turning on «Тестовые транзакции» shows test operations only and hides the export button.
 
+## Localization
+
+The project was designed for a Russian-speaking client, so Russian is the source language. The live MVP switches between RU and EN (sidebar switch, remembered, shareable as `/?lang=en`); 13 key states are also published in English at `/en` and `site-figma-export/en/`. How it works: [`docs/WORK-SUMMARY.md`](docs/WORK-SUMMARY.md#3-локализация).
+
 ## Screens for Figma
 
 - `/screens` and `site-figma-export/` (top level) — the original static screens, kept byte-for-byte unchanged.

@@ -1161,7 +1161,7 @@ buildDesignSystem();
 buildTransactionDetails();
 buildExportSuccess();
 buildIndex();
-const newPages = buildConsole({ ROOT, PLAN_DIR, writeFile, HEAD_LINKS });
+const { pages: newPages, enPages } = buildConsole({ ROOT, PLAN_DIR, writeFile, HEAD_LINKS });
 
 console.log(`Site generated at ${SITE_DIR}`);
 
@@ -1190,7 +1190,7 @@ function collectHtmlFiles(dir) {
 
 function buildFigmaExport() {
   fs.rmSync(FIGMA_DIR, { recursive: true, force: true }); // clean slate: no stale numbered files
-  const htmlFiles = collectHtmlFiles(SITE_DIR).filter((f) => !path.relative(SITE_DIR, f).startsWith(`new${path.sep}`));
+  const htmlFiles = collectHtmlFiles(SITE_DIR).filter((f) => !/^(new|en)\//.test(path.relative(SITE_DIR, f).split(path.sep).join("/")));
   for (const file of htmlFiles) {
     const rel = path.relative(SITE_DIR, file);
     if (rel === "index.html") continue; // live MVP needs JS — not an importable frame
@@ -1211,7 +1211,7 @@ buildFigmaExport();
 const NEW_LINKS_RE = /<link rel="stylesheet" href="\/assets\/css\/tokens\.css" \/>\n<link rel="stylesheet" href="\/assets\/css\/base\.css" \/>\n<link rel="stylesheet" href="\/assets\/css\/components\.css" \/>\n<link rel="stylesheet" href="\/assets\/css\/console\.css" \/>/;
 function buildNewFigmaExport() {
   const consoleCss = fs.readFileSync(path.join(SITE_DIR, "assets/css/console.css"), "utf8");
-  const files = collectHtmlFiles(path.join(SITE_DIR, "new"));
+  const files = ["new", "en"].flatMap((d) => collectHtmlFiles(path.join(SITE_DIR, d)));
   for (const file of files) {
     const rel = path.relative(SITE_DIR, file);
     const html = fs.readFileSync(file, "utf8").replace(NEW_LINKS_RE, `<style>\n${combinedCss}\n${consoleCss}\n</style>`);
@@ -1219,7 +1219,7 @@ function buildNewFigmaExport() {
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
     fs.writeFileSync(outPath, html, "utf8");
   }
-  console.log(`NEW screens: ${newPages.length} states rendered, ${files.length} files exported to ${path.join(FIGMA_DIR, "new")}`);
+  console.log(`NEW screens: ${newPages.length} states (+${enPages.length} in English) — ${files.length} files exported to ${path.join(FIGMA_DIR, "new")} and /en`);
 }
 buildNewFigmaExport();
 
@@ -1235,6 +1235,8 @@ const FIGMA_ORDER = [
   "transaction/details", "export/success",
   "new",
   ...newPages.map((p) => p.href.slice(1)),
+  "en",
+  ...enPages.map((p) => p.href.slice(1)),
 ];
 function numberFigmaExport() {
   const found = new Set(collectHtmlFiles(FIGMA_DIR).map((f) => path.dirname(path.relative(FIGMA_DIR, f)).split(path.sep).join("/")));

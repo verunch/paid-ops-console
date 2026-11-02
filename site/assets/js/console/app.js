@@ -4,6 +4,7 @@
 import * as D from "./data.js";
 import * as UI from "./ui.js";
 import * as S from "./screens.js";
+import * as I from "./i18n.js";
 import { buildXlsx, buildCsv } from "./xlsx.js";
 
 const SPEC = JSON.parse(document.getElementById("console-spec").textContent);
@@ -17,22 +18,47 @@ const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 const cssEsc = (s) => (window.CSS && CSS.escape ? CSS.escape(s) : s.replace(/"/g, '\\"'));
 const TEST_KEY = "Тестовые транзакции";
 
+// UI language: ?lang=en wins, then the remembered choice, else Russian
+const LANG_KEY = "paid-lang";
+function initLang() {
+  let l = new URLSearchParams(location.search).get("lang");
+  if (!l) try { l = localStorage.getItem(LANG_KEY); } catch {}
+  I.setLang(l);
+  localizePage();
+}
+// the few strings that live in index.html rather than in rendered views
+function localizePage() {
+  document.documentElement.lang = I.getLang();
+  $(".skip-link").textContent = I.getLang() === "en" ? "Skip to content" : "Перейти к содержимому";
+}
+initLang();
+
+function setLanguage(l) {
+  I.setLang(l);
+  try { localStorage.setItem(LANG_KEY, I.getLang()); } catch {}
+  history.replaceState(null, "", `${location.pathname}${I.getLang() === "ru" ? "" : `?lang=${I.getLang()}`}${location.hash}`);
+  localizePage();
+  closeDrawer(false);
+  render(`[data-lang="${I.getLang()}"]`);
+  announce(I.getLang() === "en" ? "Language: English" : "Язык: русский");
+}
+
 // ---------------------------------------------------------------------------
 // Rendering
 // ---------------------------------------------------------------------------
 function render(focusSel) {
   closeListbox();
   hideTooltip();
-  $("#sidebar-root").innerHTML = S.renderSidebar(state);
-  $("#main").innerHTML = S.renderMain(state, { live: true });
+  $("#sidebar-root").innerHTML = I.html(S.renderSidebar(state, { live: true }));
+  $("#main").innerHTML = I.html(S.renderMain(state, { live: true }));
   afterRender();
-  document.title = `${S.layout(state).title} — Paid`;
+  document.title = `${I.t(S.layout(state).title)} — Paid`;
   if (focusSel) $(focusSel)?.focus();
 }
 
 function renderResults(focusSel) {
   hideTooltip();
-  $("#results").innerHTML = S.renderResults(state);
+  $("#results").innerHTML = I.html(S.renderResults(state));
   afterRender();
   if (focusSel) $(focusSel)?.focus();
 }
@@ -45,7 +71,7 @@ function afterRender() {
 function announce(text) {
   const el = $("#sr-status");
   el.textContent = "";
-  setTimeout(() => { el.textContent = text; }, 50);
+  setTimeout(() => { el.textContent = I.t(text); }, 50);
 }
 
 const L = () => S.layout(state);
@@ -100,7 +126,7 @@ function clearError(key, scope = $("#screen-form"), errors = F().errors, bannerI
   }
   const banner = document.getElementById(bannerId);
   const n = Object.keys(errors).length;
-  if (banner) banner.textContent = n ? `Форма содержит ошибки (${n}). Проверьте выделенные поля.` : "";
+  if (banner) banner.textContent = n ? I.t(`Форма содержит ошибки (${n}). Проверьте выделенные поля.`) : "";
 }
 
 function showErrors(focusFirst = true) {
@@ -126,7 +152,7 @@ async function runSearch() {
   ls.selected.clear();
   render();
   const btn = $("#btn-search");
-  if (btn) { btn.setAttribute("aria-busy", "true"); btn.textContent = "Поиск…"; }
+  if (btn) { btn.setAttribute("aria-busy", "true"); btn.textContent = I.t("Поиск…"); }
   await delay(550);
   ls.results = S.query(state);
   ls.loading = false;
@@ -191,7 +217,7 @@ function applyTxEdit(action) {
     if (Object.keys(ef.errors).length) {
       render();
       const banner = $("#edit-banner");
-      if (banner) banner.textContent = `Исправьте поля (${Object.keys(ef.errors).length}).`;
+      if (banner) banner.textContent = I.t(`Исправьте поля (${Object.keys(ef.errors).length}).`);
       $("#main .edit-block [aria-invalid='true']")?.focus();
       return;
     }
@@ -339,7 +365,7 @@ function openDrawer(html, focusSel = ".drawer-close") {
   if (!$("#drawer-root").firstChild) drawerReturnFocus = document.activeElement;
   hideTooltip();
   closeListbox();
-  $("#drawer-root").innerHTML = html;
+  $("#drawer-root").innerHTML = I.html(html);
   document.body.classList.add("has-drawer");
   $(focusSel)?.focus();
 }
@@ -363,8 +389,8 @@ function saveCreate(kind) {
   f.errors = S.validate(state, S.DRAWER_FIELDS[kind], f.values);
   if (kind === "ad" && !f.errors["По"] && f.values["С"] && f.values["По"] && D.parseDate(f.values["По"]) < D.parseDate(f.values["С"])) f.errors["По"] = "Дата «По» не может быть раньше даты «С»";
   if (Object.keys(f.errors).length) {
-    $("#drawer-root").innerHTML = S.createDrawer(kind, state);
-    $("#drawer-banner").textContent = `Исправьте поля (${Object.keys(f.errors).length}).`;
+    $("#drawer-root").innerHTML = I.html(S.createDrawer(kind, state));
+    $("#drawer-banner").textContent = I.t(`Исправьте поля (${Object.keys(f.errors).length}).`);
     $("#drawer-root [aria-invalid='true']")?.focus();
     return;
   }
@@ -397,7 +423,7 @@ function trapFocus(e) {
 // ---------------------------------------------------------------------------
 function toast(t) {
   const wrap = document.createElement("div");
-  wrap.innerHTML = UI.toast(t);
+  wrap.innerHTML = I.html(UI.toast(t));
   const el = wrap.firstElementChild;
   const dismiss = () => el.remove();
   el.querySelector(".toast-close").addEventListener("click", dismiss);
@@ -472,7 +498,7 @@ function chooseOption(opt) {
     values[key] = cur.includes(value) ? cur.filter((v) => v !== value) : [...cur, value];
     opt.setAttribute("aria-selected", String(values[key].includes(value)));
     const v = values[key];
-    box.querySelector(".value").textContent = !v.length ? box.dataset.placeholder || placeholderOf(box) : v.length <= 2 ? v.join(", ") : `${v[0]}, +${v.length - 1}`;
+    box.querySelector(".value").textContent = !v.length ? box.dataset.placeholder || placeholderOf(box) : v.length <= 2 ? v.map(I.t).join(", ") : `${I.t(v[0])}, +${v.length - 1}`;
     box.classList.toggle("filled", v.length > 0);
     clearError(key);
     return; // multi-select stays open
@@ -481,7 +507,7 @@ function chooseOption(opt) {
   opts.forEach((o) => o.setAttribute("aria-selected", String(o === opt)));
   closeListbox(true);
   values[key] = value;
-  box.querySelector(".value").textContent = value || placeholderOf(box);
+  box.querySelector(".value").textContent = value ? I.t(value) : placeholderOf(box);
   box.classList.toggle("filled", Boolean(value));
   if (drawerKey) { clearError(key, $("#drawer-root"), S.form(state, `drawer:${state.ui.drawer.kind}`).errors, "drawer-banner"); return; }
   clearError(key);
@@ -493,8 +519,8 @@ function chooseOption(opt) {
   }
   if (key === "Временная зона") {
     const tip = document.getElementById(`${box.id}-tip`);
-    if (tip) tip.textContent = `Временная зона ${value || D.DEFAULT_TZ.label}`;
-    box.dataset.tipPersistent = `Временная зона ${value || D.DEFAULT_TZ.label}`;
+    if (tip) tip.textContent = I.t(`Временная зона ${value || D.DEFAULT_TZ.label}`);
+    box.dataset.tipPersistent = I.t(`Временная зона ${value || D.DEFAULT_TZ.label}`);
     if (LS().results) renderResults();
   }
   if (L().live) { LS().results = S.query(state); renderResults(); }
@@ -503,7 +529,7 @@ function chooseOption(opt) {
 function placeholderOf(box) {
   const lb = document.getElementById(box.getAttribute("aria-controls"));
   const f = S.activeFields(state).find((x) => x.name === box.dataset.field);
-  return f ? f.ph : lb.getAttribute("aria-label");
+  return f ? I.t(f.ph) : lb.getAttribute("aria-label");
 }
 
 function onComboKeydown(e, box) {
@@ -568,7 +594,7 @@ function showTooltip(el) {
   if (openSelect && openSelect.box === el) return;
   const text = tooltipText(el);
   if (!text) return;
-  tipEl.textContent = text;
+  tipEl.textContent = I.t(text);
   tipEl.hidden = false;
   const r = el.getBoundingClientRect();
   const tw = tipEl.offsetWidth, th = tipEl.offsetHeight;
@@ -684,7 +710,7 @@ document.addEventListener("change", (e) => {
     state.ui.files[el.dataset.field] = file || null;
     values[el.dataset.field] = file ? file.name : "";
     const name = document.getElementById(`${el.id}-name`);
-    if (name) { name.textContent = file ? file.name : "Файл не выбран"; name.classList.toggle("has-file", Boolean(file)); }
+    if (name) { name.textContent = file ? file.name : I.t("Файл не выбран"); name.classList.toggle("has-file", Boolean(file)); }
     clearError(el.dataset.field);
     return;
   }
@@ -754,6 +780,9 @@ document.addEventListener("mousemove", (e) => {
 
 document.addEventListener("click", (e) => {
   const t = e.target;
+
+  const langBtn = t.closest("[data-lang]");
+  if (langBtn) { setLanguage(langBtn.dataset.lang); return; }
 
   const opt = t.closest('[role="option"]');
   if (opt && openSelect) { chooseOption(opt); return; }
